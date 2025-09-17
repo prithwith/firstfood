@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/shared/providers.dart';
+import 'package:fastfood/core/style/app_colors.dart';
+import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/screen/auth/shared/provider.dart';
 import 'package:fastfood/screen/chats/shared/provider.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,16 @@ class _UsersPageState extends ConsumerState<UsersPage> {
     final state = ref.watch(chatNotifierProvider);
 
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: AppColors.colorWhite),
+        backgroundColor: AppColors.colorPrimary,
+        title: Text(
+          "Chats",
+          style: AppTextStyle.rubikTextRegular.copyWith(
+            color: AppColors.colorWhite,
+          ),
+        ),
+      ),
       body:
           state.isUserLoading
               ? const Center(child: CircularProgressIndicator())

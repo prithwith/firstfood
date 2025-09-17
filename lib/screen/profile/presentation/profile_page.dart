@@ -10,6 +10,7 @@ import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/common_utils.dart';
 import 'package:fastfood/screen/auth/shared/provider.dart';
 import 'package:fastfood/screen/profile/presentation/widget/settings_tile.dart';
+import 'package:fastfood/screen/profile/shared/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,15 +29,22 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     final hive = ref.watch(hiveProvider);
     final authState = ref.watch(authNotifierProvider);
     final authStateNotifier = ref.watch(authNotifierProvider.notifier);
+    final state = ref.watch(profileNotifierProvider);
+    final stateNotifier = ref.watch(profileNotifierProvider.notifier);
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20).r,
+          margin:
+              EdgeInsets.symmetric(horizontal: 20)
+                  .copyWith(
+                    top: statusHeight(context),
+                    bottom: navHeight(context),
+                  )
+                  .r,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: statusHeight(context)),
               Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -69,29 +77,27 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               SettingsTile(
                 label: 'My Profile',
                 imageLabel: 'profile.png',
-                onTap: () {},
+                onTap: () => context.pushRoute(MyProfileRoute()),
               ),
               SettingsTile(
                 label: 'My Orders',
                 imageLabel: 'orders.png',
-                onTap: () {
-                  context.pushRoute(OrderRoute());
-                },
+                onTap: () => context.pushRoute(OrderRoute()),
               ),
               SettingsTile(
                 label: 'Delivery Address',
                 imageLabel: 'delivery_address.png',
-                onTap: () {},
+                onTap: () => context.pushRoute(DeliveryAddressRoute()),
               ),
               SettingsTile(
                 label: 'Payments Methods',
                 imageLabel: 'wallet.png',
-                onTap: () {},
+                onTap: () => context.pushRoute(WalletRoute()),
               ),
               SettingsTile(
                 label: 'Contact Us',
                 imageLabel: 'contact_us.png',
-                onTap: () {},
+                onTap: () => stateNotifier.openGmail("support@gmail.com"),
               ),
               SettingsTile(
                 label: 'Settings',
@@ -103,11 +109,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 imageLabel: 'chat.png',
                 onTap: () => context.pushRoute(UsersRoute()),
               ),
-              SettingsTile(
-                label: 'Help & FAQ',
-                imageLabel: 'profile.png',
-                onTap: () {},
-              ),
               30.verticalSpace,
               Padding(
                 padding: EdgeInsets.only(left: 20).r,
@@ -116,6 +117,15 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     side: BorderSide(color: AppColors.colorPrimary),
                   ),
                   onPressed: () {
+                    Future.microtask(() {
+                      hive.box.put(AppPreferenceKeys.token, "");
+                      hive.box.put(AppPreferenceKeys.id, "");
+                      hive.box.put(AppPreferenceKeys.name, "");
+                      hive.box.put(AppPreferenceKeys.email, "");
+                      hive.box.put(AppPreferenceKeys.uid, "");
+                      hive.box.put(AppPreferenceKeys.password, "");
+                    });
+
                     context.replaceRoute(WelcomeRoute());
                   },
                   icon: Image.asset(

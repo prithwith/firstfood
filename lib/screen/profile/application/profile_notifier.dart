@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/screen/profile/application/profile_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileNotifier extends StateNotifier<ProfileState> {
   ProfileNotifier(this._dio, this._hiveDataBase) : super(const ProfileState());
@@ -11,44 +12,15 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
   final HiveDatabase _hiveDataBase;
   final Dio _dio;
 
-  // Future<void> getProfile({VoidCallback? onTokenExpired}) async {
-  //   try {
-  //     state = state.copyWith(isLoading: true);
+  Future<void> openGmail(String email) async {
+    final Uri gmailUri = Uri(
+      scheme: 'mailto',
+      path: email,
+      query: Uri.encodeFull('subject=Hello&body=Hi there,'),
+    );
 
-  //     var headers = {
-  //       'Accept': '*/*',
-  //       'Content-Type': 'application/json',
-  //       'X-Access-Token': _hiveDataBase.box.get(AppPreferenceKeys.token),
-  //     };
-
-  //     _dio.options.headers.addAll(headers);
-
-  //     final response = await _dio.get<Map<String, dynamic>>('user/profile');
-
-  //     if (response.statusCode == 200 && response.data != null) {
-  //       final user = UserModel.fromJson(response.data?["data"]);
-
-  //       if (user.isDeleted ?? false) {
-  //         onTokenExpired?.call();
-
-  //         state = state.copyWith(isLoading: false);
-  //       } else {
-  //         state = state.copyWith(isLoading: false, user: user);
-  //       }
-  //     } else {
-  //       showToastMessage("Session Expired. Please log in again.");
-
-  //       state = state.copyWith(isLoading: false);
-
-  //       onTokenExpired?.call();
-  //     }
-  //   } on DioException catch (e) {
-  //     final error = DioExceptions.fromDioError(e).message;
-  //     showToastMessage(error, errorMessage: e.message ?? '');
-
-  //     state = state.copyWith(isLoading: false);
-
-  //     onTokenExpired?.call();
-  //   }
-  // }
+    if (!await launchUrl(gmailUri, mode: LaunchMode.externalApplication)) {
+      throw 'Could not open Gmail';
+    }
+  }
 }
