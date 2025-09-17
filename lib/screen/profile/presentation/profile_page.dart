@@ -100,8 +100,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               ),
               SettingsTile(
                 label: 'Chats',
-                imageLabel: 'settings.png',
-                onTap: () {},
+                imageLabel: 'chat.png',
+                onTap: () => context.pushRoute(UsersRoute()),
               ),
               SettingsTile(
                 label: 'Help & FAQ',
