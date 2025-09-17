@@ -53,8 +53,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     ClipOval(
                       child: Image.asset(
                         '${AppAssets.appImages}app_icon.png',
-                        height: 150.h,
-                        width: 150.w,
+                        height: 150,
+                        width: 150,
                       ),
                     ),
                     10.verticalSpace,
