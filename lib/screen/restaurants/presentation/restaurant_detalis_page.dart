@@ -1,0 +1,225 @@
+// ignore_for_file: unused_local_variable
+
+import 'package:auto_route/auto_route.dart';
+import 'package:fastfood/core/router/app_router.gr.dart';
+import 'package:fastfood/core/style/app_colors.dart';
+import 'package:fastfood/core/style/app_assets.dart';
+import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/screen/orders/shared/provider.dart';
+import 'package:fastfood/screen/restaurants/presentation/widget/restaurant_popular_item_card.dart';
+import 'package:fastfood/screen/restaurants/shared/provider.dart';
+import 'package:fastfood/widget/app_outline_button.dart';
+import 'package:fastfood/widget/app_back_buttom.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+@RoutePage()
+class RestaurantDetalisPage extends ConsumerStatefulWidget {
+  final List allDishes;
+  const RestaurantDetalisPage({super.key, required this.allDishes});
+
+  @override
+  ConsumerState<RestaurantDetalisPage> createState() =>
+      _RestaurantDetalisPageState();
+}
+
+class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final stateNotifier = ref.read(restaurantsNotifierProvider.notifier);
+      // stateNotifier.getResturantData();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = ref.watch(restaurantsNotifierProvider);
+    final stateNotifier = ref.watch(restaurantsNotifierProvider.notifier);
+    final orderState = ref.watch(ordersNotifierProvider);
+    final orderStateNotifier = ref.watch(ordersNotifierProvider.notifier);
+
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                Image.asset(
+                  '${AppAssets.appImages}pizza.jpg',
+                  height: 250.h,
+                  width: MediaQuery.sizeOf(context).width,
+                  fit: BoxFit.cover,
+                ),
+                Positioned(top: 40.h, left: 16.w, child: AppBackButtom()),
+                Positioned(
+                  top: 40.h,
+                  right: 16.w,
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.colorTypographyMedium,
+                    child: Icon(Icons.more_horiz, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16).r,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "La Pasta House",
+                        style: AppTextStyle.rubikTextBold.copyWith(
+                          fontSize: 24.sp,
+                        ),
+                      ),
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(Icons.favorite, color: Colors.red),
+                      ),
+                    ],
+                  ),
+                  8.verticalSpace,
+                  Text(
+                    "An authentic Italian touch and delicious!",
+                    style: AppTextStyle.rubikTextLight.copyWith(
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                  16.verticalSpace,
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        color: AppColors.colorSecondary,
+                        size: 20,
+                      ),
+                      4.horizontalSpace,
+                      Text("Excellent 9.5"),
+                    ],
+                  ),
+                  8.verticalSpace,
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.timer,
+                        color: AppColors.colorSecondary,
+                        size: 20,
+                      ),
+                      4.horizontalSpace,
+                      Expanded(
+                        child: Text(
+                          "Delivery in 40-50 min\nHome (Jl. Soekarno Hatta 15A)",
+                          style: TextStyle(fontSize: 13.sp),
+                        ),
+                      ),
+                      AppOutlineButton(onPressed: () {}, labelText: "Change"),
+                    ],
+                  ),
+                  8.verticalSpace,
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.access_time,
+                        color: AppColors.colorSecondary,
+                        size: 20,
+                      ),
+                      4.horizontalSpace,
+                      Text("10:00 - 22:00"),
+                    ],
+                  ),
+                  20.verticalSpace,
+                  Text(
+                    "Popular items 🔥",
+                    style: AppTextStyle.rubikTextRegular.copyWith(
+                      fontSize: 18.sp,
+                    ),
+                  ),
+                  12.verticalSpace,
+                  widget.allDishes.isEmpty
+                      ? CircularProgressIndicator()
+                      : ListView(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        children: List.generate(widget.allDishes.length, (
+                          index,
+                        ) {
+                          final item = widget.allDishes[index];
+
+                          return RestaurantPopularItemCard(
+                            index: 1,
+                            title: item.title ?? "",
+                            description:
+                                "Homemade basil pesto, Parmesan cheese, sun-dried tomatoes.",
+                            priceNow: "€ ${item.price}",
+                            priceOld: "€10,50",
+                            imagePath: '${AppAssets.appImages}pizza.jpg',
+                            onTap: () {
+                              if (orderState.cartItemList
+                                  .where((element) => element == item.id)
+                                  .isEmpty) {
+                                // orderStateNotifier.addCartItem(id: item.id);
+                                orderStateNotifier.updateCartItem(
+                                  id: item.id,
+                                  isAdd: true,
+                                );
+                              }
+
+                              context.pushRoute(
+                                FoodDetailsRoute(
+                                  id: item.id,
+                                  name: item.title,
+                                  price: item.price,
+                                ),
+                              );
+                            },
+                          );
+                        }),
+                      ),
+
+                  // RestaurantPopularItemCard(
+                  //   index: 1,
+                  //   title: "Pesto pasta",
+                  //   description:
+                  //       "Homemade basil pesto, Parmesan cheese, sun-dried tomatoes.",
+                  //   priceNow: "€9,50",
+                  //   priceOld: "€10,50",
+                  //   imagePath: '${AppAssets.appImages}pizza.jpg',
+                  // ),
+                  // RestaurantPopularItemCard(
+                  //   index: 2,
+                  //   title: "Amatriciana pasta",
+                  //   description:
+                  //       "Tomato sauce, smoked pork neck, red onions, Pecorino cheese, chili.",
+                  //   priceNow: "€8,70",
+                  //   priceOld: "€9,90",
+                  //   imagePath: '${AppAssets.appImages}pizza.jpg',
+                  // ),
+                  // RestaurantPopularItemCard(
+                  //   index: 3,
+                  //   title: "Carbonara pasta",
+                  //   description:
+                  //       "Creamy egg sauce, pancetta, black pepper, Parmesan.",
+                  //   priceNow: "€9,30",
+                  //   priceOld: "€10,00",
+                  //   imagePath: '${AppAssets.appImages}pizza.jpg',
+                  // ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
