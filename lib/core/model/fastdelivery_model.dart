@@ -8,6 +8,7 @@ part 'fastdelivery_model.g.dart';
 @freezed
 abstract class FastDeliveryModel with _$FastDeliveryModel {
   const factory FastDeliveryModel({
+    @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'subtitle') String? subtitle,
     @JsonKey(name: 'price') String? price,

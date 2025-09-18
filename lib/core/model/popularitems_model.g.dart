@@ -9,6 +9,7 @@ part of 'popularitems_model.dart';
 _$PopularitemsModelImpl _$$PopularitemsModelImplFromJson(
         Map<String, dynamic> json) =>
     _$PopularitemsModelImpl(
+      id: (json['id'] as num?)?.toInt(),
       imagePath: json['imagePath'] as String?,
       title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
@@ -17,6 +18,7 @@ _$PopularitemsModelImpl _$$PopularitemsModelImplFromJson(
 Map<String, dynamic> _$$PopularitemsModelImplToJson(
         _$PopularitemsModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'imagePath': instance.imagePath,
       'title': instance.title,
       'subtitle': instance.subtitle,

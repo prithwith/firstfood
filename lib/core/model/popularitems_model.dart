@@ -8,6 +8,7 @@ part 'popularitems_model.g.dart';
 @freezed
 abstract class PopularitemsModel with _$PopularitemsModel {
   const factory PopularitemsModel({
+    @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'imagePath') String? imagePath,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'subtitle') String? subtitle,

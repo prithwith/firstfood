@@ -27,19 +27,10 @@ class RestaurantDetalisPage extends ConsumerStatefulWidget {
 
 class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
   @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final stateNotifier = ref.read(restaurantsNotifierProvider.notifier);
-      // stateNotifier.getResturantData();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     final state = ref.watch(restaurantsNotifierProvider);
     final stateNotifier = ref.watch(restaurantsNotifierProvider.notifier);
+
     final orderState = ref.watch(ordersNotifierProvider);
     final orderStateNotifier = ref.watch(ordersNotifierProvider.notifier);
 

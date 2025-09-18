@@ -22,7 +22,7 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
       ResturantModel(
         id: "1",
         name: "AB PIZZA",
-        image: "${AppAssets.appImages}cheesburger.jpeg",
+        image: "${AppAssets.appImages}cheeseburger.jpeg",
         subtitle: "A seafood lover's dream",
         deliveryCharge: '₹ 100',
         time: '20-50min',
@@ -38,7 +38,7 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
             id: "2",
             title: "Chees Burger",
             price: "214",
-            image: '${AppAssets.appImages}cheesburger.jpeg',
+            image: '${AppAssets.appImages}cheeseburger.jpeg',
           ),
           RecommendationModel(
             id: "3",
@@ -66,7 +66,7 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
       ResturantModel(
         id: "2",
         name: "ABD Food",
-        image: "${AppAssets.appImages}sushi.jpeg",
+        image: "${AppAssets.appImages}ramen.jpeg",
         subtitle: "A seafood lover's dream",
         deliveryCharge: '₹ 180',
         time: '20-40min',
@@ -76,7 +76,7 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
             id: "1",
             title: "Chees Burger",
             price: "214",
-            image: '${AppAssets.appImages}cheesburger.jpeg',
+            image: '${AppAssets.appImages}cheeseburger.jpeg',
           ),
           RecommendationModel(
             id: "2",
@@ -114,7 +114,7 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
             id: "1",
             title: "Chees Burger",
             price: "214",
-            image: '${AppAssets.appImages}cheesburger.jpeg',
+            image: '${AppAssets.appImages}cheeseburger.jpeg',
           ),
           RecommendationModel(
             id: "2",

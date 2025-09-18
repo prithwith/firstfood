@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RestaurantsState {
-//  Model,
   List<dynamic> get categoryList => throw _privateConstructorUsedError;
   List<ResturantModel> get resturantsList => throw _privateConstructorUsedError;
   List<dynamic> get resturanstPopularitemList =>
@@ -137,9 +136,7 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
         _resturanstPopularitemList = resturanstPopularitemList,
         super._();
 
-//  Model,
   final List<dynamic> _categoryList;
-//  Model,
   @override
   @JsonKey()
   List<dynamic> get categoryList {
@@ -209,7 +206,6 @@ abstract class _RestaurantsState extends RestaurantsState {
       final List<dynamic> resturanstPopularitemList}) = _$RestaurantsStateImpl;
   const _RestaurantsState._() : super._();
 
-//  Model,
   @override
   List<dynamic> get categoryList;
   @override

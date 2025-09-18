@@ -20,6 +20,8 @@ FastDeliveryModel _$FastDeliveryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FastDeliveryModel {
+  @JsonKey(name: 'id')
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'subtitle')
@@ -52,7 +54,8 @@ abstract class $FastDeliveryModelCopyWith<$Res> {
       _$FastDeliveryModelCopyWithImpl<$Res, FastDeliveryModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'title') String? title,
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'subtitle') String? subtitle,
       @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
@@ -76,6 +79,7 @@ class _$FastDeliveryModelCopyWithImpl<$Res, $Val extends FastDeliveryModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
     Object? price = freezed,
@@ -85,6 +89,10 @@ class _$FastDeliveryModelCopyWithImpl<$Res, $Val extends FastDeliveryModel>
     Object? badge = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -126,7 +134,8 @@ abstract class _$$FastDeliveryModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'title') String? title,
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'subtitle') String? subtitle,
       @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
@@ -148,6 +157,7 @@ class __$$FastDeliveryModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
     Object? price = freezed,
@@ -157,6 +167,10 @@ class __$$FastDeliveryModelImplCopyWithImpl<$Res>
     Object? badge = freezed,
   }) {
     return _then(_$FastDeliveryModelImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -193,7 +207,8 @@ class __$$FastDeliveryModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FastDeliveryModelImpl implements _FastDeliveryModel {
   const _$FastDeliveryModelImpl(
-      {@JsonKey(name: 'title') this.title,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'subtitle') this.subtitle,
       @JsonKey(name: 'price') this.price,
       @JsonKey(name: 'time') this.time,
@@ -204,6 +219,9 @@ class _$FastDeliveryModelImpl implements _FastDeliveryModel {
   factory _$FastDeliveryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FastDeliveryModelImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -228,7 +246,7 @@ class _$FastDeliveryModelImpl implements _FastDeliveryModel {
 
   @override
   String toString() {
-    return 'FastDeliveryModel(title: $title, subtitle: $subtitle, price: $price, time: $time, rating: $rating, image: $image, badge: $badge)';
+    return 'FastDeliveryModel(id: $id, title: $title, subtitle: $subtitle, price: $price, time: $time, rating: $rating, image: $image, badge: $badge)';
   }
 
   @override
@@ -236,6 +254,7 @@ class _$FastDeliveryModelImpl implements _FastDeliveryModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FastDeliveryModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
@@ -249,7 +268,7 @@ class _$FastDeliveryModelImpl implements _FastDeliveryModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, title, subtitle, price, time, rating, image, badge);
+      runtimeType, id, title, subtitle, price, time, rating, image, badge);
 
   /// Create a copy of FastDeliveryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -270,7 +289,8 @@ class _$FastDeliveryModelImpl implements _FastDeliveryModel {
 
 abstract class _FastDeliveryModel implements FastDeliveryModel {
   const factory _FastDeliveryModel(
-      {@JsonKey(name: 'title') final String? title,
+      {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'title') final String? title,
       @JsonKey(name: 'subtitle') final String? subtitle,
       @JsonKey(name: 'price') final String? price,
       @JsonKey(name: 'time') final String? time,
@@ -281,6 +301,9 @@ abstract class _FastDeliveryModel implements FastDeliveryModel {
   factory _FastDeliveryModel.fromJson(Map<String, dynamic> json) =
       _$FastDeliveryModelImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'id')
+  int? get id;
   @override
   @JsonKey(name: 'title')
   String? get title;

@@ -28,15 +28,14 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final stateNotifier = ref.read(discoverNotifierProvider.notifier);
+
+      Future.microtask(() {
+        stateNotifier.showSliderImages();
+        stateNotifier.getAllFastestDeliveryItems();
+        stateNotifier.getAllPopularItems();
+      });
     });
   }
-
-  final List<String> _imageList = [
-    AppAssets.appImages + 'pizza.jpg',
-    AppAssets.appImages + 'pizza.jpg',
-    AppAssets.appImages + 'pizza.jpg',
-    AppAssets.appImages + 'pizza.jpg',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +100,7 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                 },
               ),
               items:
-                  _imageList.map((imagePath) {
+                  state.sliderList.map((imagePath) {
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: Image.asset(
@@ -116,7 +115,7 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children:
-                  _imageList.asMap().entries.map((entry) {
+                  state.sliderList.asMap().entries.map((entry) {
                     final index = entry.key;
                     return Container(
                       margin: EdgeInsets.symmetric(horizontal: 4).r,
@@ -145,20 +144,23 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
             ),
             10.verticalSpace,
             SizedBox(
-              height: 180.h,
+              height: 200.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder:
-                    (context, index) => FastestDeliveryCard(
-                      title: 'Crazy taco',
-                      subtitle: 'Delicious tacos, appetizers...',
-                      price: '€3.00',
-                      time: '40-50min',
-                      rating: '9.5',
-                      image: AppAssets.appImages + 'pizza.jpg',
-                      badge: '€3.00 off delivery',
-                    ),
+                itemCount: state.fastDeliveryList.length,
+                itemBuilder: (context, index) {
+                  final item = state.fastDeliveryList[index];
+
+                  return FastestDeliveryCard(
+                    title: item.title ?? "",
+                    subtitle: item.subtitle ?? "",
+                    price: item.price ?? "",
+                    time: item.time ?? "",
+                    rating: item.rating ?? "",
+                    image: item.image ?? "",
+                    badge: item.badge ?? "",
+                  );
+                },
               ),
             ),
             15.verticalSpace,
@@ -177,13 +179,16 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
               height: 180.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder:
-                    (context, index) => PopularItemsCard(
-                      imagePath: AppAssets.appImages + 'pizza.jpg',
-                      title: 'Brunch',
-                      subtitle: '94 places',
-                    ),
+                itemCount: state.popularItemsList.length,
+                itemBuilder: (context, index) {
+                  final item = state.popularItemsList[index];
+
+                  return PopularItemsCard(
+                    imagePath: item.imagePath ?? "",
+                    title: item.title ?? "",
+                    subtitle: item.subtitle ?? "",
+                  );
+                },
               ),
             ),
             100.verticalSpace,

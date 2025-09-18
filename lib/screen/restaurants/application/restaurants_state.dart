@@ -6,7 +6,6 @@ part 'restaurants_state.freezed.dart';
 @freezed
 class RestaurantsState with _$RestaurantsState {
   const factory RestaurantsState({
-    //  Model,
     @Default([]) List<dynamic> categoryList,
     @Default([]) List<ResturantModel> resturantsList,
     @Default([]) List<dynamic> resturanstPopularitemList,

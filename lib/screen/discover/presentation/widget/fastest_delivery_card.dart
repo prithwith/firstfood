@@ -26,7 +26,7 @@ class FastestDeliveryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 220.w,
+      width: 200.w,
       margin: EdgeInsets.only(right: 10).r,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -111,10 +111,10 @@ class FastestDeliveryCard extends StatelessWidget {
                     8.horizontalSpace,
                     Row(
                       children: [
-                        Icon(Icons.timer_outlined, size: 14),
+                        Icon(Icons.timer_outlined, size: 14.sp),
                         4.horizontalSpace,
                         Text(
-                          "40-50min",
+                          time,
                           style: AppTextStyle.rubikTextLight.copyWith(
                             fontSize: 12.sp,
                           ),
@@ -131,7 +131,7 @@ class FastestDeliveryCard extends StatelessWidget {
                         ),
                         2.verticalSpace,
                         Text(
-                          "9.5",
+                          rating,
                           style: AppTextStyle.rubikTextLight.copyWith(
                             fontSize: 12.sp,
                           ),

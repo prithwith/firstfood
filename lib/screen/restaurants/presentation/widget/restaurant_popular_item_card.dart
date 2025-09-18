@@ -80,7 +80,6 @@ class RestaurantPopularItemCard extends StatelessWidget {
             Container(
               height: 90.h,
               width: 110.w,
-              padding: EdgeInsets.all(10).r,
               decoration: BoxDecoration(
                 color: AppColors.colorSecondaryMedium,
                 borderRadius: BorderRadius.circular(10),

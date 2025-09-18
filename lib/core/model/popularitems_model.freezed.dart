@@ -20,6 +20,8 @@ PopularitemsModel _$PopularitemsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PopularitemsModel {
+  @JsonKey(name: 'id')
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'imagePath')
   String? get imagePath => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
@@ -44,7 +46,8 @@ abstract class $PopularitemsModelCopyWith<$Res> {
       _$PopularitemsModelCopyWithImpl<$Res, PopularitemsModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'imagePath') String? imagePath,
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'imagePath') String? imagePath,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'subtitle') String? subtitle});
 }
@@ -64,11 +67,16 @@ class _$PopularitemsModelCopyWithImpl<$Res, $Val extends PopularitemsModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? imagePath = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       imagePath: freezed == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
@@ -94,7 +102,8 @@ abstract class _$$PopularitemsModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'imagePath') String? imagePath,
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'imagePath') String? imagePath,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'subtitle') String? subtitle});
 }
@@ -112,11 +121,16 @@ class __$$PopularitemsModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? imagePath = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
   }) {
     return _then(_$PopularitemsModelImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       imagePath: freezed == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
@@ -137,13 +151,17 @@ class __$$PopularitemsModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PopularitemsModelImpl implements _PopularitemsModel {
   const _$PopularitemsModelImpl(
-      {@JsonKey(name: 'imagePath') this.imagePath,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'imagePath') this.imagePath,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'subtitle') this.subtitle});
 
   factory _$PopularitemsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PopularitemsModelImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
   @override
   @JsonKey(name: 'imagePath')
   final String? imagePath;
@@ -156,7 +174,7 @@ class _$PopularitemsModelImpl implements _PopularitemsModel {
 
   @override
   String toString() {
-    return 'PopularitemsModel(imagePath: $imagePath, title: $title, subtitle: $subtitle)';
+    return 'PopularitemsModel(id: $id, imagePath: $imagePath, title: $title, subtitle: $subtitle)';
   }
 
   @override
@@ -164,6 +182,7 @@ class _$PopularitemsModelImpl implements _PopularitemsModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PopularitemsModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
             (identical(other.title, title) || other.title == title) &&
@@ -173,7 +192,7 @@ class _$PopularitemsModelImpl implements _PopularitemsModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, imagePath, title, subtitle);
+  int get hashCode => Object.hash(runtimeType, id, imagePath, title, subtitle);
 
   /// Create a copy of PopularitemsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -194,7 +213,8 @@ class _$PopularitemsModelImpl implements _PopularitemsModel {
 
 abstract class _PopularitemsModel implements PopularitemsModel {
   const factory _PopularitemsModel(
-          {@JsonKey(name: 'imagePath') final String? imagePath,
+          {@JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'imagePath') final String? imagePath,
           @JsonKey(name: 'title') final String? title,
           @JsonKey(name: 'subtitle') final String? subtitle}) =
       _$PopularitemsModelImpl;
@@ -202,6 +222,9 @@ abstract class _PopularitemsModel implements PopularitemsModel {
   factory _PopularitemsModel.fromJson(Map<String, dynamic> json) =
       _$PopularitemsModelImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'id')
+  int? get id;
   @override
   @JsonKey(name: 'imagePath')
   String? get imagePath;

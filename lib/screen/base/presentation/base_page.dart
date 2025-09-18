@@ -70,7 +70,7 @@ class _BasePageState extends ConsumerState<BasePage> {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                     child: Container(
-                      height: 50.h,
+                      height: 60.h,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         color: Colors.transparent,
