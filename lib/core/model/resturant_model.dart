@@ -10,7 +10,12 @@ part 'resturant_model.g.dart';
 abstract class ResturantModel with _$ResturantModel {
   const factory ResturantModel({
     @JsonKey(name: 'id') String? id,
+    @JsonKey(name: 'image') String? image,
     @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'subtitle') String? subtitle,
+    @JsonKey(name: 'deliveryCharge') String? deliveryCharge,
+    @JsonKey(name: 'time') String? time,
+    @JsonKey(name: 'rating') String? rating,
     @Default([])
     @JsonKey(name: 'allDishes')
     List<RecommendationModel> allDishes,

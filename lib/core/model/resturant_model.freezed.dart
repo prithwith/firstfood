@@ -22,8 +22,18 @@ ResturantModel _$ResturantModelFromJson(Map<String, dynamic> json) {
 mixin _$ResturantModel {
   @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
+  String? get image => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subtitle')
+  String? get subtitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'deliveryCharge')
+  String? get deliveryCharge => throw _privateConstructorUsedError;
+  @JsonKey(name: 'time')
+  String? get time => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rating')
+  String? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'allDishes')
   List<RecommendationModel> get allDishes => throw _privateConstructorUsedError;
 
@@ -45,7 +55,12 @@ abstract class $ResturantModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'image') String? image,
       @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'subtitle') String? subtitle,
+      @JsonKey(name: 'deliveryCharge') String? deliveryCharge,
+      @JsonKey(name: 'time') String? time,
+      @JsonKey(name: 'rating') String? rating,
       @JsonKey(name: 'allDishes') List<RecommendationModel> allDishes});
 }
 
@@ -65,7 +80,12 @@ class _$ResturantModelCopyWithImpl<$Res, $Val extends ResturantModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? image = freezed,
     Object? name = freezed,
+    Object? subtitle = freezed,
+    Object? deliveryCharge = freezed,
+    Object? time = freezed,
+    Object? rating = freezed,
     Object? allDishes = null,
   }) {
     return _then(_value.copyWith(
@@ -73,9 +93,29 @@ class _$ResturantModelCopyWithImpl<$Res, $Val extends ResturantModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subtitle: freezed == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deliveryCharge: freezed == deliveryCharge
+          ? _value.deliveryCharge
+          : deliveryCharge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
               as String?,
       allDishes: null == allDishes
           ? _value.allDishes
@@ -95,7 +135,12 @@ abstract class _$$ResturantModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'image') String? image,
       @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'subtitle') String? subtitle,
+      @JsonKey(name: 'deliveryCharge') String? deliveryCharge,
+      @JsonKey(name: 'time') String? time,
+      @JsonKey(name: 'rating') String? rating,
       @JsonKey(name: 'allDishes') List<RecommendationModel> allDishes});
 }
 
@@ -113,7 +158,12 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? image = freezed,
     Object? name = freezed,
+    Object? subtitle = freezed,
+    Object? deliveryCharge = freezed,
+    Object? time = freezed,
+    Object? rating = freezed,
     Object? allDishes = null,
   }) {
     return _then(_$ResturantModelImpl(
@@ -121,9 +171,29 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subtitle: freezed == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deliveryCharge: freezed == deliveryCharge
+          ? _value.deliveryCharge
+          : deliveryCharge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
               as String?,
       allDishes: null == allDishes
           ? _value._allDishes
@@ -138,7 +208,12 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
 class _$ResturantModelImpl implements _ResturantModel {
   const _$ResturantModelImpl(
       {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'image') this.image,
       @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'subtitle') this.subtitle,
+      @JsonKey(name: 'deliveryCharge') this.deliveryCharge,
+      @JsonKey(name: 'time') this.time,
+      @JsonKey(name: 'rating') this.rating,
       @JsonKey(name: 'allDishes')
       final List<RecommendationModel> allDishes = const []})
       : _allDishes = allDishes;
@@ -150,8 +225,23 @@ class _$ResturantModelImpl implements _ResturantModel {
   @JsonKey(name: 'id')
   final String? id;
   @override
+  @JsonKey(name: 'image')
+  final String? image;
+  @override
   @JsonKey(name: 'name')
   final String? name;
+  @override
+  @JsonKey(name: 'subtitle')
+  final String? subtitle;
+  @override
+  @JsonKey(name: 'deliveryCharge')
+  final String? deliveryCharge;
+  @override
+  @JsonKey(name: 'time')
+  final String? time;
+  @override
+  @JsonKey(name: 'rating')
+  final String? rating;
   final List<RecommendationModel> _allDishes;
   @override
   @JsonKey(name: 'allDishes')
@@ -163,7 +253,7 @@ class _$ResturantModelImpl implements _ResturantModel {
 
   @override
   String toString() {
-    return 'ResturantModel(id: $id, name: $name, allDishes: $allDishes)';
+    return 'ResturantModel(id: $id, image: $image, name: $name, subtitle: $subtitle, deliveryCharge: $deliveryCharge, time: $time, rating: $rating, allDishes: $allDishes)';
   }
 
   @override
@@ -172,7 +262,14 @@ class _$ResturantModelImpl implements _ResturantModel {
         (other.runtimeType == runtimeType &&
             other is _$ResturantModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.subtitle, subtitle) ||
+                other.subtitle == subtitle) &&
+            (identical(other.deliveryCharge, deliveryCharge) ||
+                other.deliveryCharge == deliveryCharge) &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
             const DeepCollectionEquality()
                 .equals(other._allDishes, _allDishes));
   }
@@ -180,7 +277,15 @@ class _$ResturantModelImpl implements _ResturantModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, const DeepCollectionEquality().hash(_allDishes));
+      runtimeType,
+      id,
+      image,
+      name,
+      subtitle,
+      deliveryCharge,
+      time,
+      rating,
+      const DeepCollectionEquality().hash(_allDishes));
 
   /// Create a copy of ResturantModel
   /// with the given fields replaced by the non-null parameter values.
@@ -202,7 +307,12 @@ class _$ResturantModelImpl implements _ResturantModel {
 abstract class _ResturantModel implements ResturantModel {
   const factory _ResturantModel(
       {@JsonKey(name: 'id') final String? id,
+      @JsonKey(name: 'image') final String? image,
       @JsonKey(name: 'name') final String? name,
+      @JsonKey(name: 'subtitle') final String? subtitle,
+      @JsonKey(name: 'deliveryCharge') final String? deliveryCharge,
+      @JsonKey(name: 'time') final String? time,
+      @JsonKey(name: 'rating') final String? rating,
       @JsonKey(name: 'allDishes')
       final List<RecommendationModel> allDishes}) = _$ResturantModelImpl;
 
@@ -213,8 +323,23 @@ abstract class _ResturantModel implements ResturantModel {
   @JsonKey(name: 'id')
   String? get id;
   @override
+  @JsonKey(name: 'image')
+  String? get image;
+  @override
   @JsonKey(name: 'name')
   String? get name;
+  @override
+  @JsonKey(name: 'subtitle')
+  String? get subtitle;
+  @override
+  @JsonKey(name: 'deliveryCharge')
+  String? get deliveryCharge;
+  @override
+  @JsonKey(name: 'time')
+  String? get time;
+  @override
+  @JsonKey(name: 'rating')
+  String? get rating;
   @override
   @JsonKey(name: 'allDishes')
   List<RecommendationModel> get allDishes;

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PopularItemsCard extends StatelessWidget {
-  final String imagePath, title, subtitle;
+  final String imagePath;
+  final String title;
+  final String subtitle;
 
   const PopularItemsCard({
     super.key,

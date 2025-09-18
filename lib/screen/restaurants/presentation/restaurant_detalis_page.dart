@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:auto_route/auto_route.dart';
+import 'package:fastfood/core/model/recommendation_model.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_assets.dart';
@@ -16,7 +17,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
 class RestaurantDetalisPage extends ConsumerStatefulWidget {
-  final List allDishes;
+  final List<RecommendationModel> allDishes;
   const RestaurantDetalisPage({super.key, required this.allDishes});
 
   @override
@@ -157,18 +158,17 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                           final item = widget.allDishes[index];
 
                           return RestaurantPopularItemCard(
-                            index: 1,
+                            index: item.id ?? "",
                             title: item.title ?? "",
                             description:
                                 "Homemade basil pesto, Parmesan cheese, sun-dried tomatoes.",
                             priceNow: "€ ${item.price}",
                             priceOld: "€10,50",
-                            imagePath: '${AppAssets.appImages}pizza.jpg',
+                            imagePath: item.image ?? "",
                             onTap: () {
                               if (orderState.cartItemList
                                   .where((element) => element == item.id)
                                   .isEmpty) {
-                                // orderStateNotifier.addCartItem(id: item.id);
                                 orderStateNotifier.updateCartItem(
                                   id: item.id,
                                   isAdd: true,
@@ -177,43 +177,15 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
 
                               context.pushRoute(
                                 FoodDetailsRoute(
-                                  id: item.id,
-                                  name: item.title,
-                                  price: item.price,
+                                  id: item.id.toString(),
+                                  name: item.title.toString(),
+                                  price: item.price.toString(),
                                 ),
                               );
                             },
                           );
                         }),
                       ),
-
-                  // RestaurantPopularItemCard(
-                  //   index: 1,
-                  //   title: "Pesto pasta",
-                  //   description:
-                  //       "Homemade basil pesto, Parmesan cheese, sun-dried tomatoes.",
-                  //   priceNow: "€9,50",
-                  //   priceOld: "€10,50",
-                  //   imagePath: '${AppAssets.appImages}pizza.jpg',
-                  // ),
-                  // RestaurantPopularItemCard(
-                  //   index: 2,
-                  //   title: "Amatriciana pasta",
-                  //   description:
-                  //       "Tomato sauce, smoked pork neck, red onions, Pecorino cheese, chili.",
-                  //   priceNow: "€8,70",
-                  //   priceOld: "€9,90",
-                  //   imagePath: '${AppAssets.appImages}pizza.jpg',
-                  // ),
-                  // RestaurantPopularItemCard(
-                  //   index: 3,
-                  //   title: "Carbonara pasta",
-                  //   description:
-                  //       "Creamy egg sauce, pancetta, black pepper, Parmesan.",
-                  //   priceNow: "€9,30",
-                  //   priceOld: "€10,00",
-                  //   imagePath: '${AppAssets.appImages}pizza.jpg',
-                  // ),
                 ],
               ),
             ),

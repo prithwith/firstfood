@@ -22,28 +22,122 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
       ResturantModel(
         id: "1",
         name: "AB PIZZA",
+        image: "${AppAssets.appImages}cheesburger.jpeg",
+        subtitle: "A seafood lover's dream",
+        deliveryCharge: '₹ 100',
+        time: '20-50min',
+        rating: '8.7',
         allDishes: [
           RecommendationModel(
             id: "1",
-            title: "Tiramisu",
-            price: "100",
+            title: "Pizza",
+            price: "221",
             image: '${AppAssets.appImages}pizza.jpg',
           ),
           RecommendationModel(
             id: "2",
-            title: "Burger",
-            price: "200",
-            image: '${AppAssets.appImages}pizza.jpg',
+            title: "Chees Burger",
+            price: "214",
+            image: '${AppAssets.appImages}cheesburger.jpeg',
           ),
           RecommendationModel(
             id: "3",
-            title: "Biriyani",
-            price: "300",
-            image: '${AppAssets.appImages}pizza.jpg',
+            title: "Sushi",
+            price: "541",
+            image: '${AppAssets.appImages}sushi.jpeg',
+          ),
+          RecommendationModel(
+            id: "4",
+            title: "Pancakes",
+            price: "254",
+            image: '${AppAssets.appImages}pancakes.jpeg',
+          ),
+          RecommendationModel(
+            id: "5",
+            title: "Tacos",
+            price: "380",
+            image: '${AppAssets.appImages}tacos.jpeg',
           ),
         ],
       ),
     );
+
+    tempRestutantList.add(
+      ResturantModel(
+        id: "2",
+        name: "ABD Food",
+        image: "${AppAssets.appImages}sushi.jpeg",
+        subtitle: "A seafood lover's dream",
+        deliveryCharge: '₹ 180',
+        time: '20-40min',
+        rating: '8.1',
+        allDishes: [
+          RecommendationModel(
+            id: "1",
+            title: "Chees Burger",
+            price: "214",
+            image: '${AppAssets.appImages}cheesburger.jpeg',
+          ),
+          RecommendationModel(
+            id: "2",
+            title: "Sushi",
+            price: "541",
+            image: '${AppAssets.appImages}sushi.jpeg',
+          ),
+          RecommendationModel(
+            id: "3",
+            title: "Tacos",
+            price: "380",
+            image: '${AppAssets.appImages}tacos.jpeg',
+          ),
+          RecommendationModel(
+            id: "4",
+            title: "Pancakes",
+            price: "254",
+            image: '${AppAssets.appImages}pancakes.jpeg',
+          ),
+        ],
+      ),
+    );
+
+    tempRestutantList.add(
+      ResturantModel(
+        id: "3",
+        name: "New Food",
+        image: "${AppAssets.appImages}tacos.jpeg",
+        subtitle: "A seafood lover's dream",
+        deliveryCharge: '₹ 280',
+        time: '10-30min',
+        rating: '5.1',
+        allDishes: [
+          RecommendationModel(
+            id: "1",
+            title: "Chees Burger",
+            price: "214",
+            image: '${AppAssets.appImages}cheesburger.jpeg',
+          ),
+          RecommendationModel(
+            id: "2",
+            title: "Pancakes",
+            price: "254",
+            image: '${AppAssets.appImages}pancakes.jpeg',
+          ),
+          RecommendationModel(
+            id: "3",
+            title: "Tacos",
+            price: "380",
+            image: '${AppAssets.appImages}tacos.jpeg',
+          ),
+          RecommendationModel(
+            id: "4",
+            title: "Sushi",
+            price: "541",
+            image: '${AppAssets.appImages}sushi.jpeg',
+          ),
+        ],
+      ),
+    );
+
     state = state.copyWith(resturantsList: tempRestutantList);
   }
 }

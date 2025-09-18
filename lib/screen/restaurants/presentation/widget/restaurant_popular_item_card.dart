@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RestaurantPopularItemCard extends StatelessWidget {
-  final int index;
+  final String index;
   final String title;
   final String description;
   final String priceNow;

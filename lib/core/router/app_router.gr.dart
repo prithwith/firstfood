@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i23;
+import 'package:fastfood/core/model/recommendation_model.dart' as _i25;
 import 'package:fastfood/screen/auth/presentation/login_page.dart' as _i8;
 import 'package:fastfood/screen/auth/presentation/reset_password_page.dart'
     as _i12;
@@ -475,7 +476,7 @@ class RestaurantDetalisRoute
     extends _i23.PageRouteInfo<RestaurantDetalisRouteArgs> {
   RestaurantDetalisRoute({
     _i24.Key? key,
-    required List<dynamic> allDishes,
+    required List<_i25.RecommendationModel> allDishes,
     List<_i23.PageRouteInfo>? children,
   }) : super(
           RestaurantDetalisRoute.name,
@@ -500,7 +501,7 @@ class RestaurantDetalisRouteArgs {
 
   final _i24.Key? key;
 
-  final List<dynamic> allDishes;
+  final List<_i25.RecommendationModel> allDishes;
 
   @override
   String toString() {

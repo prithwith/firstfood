@@ -168,12 +168,12 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                       final item = state.resturantsList[index];
 
                       return RestaurantsPageRestaurantCard(
-                        image: '${AppAssets.appImages}pizza.jpg',
-                        title: item.name ?? "Pizza",
-                        subtitle: 'A seafood lover’s dream',
-                        deliveryCharge: '₹ 500',
-                        time: '20-50min',
-                        rating: '8.7',
+                        image: item.image ?? "",
+                        title: item.name ?? "",
+                        subtitle: item.subtitle ?? "A seafood lover's dream",
+                        deliveryCharge: item.deliveryCharge ?? '₹ 500',
+                        time: item.time ?? '20-50min',
+                        rating: item.rating ?? '8.7',
                         onTap: () {
                           context.pushRoute(
                             RestaurantDetalisRoute(allDishes: item.allDishes),

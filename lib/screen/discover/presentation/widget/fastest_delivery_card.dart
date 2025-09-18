@@ -4,7 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FastestDeliveryCard extends StatelessWidget {
-  final String title, subtitle, price, time, rating, image, badge;
+  final String title;
+  final String subtitle;
+  final String price;
+  final String time;
+  final String rating;
+  final String image;
+  final String badge;
+
   const FastestDeliveryCard({
     super.key,
     required this.title,

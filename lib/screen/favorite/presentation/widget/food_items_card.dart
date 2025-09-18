@@ -5,8 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FoodItemsCard extends StatelessWidget {
-  final String image, title, subtitle, restaurant, time, rating;
+  final String image;
+  final String title;
+  final String subtitle;
+  final String restaurant;
+  final String time;
+  final String rating;
   final int priceLevel;
+
   const FoodItemsCard({
     super.key,
     required this.image,
