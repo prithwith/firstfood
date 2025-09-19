@@ -8,23 +8,27 @@ part of 'fooditems_model.dart';
 
 _$FooditemsModelImpl _$$FooditemsModelImplFromJson(Map<String, dynamic> json) =>
     _$FooditemsModelImpl(
+      id: (json['id'] as num?)?.toInt(),
       image: json['image'] as String?,
       title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
       restaurant: json['restaurant'] as String?,
+      priceLevel: json['priceLevel'] as String?,
       time: json['time'] as String?,
       rating: json['rating'] as String?,
-      priceLevel: json['priceLevel'] as String?,
+      isLiked: json['isLiked'] as bool?,
     );
 
 Map<String, dynamic> _$$FooditemsModelImplToJson(
         _$FooditemsModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'image': instance.image,
       'title': instance.title,
       'subtitle': instance.subtitle,
       'restaurant': instance.restaurant,
+      'priceLevel': instance.priceLevel,
       'time': instance.time,
       'rating': instance.rating,
-      'priceLevel': instance.priceLevel,
+      'isLiked': instance.isLiked,
     };

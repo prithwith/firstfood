@@ -9,6 +9,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String deliveryCharge;
+  final String price;
   final String time;
   final String rating;
   final Function() onTap;
@@ -19,6 +20,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.deliveryCharge,
+    required this.price,
     required this.time,
     required this.rating,
     required this.onTap,
@@ -104,7 +106,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
                         width: 20,
                       ),
                       4.horizontalSpace,
-                      Text("₹₹₹"),
+                      Text(price),
                       4.horizontalSpace,
                       Icon(
                         Icons.access_time_filled,

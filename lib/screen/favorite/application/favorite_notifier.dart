@@ -2,7 +2,10 @@
 
 import 'package:dio/dio.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
+import 'package:fastfood/core/model/fooditems_model.dart';
+import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/screen/favorite/application/favorite_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FavoriteNotifier extends StateNotifier<FavoriteState> {
@@ -12,44 +15,136 @@ class FavoriteNotifier extends StateNotifier<FavoriteState> {
   final HiveDatabase _hiveDataBase;
   final Dio _dio;
 
-  // Future<void> getProfile({VoidCallback? onTokenExpired}) async {
-  //   try {
-  //     state = state.copyWith(isLoading: true);
+  late TabController _tabController;
 
-  //     var headers = {
-  //       'Accept': '*/*',
-  //       'Content-Type': 'application/json',
-  //       'X-Access-Token': _hiveDataBase.box.get(AppPreferenceKeys.token),
-  //     };
+  void switchPage(TickerProvider ticker) {
+    state = state.copyWith(
+      tabController: TabController(length: 2, vsync: ticker),
+    );
+  }
 
-  //     _dio.options.headers.addAll(headers);
+  @override
+  void dispose() {
+    state.tabController?.dispose();
+    super.dispose();
+  }
 
-  //     final response = await _dio.get<Map<String, dynamic>>('user/profile');
+  void getAllfoodItems() {
+    final List<FooditemsModel> tempfoodItemsList = [];
 
-  //     if (response.statusCode == 200 && response.data != null) {
-  //       final user = UserModel.fromJson(response.data?["data"]);
+    tempfoodItemsList.addAll([
+      FooditemsModel(
+        id: 1,
+        image: '${AppAssets.appImages}tacos.jpeg',
+        title: 'Shrimp Pizza',
+        subtitle: 'A seafood lover’s dream',
+        restaurant: 'Crazy Pizza Spot',
+        priceLevel: "30",
+        time: '20-50min',
+        rating: '8.7',
+        isLiked: true,
+      ),
+      FooditemsModel(
+        id: 2,
+        image: '${AppAssets.appImages}garden_salad.png',
+        title: 'Garden Fresh Salad',
+        subtitle: 'Crisp, healthy, and refreshing',
+        restaurant: 'Green Bowl',
+        priceLevel: "12",
+        time: '15-25min',
+        rating: '9.0',
+        isLiked: false,
+      ),
+      FooditemsModel(
+        id: 3,
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
+        title: 'Kung Pao Chicken',
+        subtitle: 'Spicy stir-fry with peanuts',
+        restaurant: 'Dragon Wok',
+        priceLevel: "18",
+        time: '25-40min',
+        rating: '9.3',
+        isLiked: true,
+      ),
+      FooditemsModel(
+        id: 4,
+        image: '${AppAssets.appImages}indian_thali.jpeg',
+        title: 'Royal Thali',
+        subtitle: 'A platter full of Indian delights',
+        restaurant: 'Bombay Masala',
+        priceLevel: "20",
+        time: '30-45min',
+        rating: '9.1',
+        isLiked: false,
+      ),
+      FooditemsModel(
+        id: 5,
+        image: '${AppAssets.appImages}spaghetti_meatball.jpeg',
+        title: 'Chocolate Lava Cake',
+        subtitle: 'Warm, gooey, and irresistible',
+        restaurant: 'Sweet Treats',
+        priceLevel: "10",
+        time: '10-20min',
+        rating: '9.6',
+        isLiked: true,
+      ),
+      FooditemsModel(
+        id: 6,
+        image: '${AppAssets.appImages}ramen.jpeg',
+        title: 'Creamy Alfredo Pasta',
+        subtitle: 'Italian classic with rich sauce',
+        restaurant: 'Pasta House',
+        priceLevel: "16",
+        time: '20-35min',
+        rating: '9.2',
+        isLiked: true,
+      ),
+      FooditemsModel(
+        id: 7,
+        image: '${AppAssets.appImages}sushi.jpeg',
+        title: 'Salmon Nigiri',
+        subtitle: 'Fresh sushi made to perfection',
+        restaurant: 'Sushi Express',
+        priceLevel: "25",
+        time: '30-50min',
+        rating: '9.7',
+        isLiked: false,
+      ),
+      FooditemsModel(
+        id: 8,
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
+        title: 'Cheese Overload Burger',
+        subtitle: 'Juicy patty with melted cheese',
+        restaurant: 'Burger Hub',
+        priceLevel: "15",
+        time: '15-30min',
+        rating: '9.0',
+        isLiked: true,
+      ),
+      FooditemsModel(
+        id: 9,
+        image: '${AppAssets.appImages}pizza.jpg',
+        title: 'Classic Pepperoni Pizza',
+        subtitle: 'All-time favorite with extra cheese',
+        restaurant: 'Hot Pizza',
+        priceLevel: "22",
+        time: '25-40min',
+        rating: '9.4',
+        isLiked: false,
+      ),
+      FooditemsModel(
+        id: 10,
+        image: '${AppAssets.appImages}fresh_fruits.jpeg',
+        title: 'Fruit Platter',
+        subtitle: 'A healthy brunch option',
+        restaurant: 'Morning Fresh',
+        priceLevel: "14",
+        time: '10-20min',
+        rating: '9.5',
+        isLiked: true,
+      ),
+    ]);
 
-  //       if (user.isDeleted ?? false) {
-  //         onTokenExpired?.call();
-
-  //         state = state.copyWith(isLoading: false);
-  //       } else {
-  //         state = state.copyWith(isLoading: false, user: user);
-  //       }
-  //     } else {
-  //       showToastMessage("Session Expired. Please log in again.");
-
-  //       state = state.copyWith(isLoading: false);
-
-  //       onTokenExpired?.call();
-  //     }
-  //   } on DioException catch (e) {
-  //     final error = DioExceptions.fromDioError(e).message;
-  //     showToastMessage(error, errorMessage: e.message ?? '');
-
-  //     state = state.copyWith(isLoading: false);
-
-  //     onTokenExpired?.call();
-  //   }
-  // }
+    state = state.copyWith(foodItemsList: tempfoodItemsList);
+  }
 }

@@ -11,7 +11,8 @@ class FoodItemsCard extends StatelessWidget {
   final String restaurant;
   final String time;
   final String rating;
-  final int priceLevel;
+  final String priceLevel;
+  final bool isLiked;
 
   const FoodItemsCard({
     super.key,
@@ -22,6 +23,7 @@ class FoodItemsCard extends StatelessWidget {
     required this.time,
     required this.rating,
     required this.priceLevel,
+    required this.isLiked,
   });
 
   @override
@@ -49,7 +51,7 @@ class FoodItemsCard extends StatelessWidget {
                 child: Image.asset(
                   image,
                   width: double.infinity,
-                  height: 180,
+                  height: 180.h,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -58,7 +60,10 @@ class FoodItemsCard extends StatelessWidget {
                 right: 10.sp,
                 child: CircleAvatar(
                   backgroundColor: Colors.white,
-                  child: Icon(Icons.favorite, color: Colors.red),
+                  child: Icon(
+                    isLiked ? Icons.favorite : Icons.favorite_border,
+                    color: isLiked ? Colors.red : Colors.black,
+                  ),
                 ),
               ),
             ],
@@ -94,15 +99,15 @@ class FoodItemsCard extends StatelessWidget {
                         fontSize: 12.sp,
                       ),
                     ),
-                    4.horizontalSpace,
+                    10.horizontalSpace,
                     Image.asset(
                       '${AppAssets.smallIcons}wallet.png',
                       color: AppColors.colorSecondary,
                       width: 20,
                     ),
                     4.horizontalSpace,
-                    Text("₹₹₹"),
-                    4.horizontalSpace,
+                    Text(priceLevel.toString()),
+                    10.horizontalSpace,
                     Icon(
                       Icons.access_time_filled,
                       size: 20,
@@ -110,7 +115,7 @@ class FoodItemsCard extends StatelessWidget {
                     ),
                     4.horizontalSpace,
                     Text(time),
-                    4.horizontalSpace,
+                    10.horizontalSpace,
                     Image.asset(
                       '${AppAssets.smallIcons}star.png',
                       color: AppColors.colorSecondary,

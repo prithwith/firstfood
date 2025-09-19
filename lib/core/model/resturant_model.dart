@@ -14,6 +14,7 @@ abstract class ResturantModel with _$ResturantModel {
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'subtitle') String? subtitle,
     @JsonKey(name: 'deliveryCharge') String? deliveryCharge,
+    @JsonKey(name: 'price') String? price,
     @JsonKey(name: 'time') String? time,
     @JsonKey(name: 'rating') String? rating,
     @Default([])

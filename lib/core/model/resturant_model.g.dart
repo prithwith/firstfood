@@ -13,6 +13,7 @@ _$ResturantModelImpl _$$ResturantModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       subtitle: json['subtitle'] as String?,
       deliveryCharge: json['deliveryCharge'] as String?,
+      price: json['price'] as String?,
       time: json['time'] as String?,
       rating: json['rating'] as String?,
       allDishes: (json['allDishes'] as List<dynamic>?)
@@ -30,6 +31,7 @@ Map<String, dynamic> _$$ResturantModelImplToJson(
       'name': instance.name,
       'subtitle': instance.subtitle,
       'deliveryCharge': instance.deliveryCharge,
+      'price': instance.price,
       'time': instance.time,
       'rating': instance.rating,
       'allDishes': instance.allDishes,

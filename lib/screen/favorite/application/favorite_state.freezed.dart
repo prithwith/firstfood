@@ -16,10 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FavoriteState {
-// UserModel? user,
-  bool get isFavorite => throw _privateConstructorUsedError;
-  List<dynamic> get foodItemsList => throw _privateConstructorUsedError;
-  List<dynamic> get resturantsList => throw _privateConstructorUsedError;
+  TabController? get tabController => throw _privateConstructorUsedError;
+  int get selectedTabIndex => throw _privateConstructorUsedError;
+  List<FooditemsModel> get foodItemsList => throw _privateConstructorUsedError;
 
   /// Create a copy of FavoriteState
   /// with the given fields replaced by the non-null parameter values.
@@ -35,9 +34,9 @@ abstract class $FavoriteStateCopyWith<$Res> {
       _$FavoriteStateCopyWithImpl<$Res, FavoriteState>;
   @useResult
   $Res call(
-      {bool isFavorite,
-      List<dynamic> foodItemsList,
-      List<dynamic> resturantsList});
+      {TabController? tabController,
+      int selectedTabIndex,
+      List<FooditemsModel> foodItemsList});
 }
 
 /// @nodoc
@@ -55,23 +54,23 @@ class _$FavoriteStateCopyWithImpl<$Res, $Val extends FavoriteState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isFavorite = null,
+    Object? tabController = freezed,
+    Object? selectedTabIndex = null,
     Object? foodItemsList = null,
-    Object? resturantsList = null,
   }) {
     return _then(_value.copyWith(
-      isFavorite: null == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
+      tabController: freezed == tabController
+          ? _value.tabController
+          : tabController // ignore: cast_nullable_to_non_nullable
+              as TabController?,
+      selectedTabIndex: null == selectedTabIndex
+          ? _value.selectedTabIndex
+          : selectedTabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       foodItemsList: null == foodItemsList
           ? _value.foodItemsList
           : foodItemsList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      resturantsList: null == resturantsList
-          ? _value.resturantsList
-          : resturantsList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<FooditemsModel>,
     ) as $Val);
   }
 }
@@ -85,9 +84,9 @@ abstract class _$$FavoriteStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isFavorite,
-      List<dynamic> foodItemsList,
-      List<dynamic> resturantsList});
+      {TabController? tabController,
+      int selectedTabIndex,
+      List<FooditemsModel> foodItemsList});
 }
 
 /// @nodoc
@@ -103,23 +102,23 @@ class __$$FavoriteStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isFavorite = null,
+    Object? tabController = freezed,
+    Object? selectedTabIndex = null,
     Object? foodItemsList = null,
-    Object? resturantsList = null,
   }) {
     return _then(_$FavoriteStateImpl(
-      isFavorite: null == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
+      tabController: freezed == tabController
+          ? _value.tabController
+          : tabController // ignore: cast_nullable_to_non_nullable
+              as TabController?,
+      selectedTabIndex: null == selectedTabIndex
+          ? _value.selectedTabIndex
+          : selectedTabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       foodItemsList: null == foodItemsList
           ? _value._foodItemsList
           : foodItemsList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      resturantsList: null == resturantsList
-          ? _value._resturantsList
-          : resturantsList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<FooditemsModel>,
     ));
   }
 }
@@ -128,38 +127,29 @@ class __$$FavoriteStateImplCopyWithImpl<$Res>
 
 class _$FavoriteStateImpl extends _FavoriteState {
   const _$FavoriteStateImpl(
-      {this.isFavorite = false,
-      final List<dynamic> foodItemsList = const [],
-      final List<dynamic> resturantsList = const []})
+      {this.tabController,
+      this.selectedTabIndex = 0,
+      final List<FooditemsModel> foodItemsList = const []})
       : _foodItemsList = foodItemsList,
-        _resturantsList = resturantsList,
         super._();
 
-// UserModel? user,
+  @override
+  final TabController? tabController;
   @override
   @JsonKey()
-  final bool isFavorite;
-  final List<dynamic> _foodItemsList;
+  final int selectedTabIndex;
+  final List<FooditemsModel> _foodItemsList;
   @override
   @JsonKey()
-  List<dynamic> get foodItemsList {
+  List<FooditemsModel> get foodItemsList {
     if (_foodItemsList is EqualUnmodifiableListView) return _foodItemsList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_foodItemsList);
   }
 
-  final List<dynamic> _resturantsList;
-  @override
-  @JsonKey()
-  List<dynamic> get resturantsList {
-    if (_resturantsList is EqualUnmodifiableListView) return _resturantsList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_resturantsList);
-  }
-
   @override
   String toString() {
-    return 'FavoriteState(isFavorite: $isFavorite, foodItemsList: $foodItemsList, resturantsList: $resturantsList)';
+    return 'FavoriteState(tabController: $tabController, selectedTabIndex: $selectedTabIndex, foodItemsList: $foodItemsList)';
   }
 
   @override
@@ -167,20 +157,17 @@ class _$FavoriteStateImpl extends _FavoriteState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FavoriteStateImpl &&
-            (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite) &&
+            (identical(other.tabController, tabController) ||
+                other.tabController == tabController) &&
+            (identical(other.selectedTabIndex, selectedTabIndex) ||
+                other.selectedTabIndex == selectedTabIndex) &&
             const DeepCollectionEquality()
-                .equals(other._foodItemsList, _foodItemsList) &&
-            const DeepCollectionEquality()
-                .equals(other._resturantsList, _resturantsList));
+                .equals(other._foodItemsList, _foodItemsList));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isFavorite,
-      const DeepCollectionEquality().hash(_foodItemsList),
-      const DeepCollectionEquality().hash(_resturantsList));
+  int get hashCode => Object.hash(runtimeType, tabController, selectedTabIndex,
+      const DeepCollectionEquality().hash(_foodItemsList));
 
   /// Create a copy of FavoriteState
   /// with the given fields replaced by the non-null parameter values.
@@ -193,18 +180,17 @@ class _$FavoriteStateImpl extends _FavoriteState {
 
 abstract class _FavoriteState extends FavoriteState {
   const factory _FavoriteState(
-      {final bool isFavorite,
-      final List<dynamic> foodItemsList,
-      final List<dynamic> resturantsList}) = _$FavoriteStateImpl;
+      {final TabController? tabController,
+      final int selectedTabIndex,
+      final List<FooditemsModel> foodItemsList}) = _$FavoriteStateImpl;
   const _FavoriteState._() : super._();
 
-// UserModel? user,
   @override
-  bool get isFavorite;
+  TabController? get tabController;
   @override
-  List<dynamic> get foodItemsList;
+  int get selectedTabIndex;
   @override
-  List<dynamic> get resturantsList;
+  List<FooditemsModel> get foodItemsList;
 
   /// Create a copy of FavoriteState
   /// with the given fields replaced by the non-null parameter values.

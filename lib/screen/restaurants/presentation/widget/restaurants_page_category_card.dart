@@ -47,8 +47,8 @@ class CategoryCard extends StatelessWidget {
               child: ClipOval(
                 child: Image.asset(
                   imagePath,
-                  width: 70,
-                  height: 70,
+                  width: 80.w,
+                  height: 80.h,
                   fit: BoxFit.cover,
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,9 +11,7 @@ class AppBackButtom extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(10).copyWith(left: 10).r,
       child: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
+        onTap: () => context.maybePop(),
         child: CircleAvatar(
           backgroundColor: AppColors.colorTypographyLighht,
           child: Icon(Icons.arrow_back_ios_new, color: Colors.white),

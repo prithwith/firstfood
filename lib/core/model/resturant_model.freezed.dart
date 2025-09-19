@@ -30,6 +30,8 @@ mixin _$ResturantModel {
   String? get subtitle => throw _privateConstructorUsedError;
   @JsonKey(name: 'deliveryCharge')
   String? get deliveryCharge => throw _privateConstructorUsedError;
+  @JsonKey(name: 'price')
+  String? get price => throw _privateConstructorUsedError;
   @JsonKey(name: 'time')
   String? get time => throw _privateConstructorUsedError;
   @JsonKey(name: 'rating')
@@ -59,6 +61,7 @@ abstract class $ResturantModelCopyWith<$Res> {
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'subtitle') String? subtitle,
       @JsonKey(name: 'deliveryCharge') String? deliveryCharge,
+      @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
       @JsonKey(name: 'allDishes') List<RecommendationModel> allDishes});
@@ -84,6 +87,7 @@ class _$ResturantModelCopyWithImpl<$Res, $Val extends ResturantModel>
     Object? name = freezed,
     Object? subtitle = freezed,
     Object? deliveryCharge = freezed,
+    Object? price = freezed,
     Object? time = freezed,
     Object? rating = freezed,
     Object? allDishes = null,
@@ -108,6 +112,10 @@ class _$ResturantModelCopyWithImpl<$Res, $Val extends ResturantModel>
       deliveryCharge: freezed == deliveryCharge
           ? _value.deliveryCharge
           : deliveryCharge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
               as String?,
       time: freezed == time
           ? _value.time
@@ -139,6 +147,7 @@ abstract class _$$ResturantModelImplCopyWith<$Res>
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'subtitle') String? subtitle,
       @JsonKey(name: 'deliveryCharge') String? deliveryCharge,
+      @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
       @JsonKey(name: 'allDishes') List<RecommendationModel> allDishes});
@@ -162,6 +171,7 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? subtitle = freezed,
     Object? deliveryCharge = freezed,
+    Object? price = freezed,
     Object? time = freezed,
     Object? rating = freezed,
     Object? allDishes = null,
@@ -186,6 +196,10 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
       deliveryCharge: freezed == deliveryCharge
           ? _value.deliveryCharge
           : deliveryCharge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
               as String?,
       time: freezed == time
           ? _value.time
@@ -212,6 +226,7 @@ class _$ResturantModelImpl implements _ResturantModel {
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'subtitle') this.subtitle,
       @JsonKey(name: 'deliveryCharge') this.deliveryCharge,
+      @JsonKey(name: 'price') this.price,
       @JsonKey(name: 'time') this.time,
       @JsonKey(name: 'rating') this.rating,
       @JsonKey(name: 'allDishes')
@@ -237,6 +252,9 @@ class _$ResturantModelImpl implements _ResturantModel {
   @JsonKey(name: 'deliveryCharge')
   final String? deliveryCharge;
   @override
+  @JsonKey(name: 'price')
+  final String? price;
+  @override
   @JsonKey(name: 'time')
   final String? time;
   @override
@@ -253,7 +271,7 @@ class _$ResturantModelImpl implements _ResturantModel {
 
   @override
   String toString() {
-    return 'ResturantModel(id: $id, image: $image, name: $name, subtitle: $subtitle, deliveryCharge: $deliveryCharge, time: $time, rating: $rating, allDishes: $allDishes)';
+    return 'ResturantModel(id: $id, image: $image, name: $name, subtitle: $subtitle, deliveryCharge: $deliveryCharge, price: $price, time: $time, rating: $rating, allDishes: $allDishes)';
   }
 
   @override
@@ -268,6 +286,7 @@ class _$ResturantModelImpl implements _ResturantModel {
                 other.subtitle == subtitle) &&
             (identical(other.deliveryCharge, deliveryCharge) ||
                 other.deliveryCharge == deliveryCharge) &&
+            (identical(other.price, price) || other.price == price) &&
             (identical(other.time, time) || other.time == time) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             const DeepCollectionEquality()
@@ -283,6 +302,7 @@ class _$ResturantModelImpl implements _ResturantModel {
       name,
       subtitle,
       deliveryCharge,
+      price,
       time,
       rating,
       const DeepCollectionEquality().hash(_allDishes));
@@ -311,6 +331,7 @@ abstract class _ResturantModel implements ResturantModel {
       @JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'subtitle') final String? subtitle,
       @JsonKey(name: 'deliveryCharge') final String? deliveryCharge,
+      @JsonKey(name: 'price') final String? price,
       @JsonKey(name: 'time') final String? time,
       @JsonKey(name: 'rating') final String? rating,
       @JsonKey(name: 'allDishes')
@@ -334,6 +355,9 @@ abstract class _ResturantModel implements ResturantModel {
   @override
   @JsonKey(name: 'deliveryCharge')
   String? get deliveryCharge;
+  @override
+  @JsonKey(name: 'price')
+  String? get price;
   @override
   @JsonKey(name: 'time')
   String? get time;

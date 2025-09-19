@@ -89,14 +89,12 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                               id: product.id,
                               isRemove: true,
                             );
-                            // stateNotifier.removeCartItem(id: product.id);
                           },
                           onAdd: () {
                             stateNotifier.updateCartItem(
                               id: product.id,
                               isAdd: true,
                             );
-                            // stateNotifier.addCartItem(id: product.id);
                           },
                         );
                       },
@@ -150,10 +148,8 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                                     id: item.id.toString(),
                                     isAdd: true,
                                   );
-                                  // stateNotifier.addCartItem(
-                                  //   id: item.id.toString(),
-                                  // );
                                 },
+
                                 id: item.id.toString(),
                                 title: item.title ?? "Unknown",
                                 price: item.price ?? "N/A",

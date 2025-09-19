@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:auto_route/auto_route.dart';
+import 'package:fastfood/core/model/recommendation_model.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_assets.dart';
@@ -8,22 +9,15 @@ import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/toast.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/shared/provider.dart';
+import 'package:fastfood/widget/app_back_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
 class FoodDetailsPage extends ConsumerStatefulWidget {
-  final String id;
-  final String name;
-  final String price;
-
-  const FoodDetailsPage({
-    super.key,
-    required this.id,
-    required this.name,
-    required this.price,
-  });
+  final RecommendationModel iems;
+  const FoodDetailsPage({super.key, required this.iems});
 
   @override
   ConsumerState<FoodDetailsPage> createState() => _FoodDetailsPageState();
@@ -53,53 +47,32 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
       backgroundColor: AppColors.colorSecondaryMedium,
       body: Column(
         children: [
-          50.verticalSpace,
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16).r,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+          Stack(
+            children: [
+              Image.asset(
+                widget.iems.image ?? "",
+                height: 250.h,
+                width: MediaQuery.sizeOf(context).width,
+                fit: BoxFit.cover,
+              ),
+              Positioned(top: 40.h, left: 16.w, child: AppBackButtom()),
+              Positioned(
+                top: 40.h,
+                right: 16.w,
+                child: GestureDetector(
+                  onTap: () => context.maybePop(),
                   child: CircleAvatar(
-                    backgroundColor: AppColors.colorTypographyLighht,
-                    child: Icon(Icons.arrow_back_ios_new, color: Colors.white),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.colorTypographyLighht,
+                    backgroundColor: AppColors.colorTypographyMedium,
                     child: Icon(Icons.close, color: Colors.white),
                   ),
                 ),
-              ],
-            ),
-          ),
-          16.verticalSpace,
-          Center(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.asset(
-                '${AppAssets.appImages}pizza.jpg',
-                width: 180.w,
-                height: 180.w,
-                fit: BoxFit.cover,
               ),
-            ),
+            ],
           ),
-          16.verticalSpace,
           Expanded(
             child: Container(
               padding: EdgeInsets.all(16).r,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                // borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-              ),
+              decoration: BoxDecoration(color: Colors.white),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -107,8 +80,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        // "Carbonara pasta",
-                        widget.name,
+                        widget.iems.title ?? "",
                         style: AppTextStyle.rubikTextBold.copyWith(
                           fontSize: 22.sp,
                         ),
@@ -130,8 +102,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                   Row(
                     children: [
                       Text(
-                        // "€7,50",
-                        "€ ${widget.price}",
+                        "€ ${widget.iems.price}",
                         style: AppTextStyle.rubikTextBold.copyWith(
                           fontSize: 18.sp,
                           color: AppColors.colorPrimary,
@@ -139,7 +110,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       ),
                       12.horizontalSpace,
                       Text(
-                        "€8,50",
+                        "€ 850",
                         style: AppTextStyle.rubikTextLight.copyWith(
                           fontSize: 14.sp,
                           decoration: TextDecoration.lineThrough,
@@ -200,17 +171,15 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                               onTap: () {
                                 if (orderState.cartItemList
                                         .where(
-                                          (element) => element == widget.id,
+                                          (element) =>
+                                              element == widget.iems.id,
                                         )
                                         .length >
                                     1) {
                                   orderStateNotifier.updateCartItem(
-                                    id: widget.id,
+                                    id: widget.iems.id,
                                     isRemove: true,
                                   );
-                                  // orderStateNotifier.removeCartItem(
-                                  //   id: widget.id,
-                                  // );
                                 } else {
                                   showToastMessage("Minimum quantity is 1");
                                 }
@@ -231,7 +200,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                             20.horizontalSpace,
                             Text(
                               orderState.cartItemList
-                                  .where((element) => element == widget.id)
+                                  .where((element) => element == widget.iems.id)
                                   .length
                                   .toString(),
                               style: AppTextStyle.rubikTextLight.copyWith(
@@ -243,7 +212,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                             GestureDetector(
                               onTap: () {
                                 orderStateNotifier.updateCartItem(
-                                  id: widget.id,
+                                  id: widget.iems.id,
                                   isAdd: true,
                                 );
                                 // orderStateNotifier.addCartItem(id: widget.id);
@@ -279,7 +248,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                         ),
                         onPressed: () {
                           if (orderState.cartItemList
-                              .where((element) => element == widget.id)
+                              .where((element) => element == widget.iems.id)
                               .isEmpty) {
                             showToastMessage("Select at least 1 quantity");
                           } else {

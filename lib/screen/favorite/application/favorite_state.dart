@@ -1,3 +1,5 @@
+import 'package:fastfood/core/model/fooditems_model.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'favorite_state.freezed.dart';
@@ -5,10 +7,10 @@ part 'favorite_state.freezed.dart';
 @freezed
 class FavoriteState with _$FavoriteState {
   const factory FavoriteState({
-    // UserModel? user,
-    @Default(false) bool isFavorite,
-    @Default([]) List<dynamic> foodItemsList,
-    @Default([]) List<dynamic> resturantsList,
+    TabController? tabController,
+    @Default(0) int selectedTabIndex,
+
+    @Default([]) List<FooditemsModel> foodItemsList,
   }) = _FavoriteState;
   const FavoriteState._();
 }

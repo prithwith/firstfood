@@ -16,10 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RestaurantsState {
-  List<dynamic> get categoryList => throw _privateConstructorUsedError;
+  List<CategoryModel> get categoryList => throw _privateConstructorUsedError;
   List<ResturantModel> get resturantsList => throw _privateConstructorUsedError;
-  List<dynamic> get resturanstPopularitemList =>
-      throw _privateConstructorUsedError;
 
   /// Create a copy of RestaurantsState
   /// with the given fields replaced by the non-null parameter values.
@@ -35,9 +33,7 @@ abstract class $RestaurantsStateCopyWith<$Res> {
       _$RestaurantsStateCopyWithImpl<$Res, RestaurantsState>;
   @useResult
   $Res call(
-      {List<dynamic> categoryList,
-      List<ResturantModel> resturantsList,
-      List<dynamic> resturanstPopularitemList});
+      {List<CategoryModel> categoryList, List<ResturantModel> resturantsList});
 }
 
 /// @nodoc
@@ -57,21 +53,16 @@ class _$RestaurantsStateCopyWithImpl<$Res, $Val extends RestaurantsState>
   $Res call({
     Object? categoryList = null,
     Object? resturantsList = null,
-    Object? resturanstPopularitemList = null,
   }) {
     return _then(_value.copyWith(
       categoryList: null == categoryList
           ? _value.categoryList
           : categoryList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<CategoryModel>,
       resturantsList: null == resturantsList
           ? _value.resturantsList
           : resturantsList // ignore: cast_nullable_to_non_nullable
               as List<ResturantModel>,
-      resturanstPopularitemList: null == resturanstPopularitemList
-          ? _value.resturanstPopularitemList
-          : resturanstPopularitemList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
     ) as $Val);
   }
 }
@@ -85,9 +76,7 @@ abstract class _$$RestaurantsStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<dynamic> categoryList,
-      List<ResturantModel> resturantsList,
-      List<dynamic> resturanstPopularitemList});
+      {List<CategoryModel> categoryList, List<ResturantModel> resturantsList});
 }
 
 /// @nodoc
@@ -105,21 +94,16 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? categoryList = null,
     Object? resturantsList = null,
-    Object? resturanstPopularitemList = null,
   }) {
     return _then(_$RestaurantsStateImpl(
       categoryList: null == categoryList
           ? _value._categoryList
           : categoryList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<CategoryModel>,
       resturantsList: null == resturantsList
           ? _value._resturantsList
           : resturantsList // ignore: cast_nullable_to_non_nullable
               as List<ResturantModel>,
-      resturanstPopularitemList: null == resturanstPopularitemList
-          ? _value._resturanstPopularitemList
-          : resturanstPopularitemList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
     ));
   }
 }
@@ -128,18 +112,16 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
 
 class _$RestaurantsStateImpl extends _RestaurantsState {
   const _$RestaurantsStateImpl(
-      {final List<dynamic> categoryList = const [],
-      final List<ResturantModel> resturantsList = const [],
-      final List<dynamic> resturanstPopularitemList = const []})
+      {final List<CategoryModel> categoryList = const [],
+      final List<ResturantModel> resturantsList = const []})
       : _categoryList = categoryList,
         _resturantsList = resturantsList,
-        _resturanstPopularitemList = resturanstPopularitemList,
         super._();
 
-  final List<dynamic> _categoryList;
+  final List<CategoryModel> _categoryList;
   @override
   @JsonKey()
-  List<dynamic> get categoryList {
+  List<CategoryModel> get categoryList {
     if (_categoryList is EqualUnmodifiableListView) return _categoryList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_categoryList);
@@ -154,19 +136,9 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
     return EqualUnmodifiableListView(_resturantsList);
   }
 
-  final List<dynamic> _resturanstPopularitemList;
-  @override
-  @JsonKey()
-  List<dynamic> get resturanstPopularitemList {
-    if (_resturanstPopularitemList is EqualUnmodifiableListView)
-      return _resturanstPopularitemList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_resturanstPopularitemList);
-  }
-
   @override
   String toString() {
-    return 'RestaurantsState(categoryList: $categoryList, resturantsList: $resturantsList, resturanstPopularitemList: $resturanstPopularitemList)';
+    return 'RestaurantsState(categoryList: $categoryList, resturantsList: $resturantsList)';
   }
 
   @override
@@ -177,17 +149,14 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
             const DeepCollectionEquality()
                 .equals(other._categoryList, _categoryList) &&
             const DeepCollectionEquality()
-                .equals(other._resturantsList, _resturantsList) &&
-            const DeepCollectionEquality().equals(
-                other._resturanstPopularitemList, _resturanstPopularitemList));
+                .equals(other._resturantsList, _resturantsList));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_categoryList),
-      const DeepCollectionEquality().hash(_resturantsList),
-      const DeepCollectionEquality().hash(_resturanstPopularitemList));
+      const DeepCollectionEquality().hash(_resturantsList));
 
   /// Create a copy of RestaurantsState
   /// with the given fields replaced by the non-null parameter values.
@@ -201,17 +170,14 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
 
 abstract class _RestaurantsState extends RestaurantsState {
   const factory _RestaurantsState(
-      {final List<dynamic> categoryList,
-      final List<ResturantModel> resturantsList,
-      final List<dynamic> resturanstPopularitemList}) = _$RestaurantsStateImpl;
+      {final List<CategoryModel> categoryList,
+      final List<ResturantModel> resturantsList}) = _$RestaurantsStateImpl;
   const _RestaurantsState._() : super._();
 
   @override
-  List<dynamic> get categoryList;
+  List<CategoryModel> get categoryList;
   @override
   List<ResturantModel> get resturantsList;
-  @override
-  List<dynamic> get resturanstPopularitemList;
 
   /// Create a copy of RestaurantsState
   /// with the given fields replaced by the non-null parameter values.

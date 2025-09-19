@@ -28,7 +28,10 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final stateNotifier = ref.read(restaurantsNotifierProvider.notifier);
-      stateNotifier.getResturantData();
+      Future.microtask(() {
+        stateNotifier.getAllCategoryItems();
+        stateNotifier.getResturantData();
+      });
     });
   }
 
@@ -119,36 +122,20 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                 ],
               ),
               10.verticalSpace,
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CategoryCard(
-                      imagePath: '${AppAssets.appImages}pizza.jpg',
-                      title: 'Brunch',
-                      subtitle: '94 places',
-                    ),
-                    CategoryCard(
-                      imagePath: '${AppAssets.appImages}pizza.jpg',
-                      title: 'Sea food',
-                      subtitle: '43 places',
-                    ),
-                    CategoryCard(
-                      imagePath: '${AppAssets.appImages}pizza.jpg',
-                      title: 'Dessert',
-                      subtitle: '38 places',
-                    ),
-                    CategoryCard(
-                      imagePath: '${AppAssets.appImages}pizza.jpg',
-                      title: 'Dessert',
-                      subtitle: '38 places',
-                    ),
-                    CategoryCard(
-                      imagePath: '${AppAssets.appImages}pizza.jpg',
-                      title: 'Dessert',
-                      subtitle: '38 places',
-                    ),
-                  ],
+              SizedBox(
+                height: 180.h,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: state.categoryList.length,
+                  itemBuilder: (context, index) {
+                    final item = state.categoryList[index];
+
+                    return CategoryCard(
+                      imagePath: item.imagePath ?? "",
+                      title: item.title ?? "",
+                      subtitle: item.subtitle ?? "",
+                    );
+                  },
                 ),
               ),
               20.verticalSpace,
@@ -172,70 +159,16 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                         title: item.name ?? "",
                         subtitle: item.subtitle ?? "",
                         deliveryCharge: item.deliveryCharge ?? "",
+                        price: item.price ?? "",
                         time: item.time ?? "",
                         rating: item.rating ?? "",
                         onTap:
                             () => context.pushRoute(
-                              RestaurantDetalisRoute(allDishes: item.allDishes),
+                              RestaurantDetalisRoute(items: item),
                             ),
                       );
                     }),
                   ),
-
-              // ListView(
-              //   shrinkWrap: true,
-              //   physics: NeverScrollableScrollPhysics(),
-              //   children: [
-              //     RestaurantsPageRestaurantCard(
-              //       image: '${AppAssets.appImages}pizza.jpg',
-              //       title: 'Shrimp pizza',
-              //       subtitle: 'A seafood lover’s dream',
-              //       deliveryCharge: '₹ 500',
-              //       time: '20-50min',
-              //       rating: '8.7',
-              //     ),
-              //     RestaurantsPageRestaurantCard(
-              //       image: '${AppAssets.appImages}pizza.jpg',
-              //       title: 'Creme brulee',
-              //       subtitle: 'Velvety caramelized delight',
-              //       deliveryCharge: '₹ 250',
-              //       time: '40-50min',
-              //       rating: '9.5',
-              //     ),
-              //     RestaurantsPageRestaurantCard(
-              //       image: '${AppAssets.appImages}pizza.jpg',
-              //       title: 'Shrimp pizza',
-              //       subtitle: 'A seafood lover’s dream',
-              //       deliveryCharge: '₹ 500',
-              //       time: '20-50min',
-              //       rating: '8.7',
-              //     ),
-              //     RestaurantsPageRestaurantCard(
-              //       image: '${AppAssets.appImages}pizza.jpg',
-              //       title: 'Creme brulee',
-              //       subtitle: 'Velvety caramelized delight',
-              //       deliveryCharge: '₹ 250',
-              //       time: '40-50min',
-              //       rating: '9.5',
-              //     ),
-              //     RestaurantsPageRestaurantCard(
-              //       image: '${AppAssets.appImages}pizza.jpg',
-              //       title: 'Shrimp pizza',
-              //       subtitle: 'A seafood lover’s dream',
-              //       deliveryCharge: '₹ 500',
-              //       time: '20-50min',
-              //       rating: '8.7',
-              //     ),
-              //     RestaurantsPageRestaurantCard(
-              //       image: '${AppAssets.appImages}pizza.jpg',
-              //       title: 'Creme brulee',
-              //       subtitle: 'Velvety caramelized delight',
-              //       deliveryCharge: '₹ 250',
-              //       time: '40-50min',
-              //       rating: '9.5',
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),

@@ -1,10 +1,9 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:auto_route/auto_route.dart';
-import 'package:fastfood/core/model/recommendation_model.dart';
+import 'package:fastfood/core/model/resturant_model.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
-import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurant_popular_item_card.dart';
@@ -17,8 +16,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
 class RestaurantDetalisPage extends ConsumerStatefulWidget {
-  final List<RecommendationModel> allDishes;
-  const RestaurantDetalisPage({super.key, required this.allDishes});
+  final ResturantModel items;
+  const RestaurantDetalisPage({super.key, required this.items});
 
   @override
   ConsumerState<RestaurantDetalisPage> createState() =>
@@ -41,7 +40,7 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
             Stack(
               children: [
                 Image.asset(
-                  '${AppAssets.appImages}pizza.jpg',
+                  widget.items.image ?? "",
                   height: 250.h,
                   width: MediaQuery.sizeOf(context).width,
                   fit: BoxFit.cover,
@@ -70,7 +69,7 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "La Pasta House",
+                        widget.items.name ?? "",
                         style: AppTextStyle.rubikTextBold.copyWith(
                           fontSize: 24.sp,
                         ),
@@ -83,7 +82,7 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                   ),
                   8.verticalSpace,
                   Text(
-                    "An authentic Italian touch and delicious!",
+                    widget.items.subtitle ?? "",
                     style: AppTextStyle.rubikTextLight.copyWith(
                       fontSize: 14.sp,
                     ),
@@ -127,7 +126,7 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                         size: 20,
                       ),
                       4.horizontalSpace,
-                      Text("10:00 - 22:00"),
+                      Text(widget.items.time ?? ""),
                     ],
                   ),
                   20.verticalSpace,
@@ -138,15 +137,15 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                     ),
                   ),
                   12.verticalSpace,
-                  widget.allDishes.isEmpty
+                  widget.items.allDishes.isEmpty
                       ? CircularProgressIndicator()
                       : ListView(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        children: List.generate(widget.allDishes.length, (
+                        children: List.generate(widget.items.allDishes.length, (
                           index,
                         ) {
-                          final item = widget.allDishes[index];
+                          final item = widget.items.allDishes[index];
 
                           return RestaurantPopularItemCard(
                             index: item.id ?? "",
@@ -166,13 +165,7 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                                 );
                               }
 
-                              context.pushRoute(
-                                FoodDetailsRoute(
-                                  id: item.id.toString(),
-                                  name: item.title.toString(),
-                                  price: item.price.toString(),
-                                ),
-                              );
+                              context.pushRoute(FoodDetailsRoute(iems: item));
                             },
                           );
                         }),

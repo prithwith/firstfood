@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i23;
 import 'package:fastfood/core/model/recommendation_model.dart' as _i25;
+import 'package:fastfood/core/model/resturant_model.dart' as _i26;
 import 'package:fastfood/screen/auth/presentation/login_page.dart' as _i8;
 import 'package:fastfood/screen/auth/presentation/reset_password_page.dart'
     as _i12;
@@ -98,9 +99,7 @@ abstract class $AppRouter extends _i23.RootStackRouter {
         routeData: routeData,
         child: _i7.FoodDetailsPage(
           key: args.key,
-          id: args.id,
-          name: args.name,
-          price: args.price,
+          iems: args.iems,
         ),
       );
     },
@@ -145,7 +144,7 @@ abstract class $AppRouter extends _i23.RootStackRouter {
         routeData: routeData,
         child: _i13.RestaurantDetalisPage(
           key: args.key,
-          allDishes: args.allDishes,
+          items: args.items,
         ),
       );
     },
@@ -333,17 +332,13 @@ class FavoriteRoute extends _i23.PageRouteInfo<void> {
 class FoodDetailsRoute extends _i23.PageRouteInfo<FoodDetailsRouteArgs> {
   FoodDetailsRoute({
     _i24.Key? key,
-    required String id,
-    required String name,
-    required String price,
+    required _i25.RecommendationModel iems,
     List<_i23.PageRouteInfo>? children,
   }) : super(
           FoodDetailsRoute.name,
           args: FoodDetailsRouteArgs(
             key: key,
-            id: id,
-            name: name,
-            price: price,
+            iems: iems,
           ),
           initialChildren: children,
         );
@@ -357,22 +352,16 @@ class FoodDetailsRoute extends _i23.PageRouteInfo<FoodDetailsRouteArgs> {
 class FoodDetailsRouteArgs {
   const FoodDetailsRouteArgs({
     this.key,
-    required this.id,
-    required this.name,
-    required this.price,
+    required this.iems,
   });
 
   final _i24.Key? key;
 
-  final String id;
-
-  final String name;
-
-  final String price;
+  final _i25.RecommendationModel iems;
 
   @override
   String toString() {
-    return 'FoodDetailsRouteArgs{key: $key, id: $id, name: $name, price: $price}';
+    return 'FoodDetailsRouteArgs{key: $key, iems: $iems}';
   }
 }
 
@@ -476,13 +465,13 @@ class RestaurantDetalisRoute
     extends _i23.PageRouteInfo<RestaurantDetalisRouteArgs> {
   RestaurantDetalisRoute({
     _i24.Key? key,
-    required List<_i25.RecommendationModel> allDishes,
+    required _i26.ResturantModel items,
     List<_i23.PageRouteInfo>? children,
   }) : super(
           RestaurantDetalisRoute.name,
           args: RestaurantDetalisRouteArgs(
             key: key,
-            allDishes: allDishes,
+            items: items,
           ),
           initialChildren: children,
         );
@@ -496,16 +485,16 @@ class RestaurantDetalisRoute
 class RestaurantDetalisRouteArgs {
   const RestaurantDetalisRouteArgs({
     this.key,
-    required this.allDishes,
+    required this.items,
   });
 
   final _i24.Key? key;
 
-  final List<_i25.RecommendationModel> allDishes;
+  final _i26.ResturantModel items;
 
   @override
   String toString() {
-    return 'RestaurantDetalisRouteArgs{key: $key, allDishes: $allDishes}';
+    return 'RestaurantDetalisRouteArgs{key: $key, items: $items}';
   }
 }
 

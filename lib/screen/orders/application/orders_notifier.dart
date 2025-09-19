@@ -19,47 +19,88 @@ class OrdersNotifier extends StateNotifier<OrdersState> {
     tempRecomendationList.add(
       RecommendationModel(
         id: "1",
-        title: "Tiramisu",
+        title: "Cheese Burger",
         price: "100",
-        image: '${AppAssets.appImages}pizza.jpg',
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
       ),
     );
 
     tempRecomendationList.add(
       RecommendationModel(
         id: "2",
-        title: "Tiramisu",
+        title: "Chocolate Cake",
         price: "200",
-        image: '${AppAssets.appImages}pizza.jpg',
+        image: '${AppAssets.appImages}chocolate_cake.jpeg',
       ),
     );
 
     tempRecomendationList.add(
       RecommendationModel(
         id: "3",
-        title: "Tiramisu",
+        title: "Fresh Fruits",
         price: "300",
-        image: '${AppAssets.appImages}pizza.jpg',
+        image: '${AppAssets.appImages}fresh_fruits.jpeg',
       ),
     );
 
     tempRecomendationList.add(
       RecommendationModel(
         id: "4",
-        title: "Tiramisu",
+        title: "Garden Salad",
         price: "400",
-        image: '${AppAssets.appImages}pizza.jpg',
+        image: '${AppAssets.appImages}garden_salad.png',
       ),
     );
 
     tempRecomendationList.add(
       RecommendationModel(
         id: "5",
-        title: "Tiramisu",
+        title: "Indian Thali",
         price: "500",
-        image: '${AppAssets.appImages}pizza.jpg',
+        image: '${AppAssets.appImages}indian_thali.jpeg',
       ),
     );
+    tempRecomendationList.add(
+      RecommendationModel(
+        id: "6",
+        title: "Pancakes",
+        price: "500",
+        image: '${AppAssets.appImages}pancakes.jpeg',
+      ),
+    );
+    tempRecomendationList.add(
+      RecommendationModel(
+        id: "5",
+        title: "Ramen",
+        price: "500",
+        image: '${AppAssets.appImages}ramen.jpeg',
+      ),
+    );
+    tempRecomendationList.add(
+      RecommendationModel(
+        id: "5",
+        title: "Spaghetti Meatball",
+        price: "500",
+        image: '${AppAssets.appImages}spaghetti_meatball.jpeg',
+      ),
+    );
+    tempRecomendationList.add(
+      RecommendationModel(
+        id: "5",
+        title: "Shushi",
+        price: "500",
+        image: '${AppAssets.appImages}sushi.jpeg',
+      ),
+    );
+    tempRecomendationList.add(
+      RecommendationModel(
+        id: "5",
+        title: "Tacos",
+        price: "500",
+        image: '${AppAssets.appImages}tacos.jpeg',
+      ),
+    );
+
     state = state.copyWith(recomendationList: tempRecomendationList);
   }
 
@@ -78,20 +119,4 @@ class OrdersNotifier extends StateNotifier<OrdersState> {
       state = state.copyWith(cartItemList: tempCartItemList);
     }
   }
-
-  // void addCartItem({required String? id}) {
-  //   if (id != null) {
-  //     List<String> tempCartItemList = [...state.cartItemList];
-  //     tempCartItemList.add(id);
-  //     state = state.copyWith(cartItemList: tempCartItemList);
-  //   }
-  // }
-
-  // void removeCartItem({required String? id}) {
-  //   if (id != null) {
-  //     List<String> tempCartItemList = [...state.cartItemList];
-  //     tempCartItemList.remove(id);
-  //     state = state.copyWith(cartItemList: tempCartItemList);
-  //   }
-  // }
 }
