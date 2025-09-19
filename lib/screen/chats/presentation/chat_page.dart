@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/shared/providers.dart';
+import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/screen/chats/shared/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,22 +43,13 @@ class _ChatPageState extends ConsumerState<ChatPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: AppColors.colorPrimaryDeep,
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           widget.userName,
           style: const TextStyle(color: Colors.white),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.videocam_outlined),
-          ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.call)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
-        ],
       ),
-
       body: Column(
         children: [
           Expanded(
@@ -75,6 +67,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                         final message = state.userChatsList[index];
                         final bool isSent =
                             (message.reciverId == widget.reciverId);
+
                         return Align(
                           alignment:
                               isSent
@@ -88,7 +81,10 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                                 ).r,
                             padding: EdgeInsets.all(10).r,
                             decoration: BoxDecoration(
-                              color: isSent ? Colors.teal : Colors.grey,
+                              color:
+                                  isSent
+                                      ? AppColors.colorPrimary
+                                      : AppColors.colorGray,
                               borderRadius: BorderRadius.circular(10).r,
                             ),
                             child: Text(
@@ -157,8 +153,8 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  backgroundColor: Colors.green,
-                  child: const Icon(Icons.send, color: Colors.black),
+                  backgroundColor: AppColors.colorPrimaryDeep,
+                  child: const Icon(Icons.send, color: Colors.white),
                   onPressed: () async {
                     String message =
                         stateNotifier.messageController.text.trim();

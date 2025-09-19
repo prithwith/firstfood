@@ -155,7 +155,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
               10.verticalSpace,
               CustomButton(
-                // loading: true,
                 onPressed: () async {
                   final errorEmailMessage = validateEmail(
                     stateNotifier.loginEmailController.text,

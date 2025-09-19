@@ -151,7 +151,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   // create new user name,email,password
   Future<void> signUpWithEmailAndPassword({VoidCallback? onTap}) async {
     try {
-      state = state.copyWith(isLoginLoading: true);
+      state = state.copyWith(isSighupLoading: true);
 
       final String name = sighupNameController.text.trim();
       final String email = sighupEmailController.text.trim();
@@ -169,7 +169,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       } else {
         showToastMessage("⚠️ Account creation failed. Please try again.");
       }
-      state = state.copyWith(isLoginLoading: false);
+      state = state.copyWith(isSighupLoading: false);
     } on FirebaseAuthException catch (e) {
       String message = "❌ Sign up failed.";
       if (e.code == 'email-already-in-use') {
@@ -181,17 +181,17 @@ class AuthNotifier extends StateNotifier<AuthState> {
       }
 
       showToastMessage(message);
-      state = state.copyWith(isLoginLoading: false);
+      state = state.copyWith(isSighupLoading: false);
     } catch (e) {
       showToastMessage("⚠️ Unexpected error: ${e.toString()}");
-      state = state.copyWith(isLoginLoading: false);
+      state = state.copyWith(isSighupLoading: false);
     }
   }
 
   // sighn in with email password
   Future<void> signInWithEmailAndPassword({VoidCallback? onTap}) async {
     try {
-      state = state.copyWith(isSighupLoading: true);
+      state = state.copyWith(isLoginLoading: true);
 
       final String email = loginEmailController.text.trim();
       final String password = loginPasswordController.text.trim();
@@ -221,7 +221,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
         showToastMessage("⚠️ Login failed. Please try again.");
       }
 
-      state = state.copyWith(isSighupLoading: false);
+      state = state.copyWith(isLoginLoading: false);
     } on FirebaseAuthException catch (e) {
       String message = "❌ Login failed.";
       if (e.code == 'user-not-found') {
@@ -235,10 +235,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
       }
 
       showToastMessage(message);
-      state = state.copyWith(isSighupLoading: false);
+      state = state.copyWith(isLoginLoading: false);
     } catch (e) {
       showToastMessage("⚠️ Unexpected error: ${e.toString()}");
-      state = state.copyWith(isSighupLoading: false);
+      state = state.copyWith(isLoginLoading: false);
     }
   }
 }

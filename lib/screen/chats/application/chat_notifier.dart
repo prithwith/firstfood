@@ -42,12 +42,12 @@ class ChatNotifier extends StateNotifier<ChatState> {
 
   void subscribeToUsers() {
     _usersSub?.cancel();
-    _usersSub = getUsersStream().listen((users) {
+    _usersSub = _getUsersStream().listen((users) {
       state = state.copyWith(usersList: users, isUserLoading: false);
     });
   }
 
-  Stream<List<ChatusersModel>> getUsersStream() {
+  Stream<List<ChatusersModel>> _getUsersStream() {
     return _firestore.collection("users").snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
         final data = doc.data();
@@ -62,12 +62,12 @@ class ChatNotifier extends StateNotifier<ChatState> {
 
   void usersFetchMessage({required String chatRoomId}) {
     _usersChats?.cancel();
-    _usersChats = getMessage(chatRoomId: chatRoomId).listen((chats) {
+    _usersChats = _getMessage(chatRoomId: chatRoomId).listen((chats) {
       state = state.copyWith(userChatsList: chats, isChatLoading: false);
     });
   }
 
-  Stream<List<ChatModel>> getMessage({required String chatRoomId}) {
+  Stream<List<ChatModel>> _getMessage({required String chatRoomId}) {
     return _firestore
         .collection("chat_rooms")
         .doc(chatRoomId)
@@ -93,6 +93,7 @@ class ChatNotifier extends StateNotifier<ChatState> {
     required String reciverId,
   }) async {
     final newMessage = {
+      'chatRoomId': chatRoomId,
       'senderId': senderId,
       'reciverId': reciverId,
       'message': message,

@@ -22,6 +22,15 @@ class UsersPage extends ConsumerStatefulWidget {
 
 class _UsersPageState extends ConsumerState<UsersPage> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final stateNotifier = ref.read(chatNotifierProvider.notifier);
+      stateNotifier.subscribeToUsers();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final hive = ref.watch(hiveProvider);
     final authState = ref.watch(authNotifierProvider);
