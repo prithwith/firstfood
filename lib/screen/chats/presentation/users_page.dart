@@ -30,9 +30,9 @@ class _UsersPageState extends ConsumerState<UsersPage> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: AppColors.colorWhite),
-        backgroundColor: AppColors.colorPrimary,
+        backgroundColor: AppColors.colorPrimaryDeep,
         title: Text(
-          "Chats",
+          "Chat Users",
           style: AppTextStyle.rubikTextRegular.copyWith(
             color: AppColors.colorWhite,
           ),

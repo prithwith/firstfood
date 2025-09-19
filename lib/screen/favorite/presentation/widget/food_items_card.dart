@@ -29,7 +29,6 @@ class FoodItemsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20).copyWith(bottom: 15).r,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -99,7 +98,7 @@ class FoodItemsCard extends StatelessWidget {
                         fontSize: 12.sp,
                       ),
                     ),
-                    10.horizontalSpace,
+                    20.horizontalSpace,
                     Image.asset(
                       '${AppAssets.smallIcons}wallet.png',
                       color: AppColors.colorSecondary,
@@ -107,7 +106,7 @@ class FoodItemsCard extends StatelessWidget {
                     ),
                     4.horizontalSpace,
                     Text(priceLevel.toString()),
-                    10.horizontalSpace,
+                    20.horizontalSpace,
                     Icon(
                       Icons.access_time_filled,
                       size: 20,
@@ -115,7 +114,7 @@ class FoodItemsCard extends StatelessWidget {
                     ),
                     4.horizontalSpace,
                     Text(time),
-                    10.horizontalSpace,
+                    20.horizontalSpace,
                     Image.asset(
                       '${AppAssets.smallIcons}star.png',
                       color: AppColors.colorSecondary,

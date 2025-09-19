@@ -16,6 +16,7 @@ _$ResturantModelImpl _$$ResturantModelImplFromJson(Map<String, dynamic> json) =>
       price: json['price'] as String?,
       time: json['time'] as String?,
       rating: json['rating'] as String?,
+      isLiked: json['isLiked'] as bool? ?? false,
       allDishes: (json['allDishes'] as List<dynamic>?)
               ?.map((e) =>
                   RecommendationModel.fromJson(e as Map<String, dynamic>))
@@ -34,5 +35,6 @@ Map<String, dynamic> _$$ResturantModelImplToJson(
       'price': instance.price,
       'time': instance.time,
       'rating': instance.rating,
+      'isLiked': instance.isLiked,
       'allDishes': instance.allDishes,
     };

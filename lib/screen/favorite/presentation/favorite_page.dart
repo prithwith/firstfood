@@ -27,9 +27,13 @@ class _FavoritePageState extends ConsumerState<FavoritePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final stateNotifier = ref.read(favoriteNotifierProvider.notifier);
+      final resturantsStateNotifier = ref.read(
+        restaurantsNotifierProvider.notifier,
+      );
 
       Future.microtask(() {
         stateNotifier.getAllfoodItems();
+        resturantsStateNotifier.getResturantData();
       });
     });
   }
@@ -41,108 +45,114 @@ class _FavoritePageState extends ConsumerState<FavoritePage> {
     final stateNotifier = ref.watch(favoriteNotifierProvider.notifier);
 
     return Scaffold(
-      body: DefaultTabController(
-        length: 2,
-        child: Column(
-          children: [
-            SizedBox(height: statusHeight(context)),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20).r,
-              height: 45.h,
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20.r)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                    borderRadius: BorderRadius.all(Radius.circular(20.r)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                    borderRadius: BorderRadius.all(Radius.circular(20.r)),
+      body: Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: 20)
+                .copyWith(
+                  top: statusHeight(context),
+                  bottom: navHeight(context),
+                )
+                .r,
+        child: DefaultTabController(
+          length: 2,
+          child: Column(
+            children: [
+              SizedBox(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search...',
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                      borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                      borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                    ),
                   ),
                 ),
               ),
-            ),
-            10.verticalSpace,
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20).r,
-              height: 45.h,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: Colors.black, width: 1),
-              ),
-              child: TabBar(
-                controller: state.tabController,
-                indicator: BoxDecoration(
-                  color: AppColors.colorPrimary,
+              10.verticalSpace,
+              Container(
+                height: 60.h,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: Colors.black, width: 1),
                 ),
-                labelColor: Colors.white,
-                labelStyle: AppTextStyle.rubikTextMedium,
-                tabs: [Tab(text: 'Food Items'), Tab(text: 'Restaurants')],
-                indicatorSize: TabBarIndicatorSize.tab,
-                indicatorPadding: EdgeInsets.all(2).r,
-                dividerColor: Colors.transparent,
+                child: TabBar(
+                  controller: state.tabController,
+                  indicator: BoxDecoration(
+                    color: AppColors.colorPrimary,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  labelColor: Colors.white,
+                  labelStyle: AppTextStyle.rubikTextMedium,
+                  tabs: [Tab(text: 'Food Items'), Tab(text: 'Restaurants')],
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  indicatorPadding: EdgeInsets.all(2).r,
+                  dividerColor: Colors.transparent,
+                ),
               ),
-            ),
-            Expanded(
-              child: TabBarView(
-                controller: state.tabController,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  /// All Food items ..................
-                  state.foodItemsList.isEmpty
-                      ? Center(child: Text("No Items Found"))
-                      : ListView.builder(
-                        itemCount: state.foodItemsList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final item = state.foodItemsList[index];
+              Expanded(
+                child: TabBarView(
+                  controller: state.tabController,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    /// All Food items ..................
+                    state.foodItemsList.isEmpty
+                        ? Center(child: Text("No Items Found"))
+                        : ListView.builder(
+                          itemCount: state.foodItemsList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final item = state.foodItemsList[index];
 
-                          return FoodItemsCard(
-                            image: item.image ?? "",
-                            title: item.title ?? "",
-                            subtitle: item.subtitle ?? "",
-                            restaurant: item.restaurant ?? "",
-                            time: item.time ?? "",
-                            rating: item.rating ?? "",
-                            priceLevel: item.priceLevel ?? "",
-                            isLiked: item.isLiked ?? false,
-                          );
-                        },
-                      ),
+                            return FoodItemsCard(
+                              image: item.image ?? "",
+                              title: item.title ?? "",
+                              subtitle: item.subtitle ?? "",
+                              restaurant: item.restaurant ?? "",
+                              time: item.time ?? "",
+                              rating: item.rating ?? "",
+                              priceLevel: item.priceLevel ?? "",
+                              isLiked: item.isLiked ?? false,
+                            );
+                          },
+                        ),
 
-                  /// Resturans Lists.................
-                  resturantsState.resturantsList.isEmpty
-                      ? Center(child: Text("No Resturants Found"))
-                      : ListView.builder(
-                        itemCount: resturantsState.resturantsList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final item = resturantsState.resturantsList[index];
+                    /// Resturans Lists.................
+                    resturantsState.resturantsList.isEmpty
+                        ? Center(child: Text("No Resturants Found"))
+                        : ListView.builder(
+                          itemCount: resturantsState.resturantsList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final item = resturantsState.resturantsList[index];
 
-                          return RestaurantsPageRestaurantCard(
-                            image: item.image ?? "",
-                            title: item.name ?? "",
-                            subtitle: item.subtitle ?? "",
-                            deliveryCharge: item.deliveryCharge ?? "",
-                            price: item.price ?? "",
-                            time: item.time ?? "",
-                            rating: item.rating ?? "",
-                            onTap:
-                                () => context.pushRoute(
-                                  RestaurantDetalisRoute(items: item),
-                                ),
-                          );
-                        },
-                      ),
-                ],
+                            return RestaurantsPageRestaurantCard(
+                              image: item.image ?? "",
+                              title: item.name ?? "",
+                              subtitle: item.subtitle ?? "",
+                              deliveryCharge: item.deliveryCharge ?? "",
+                              price: item.price ?? "",
+                              time: item.time ?? "",
+                              rating: item.rating ?? "",
+                              isLiked: item.isLiked,
+                              onTap:
+                                  () => context.pushRoute(
+                                    RestaurantDetalisRoute(items: item),
+                                  ),
+                            );
+                          },
+                        ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

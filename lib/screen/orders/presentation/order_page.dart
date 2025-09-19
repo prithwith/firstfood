@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/core/utils/common_utils.dart';
 import 'package:fastfood/screen/orders/presentation/widget/order_items.dart';
 import 'package:fastfood/screen/orders/presentation/widget/recommendation_items.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
@@ -46,10 +47,14 @@ class _OrderPageState extends ConsumerState<OrderPage> {
         centerTitle: true,
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20).r,
+        margin:
+            EdgeInsets.symmetric(
+              horizontal: 20,
+            ).copyWith(bottom: navHeight(context)).r,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               state.cartItemList.isEmpty
                   ? SizedBox(
@@ -105,7 +110,6 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Divider(),
-                  5.verticalSpace,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -125,12 +129,13 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                       ),
                     ],
                   ),
-                  24.verticalSpace,
+                  Divider(),
+                  25.verticalSpace,
                   Text(
                     "Recommendations",
                     style: AppTextStyle.rubikTextBold.copyWith(fontSize: 18.sp),
                   ),
-                  12.verticalSpace,
+                  15.verticalSpace,
                   state.recomendationList.isEmpty
                       ? CircularProgressIndicator()
                       : SizedBox(
@@ -159,7 +164,7 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                           ),
                         ),
                       ),
-                  10.verticalSpace,
+                  200.verticalSpace,
                 ],
               ),
             ],

@@ -12,6 +12,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
   final String price;
   final String time;
   final String rating;
+  final bool isLiked;
   final Function() onTap;
 
   const RestaurantsPageRestaurantCard({
@@ -23,6 +24,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
     required this.price,
     required this.time,
     required this.rating,
+    required this.isLiked,
     required this.onTap,
   });
 
@@ -62,7 +64,10 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
                   right: 10.sp,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    child: Icon(Icons.favorite, color: Colors.red),
+                    child: Icon(
+                      isLiked ? Icons.favorite : Icons.favorite_outline,
+                      color: isLiked ? Colors.red : Colors.black,
+                    ),
                   ),
                 ),
               ],
@@ -85,7 +90,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
                   ),
                   4.verticalSpace,
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Image.asset(
                         '${AppAssets.smallIcons}truck_fast.png',
@@ -99,7 +104,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
                           fontSize: 12.sp,
                         ),
                       ),
-                      4.horizontalSpace,
+                      20.horizontalSpace,
                       Image.asset(
                         '${AppAssets.smallIcons}wallet.png',
                         color: AppColors.colorSecondary,
@@ -107,7 +112,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
                       ),
                       4.horizontalSpace,
                       Text(price),
-                      4.horizontalSpace,
+                      20.horizontalSpace,
                       Icon(
                         Icons.access_time_filled,
                         size: 20,
@@ -115,7 +120,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
                       ),
                       4.horizontalSpace,
                       Text(time),
-                      4.horizontalSpace,
+                      20.horizontalSpace,
                       Image.asset(
                         '${AppAssets.smallIcons}star.png',
                         color: AppColors.colorSecondary,

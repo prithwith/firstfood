@@ -17,6 +17,7 @@ abstract class ResturantModel with _$ResturantModel {
     @JsonKey(name: 'price') String? price,
     @JsonKey(name: 'time') String? time,
     @JsonKey(name: 'rating') String? rating,
+    @Default(false) @JsonKey(name: 'isLiked') bool isLiked,
     @Default([])
     @JsonKey(name: 'allDishes')
     List<RecommendationModel> allDishes,

@@ -123,7 +123,7 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
               ),
               10.verticalSpace,
               SizedBox(
-                height: 180.h,
+                height: 200.h,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: state.categoryList.length,
@@ -162,6 +162,7 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                         price: item.price ?? "",
                         time: item.time ?? "",
                         rating: item.rating ?? "",
+                        isLiked: item.isLiked,
                         onTap:
                             () => context.pushRoute(
                               RestaurantDetalisRoute(items: item),

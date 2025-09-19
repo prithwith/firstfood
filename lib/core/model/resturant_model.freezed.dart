@@ -36,6 +36,8 @@ mixin _$ResturantModel {
   String? get time => throw _privateConstructorUsedError;
   @JsonKey(name: 'rating')
   String? get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'isLiked')
+  bool get isLiked => throw _privateConstructorUsedError;
   @JsonKey(name: 'allDishes')
   List<RecommendationModel> get allDishes => throw _privateConstructorUsedError;
 
@@ -64,6 +66,7 @@ abstract class $ResturantModelCopyWith<$Res> {
       @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
+      @JsonKey(name: 'isLiked') bool isLiked,
       @JsonKey(name: 'allDishes') List<RecommendationModel> allDishes});
 }
 
@@ -90,6 +93,7 @@ class _$ResturantModelCopyWithImpl<$Res, $Val extends ResturantModel>
     Object? price = freezed,
     Object? time = freezed,
     Object? rating = freezed,
+    Object? isLiked = null,
     Object? allDishes = null,
   }) {
     return _then(_value.copyWith(
@@ -125,6 +129,10 @@ class _$ResturantModelCopyWithImpl<$Res, $Val extends ResturantModel>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLiked: null == isLiked
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool,
       allDishes: null == allDishes
           ? _value.allDishes
           : allDishes // ignore: cast_nullable_to_non_nullable
@@ -150,6 +158,7 @@ abstract class _$$ResturantModelImplCopyWith<$Res>
       @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
+      @JsonKey(name: 'isLiked') bool isLiked,
       @JsonKey(name: 'allDishes') List<RecommendationModel> allDishes});
 }
 
@@ -174,6 +183,7 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
     Object? price = freezed,
     Object? time = freezed,
     Object? rating = freezed,
+    Object? isLiked = null,
     Object? allDishes = null,
   }) {
     return _then(_$ResturantModelImpl(
@@ -209,6 +219,10 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLiked: null == isLiked
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool,
       allDishes: null == allDishes
           ? _value._allDishes
           : allDishes // ignore: cast_nullable_to_non_nullable
@@ -229,6 +243,7 @@ class _$ResturantModelImpl implements _ResturantModel {
       @JsonKey(name: 'price') this.price,
       @JsonKey(name: 'time') this.time,
       @JsonKey(name: 'rating') this.rating,
+      @JsonKey(name: 'isLiked') this.isLiked = false,
       @JsonKey(name: 'allDishes')
       final List<RecommendationModel> allDishes = const []})
       : _allDishes = allDishes;
@@ -260,6 +275,9 @@ class _$ResturantModelImpl implements _ResturantModel {
   @override
   @JsonKey(name: 'rating')
   final String? rating;
+  @override
+  @JsonKey(name: 'isLiked')
+  final bool isLiked;
   final List<RecommendationModel> _allDishes;
   @override
   @JsonKey(name: 'allDishes')
@@ -271,7 +289,7 @@ class _$ResturantModelImpl implements _ResturantModel {
 
   @override
   String toString() {
-    return 'ResturantModel(id: $id, image: $image, name: $name, subtitle: $subtitle, deliveryCharge: $deliveryCharge, price: $price, time: $time, rating: $rating, allDishes: $allDishes)';
+    return 'ResturantModel(id: $id, image: $image, name: $name, subtitle: $subtitle, deliveryCharge: $deliveryCharge, price: $price, time: $time, rating: $rating, isLiked: $isLiked, allDishes: $allDishes)';
   }
 
   @override
@@ -289,6 +307,7 @@ class _$ResturantModelImpl implements _ResturantModel {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.time, time) || other.time == time) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.isLiked, isLiked) || other.isLiked == isLiked) &&
             const DeepCollectionEquality()
                 .equals(other._allDishes, _allDishes));
   }
@@ -305,6 +324,7 @@ class _$ResturantModelImpl implements _ResturantModel {
       price,
       time,
       rating,
+      isLiked,
       const DeepCollectionEquality().hash(_allDishes));
 
   /// Create a copy of ResturantModel
@@ -334,6 +354,7 @@ abstract class _ResturantModel implements ResturantModel {
       @JsonKey(name: 'price') final String? price,
       @JsonKey(name: 'time') final String? time,
       @JsonKey(name: 'rating') final String? rating,
+      @JsonKey(name: 'isLiked') final bool isLiked,
       @JsonKey(name: 'allDishes')
       final List<RecommendationModel> allDishes}) = _$ResturantModelImpl;
 
@@ -364,6 +385,9 @@ abstract class _ResturantModel implements ResturantModel {
   @override
   @JsonKey(name: 'rating')
   String? get rating;
+  @override
+  @JsonKey(name: 'isLiked')
+  bool get isLiked;
   @override
   @JsonKey(name: 'allDishes')
   List<RecommendationModel> get allDishes;
