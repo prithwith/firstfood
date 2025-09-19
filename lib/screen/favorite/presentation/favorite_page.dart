@@ -95,6 +95,7 @@ class _FavoritePageState extends ConsumerState<FavoritePage> {
                 controller: state.tabController,
                 physics: NeverScrollableScrollPhysics(),
                 children: [
+                  /// All Food items ..................
                   state.foodItemsList.isEmpty
                       ? Center(child: Text("No Items Found"))
                       : ListView.builder(
@@ -115,6 +116,7 @@ class _FavoritePageState extends ConsumerState<FavoritePage> {
                         },
                       ),
 
+                  /// Resturans Lists.................
                   resturantsState.resturantsList.isEmpty
                       ? Center(child: Text("No Resturants Found"))
                       : ListView.builder(
