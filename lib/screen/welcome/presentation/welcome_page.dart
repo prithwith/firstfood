@@ -72,7 +72,9 @@ class _WelcomePageState extends ConsumerState<WelcomePage> {
               height: 50.h,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                onPressed: () {},
+                onPressed: () {
+                  context.pushRoute(LoginRoute());
+                },
                 child: Text(
                   "Start With Email",
                   style: AppTextStyle.rubikTextRegular.copyWith(

@@ -40,106 +40,175 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final state = ref.watch(authNotifierProvider);
     final stateNotifier = ref.watch(authNotifierProvider.notifier);
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding:
-              EdgeInsets.symmetric(horizontal: 20)
-                  .copyWith(
-                    top: statusHeight(context),
-                    bottom: navHeight(context),
-                  )
-                  .r,
-          height: MediaQuery.sizeOf(context).height,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Login",
-                style: AppTextStyle.rubikTextSemibold.copyWith(
-                  fontSize: 35.sp,
-                  color: Colors.black,
+    return GestureDetector(
+      onTap: () => dismissKeyboard(context),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            padding:
+                EdgeInsets.symmetric(horizontal: 20)
+                    .copyWith(
+                      top: statusHeight(context),
+                      bottom: navHeight(context),
+                    )
+                    .r,
+            height: MediaQuery.sizeOf(context).height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Login",
+                  style: AppTextStyle.rubikTextSemibold.copyWith(
+                    fontSize: 35.sp,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              20.verticalSpace,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Email"),
-                  5.verticalSpace,
-                  TextfieldCustom(
-                    controller: stateNotifier.loginEmailController,
-                    hintText: "Your Email",
-                  ),
-                ],
-              ),
-              20.verticalSpace,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Password"),
-                  5.verticalSpace,
-                  TextfieldCustom(
-                    controller: stateNotifier.loginPasswordController,
-                    hintText: "Your Password",
-                    // suffix: IconButton(
-                    //   icon: Icon(
-                    //     state.isLoginVisiable
-                    //         ? Icons.visibility
-                    //         : Icons.visibility_off,
-                    //   ),
-                    //   onPressed: () {
-                    //     stateNotifier.loginVisibility();
-                    //   },
-                    // ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: TextButton(
-                      onPressed: () {
-                        context.pushRoute(
-                          ResetPasswordRoute(
-                            email: stateNotifier.loginEmailController.text,
-                          ),
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            value: state.isLoginCheckbox,
-                            onChanged: (newValue) {
-                              stateNotifier.loginCheckbox();
-                            },
-                          ),
-                          Text(
-                            'Remember Me',
-                            style: AppTextStyle.rubikTextRegular.copyWith(
-                              color: AppColors.colorBlack,
-                              fontSize: 14.sp,
+                20.verticalSpace,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Email"),
+                    5.verticalSpace,
+                    TextfieldCustom(
+                      controller: stateNotifier.loginEmailController,
+                      hintText: "Your Email",
+                    ),
+                  ],
+                ),
+                20.verticalSpace,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Password"),
+                    5.verticalSpace,
+                    TextfieldCustom(
+                      controller: stateNotifier.loginPasswordController,
+                      hintText: "Your Password",
+                      // suffix: IconButton(
+                      //   icon: Icon(
+                      //     state.isLoginVisiable
+                      //         ? Icons.visibility
+                      //         : Icons.visibility_off,
+                      //   ),
+                      //   onPressed: () {
+                      //     stateNotifier.loginVisibility();
+                      //   },
+                      // ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton(
+                        onPressed: () {
+                          context.pushRoute(
+                            ResetPasswordRoute(
+                              email: stateNotifier.loginEmailController.text,
                             ),
-                          ),
-                        ],
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              value: state.isLoginCheckbox,
+                              onChanged: (newValue) {
+                                stateNotifier.loginCheckbox();
+                              },
+                            ),
+                            Text(
+                              'Remember Me',
+                              style: AppTextStyle.rubikTextRegular.copyWith(
+                                color: AppColors.colorBlack,
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        context.pushRoute(
-                          ResetPasswordRoute(
-                            email: stateNotifier.loginEmailController.text,
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          context.pushRoute(
+                            ResetPasswordRoute(
+                              email: stateNotifier.loginEmailController.text,
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Forgot password?',
+                          style: AppTextStyle.rubikTextRegular.copyWith(
+                            color: AppColors.colorPrimary,
+                            fontSize: 14.sp,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.colorPrimary,
+                            decorationThickness: 1.5,
                           ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                10.verticalSpace,
+                CustomButton(
+                  onPressed: () async {
+                    final errorEmailMessage = validateEmail(
+                      stateNotifier.loginEmailController.text,
+                    );
+                    final errorPasswordMessage = validatePassword(
+                      stateNotifier.loginPasswordController.text,
+                    );
+
+                    if (errorEmailMessage != null) {
+                      showToastMessage(errorEmailMessage);
+                    } else if (errorPasswordMessage != null) {
+                      showToastMessage(errorPasswordMessage);
+                    } else {
+                      // await stateNotifier.login();
+                      // if (!context.mounted) return;
+                      // context.router.pushAndPopUntil(
+                      //   BaseRoute(),
+                      //   predicate: (route) => false,
+                      // );
+
+                      stateNotifier.signInWithEmailAndPassword(
+                        onTap: () {
+                          context.router.pushAndPopUntil(
+                            BaseRoute(),
+                            predicate: (route) => false,
+                          );
+                        },
+                      );
+                    }
+                  },
+                  loading: state.isLoginLoading,
+                  textlabel: "Login",
+                ),
+                10.verticalSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don't have an account?",
+                      style: AppTextStyle.rubikTextLight.copyWith(
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.router.pushAndPopUntil(
+                          SignupRoute(),
+                          predicate: (route) => false,
                         );
                       },
                       child: Text(
-                        'Forgot password?',
+                        'Sign Up',
                         style: AppTextStyle.rubikTextRegular.copyWith(
                           color: AppColors.colorPrimary,
                           fontSize: 14.sp,
@@ -149,115 +218,49 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-
-              10.verticalSpace,
-              CustomButton(
-                onPressed: () async {
-                  final errorEmailMessage = validateEmail(
-                    stateNotifier.loginEmailController.text,
-                  );
-                  final errorPasswordMessage = validatePassword(
-                    stateNotifier.loginPasswordController.text,
-                  );
-
-                  if (errorEmailMessage != null) {
-                    showToastMessage(errorEmailMessage);
-                  } else if (errorPasswordMessage != null) {
-                    showToastMessage(errorPasswordMessage);
-                  } else {
-                    // await stateNotifier.login();
-                    // if (!context.mounted) return;
-                    // context.router.pushAndPopUntil(
-                    //   BaseRoute(),
-                    //   predicate: (route) => false,
-                    // );
-
-                    stateNotifier.signInWithEmailAndPassword(
-                      onTap: () {
-                        context.router.pushAndPopUntil(
-                          BaseRoute(),
-                          predicate: (route) => false,
-                        );
-                      },
-                    );
-                  }
-                },
-                loading: state.isLoginLoading,
-                textlabel: "Login",
-              ),
-              10.verticalSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don't have an account?",
-                    style: AppTextStyle.rubikTextLight.copyWith(
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      context.router.pushAndPopUntil(
-                        SignupRoute(),
-                        predicate: (route) => false,
-                      );
-                    },
-                    child: Text(
-                      'Sign Up',
-                      style: AppTextStyle.rubikTextRegular.copyWith(
-                        color: AppColors.colorPrimary,
-                        fontSize: 14.sp,
-                        decoration: TextDecoration.underline,
-                        decorationColor: AppColors.colorPrimary,
-                        decorationThickness: 1.5,
+                  ],
+                ),
+                15.verticalSpace,
+                Row(
+                  children: [
+                    10.horizontalSpace,
+                    Expanded(child: Container(color: Colors.black, height: 2)),
+                    20.horizontalSpace,
+                    Text(
+                      'Sign in with',
+                      style: AppTextStyle.rubikTextMedium.copyWith(
+                        fontSize: 17.sp,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              15.verticalSpace,
-              Row(
-                children: [
-                  10.horizontalSpace,
-                  Expanded(child: Container(color: Colors.black, height: 2)),
-                  20.horizontalSpace,
-                  Text(
-                    'Sign in with',
-                    style: AppTextStyle.rubikTextMedium.copyWith(
-                      fontSize: 17.sp,
+                    20.horizontalSpace,
+                    Expanded(child: Container(color: Colors.black, height: 2)),
+                    10.horizontalSpace,
+                  ],
+                ),
+                30.verticalSpace,
+                Column(
+                  children: [
+                    SocalAuthButton(
+                      onPressed: () {},
+                      imageTextlabel: "facebook_logo.png",
+                      textlabel: "Continue With Facebook",
+                      loading: state.isFacebookLoading,
                     ),
-                  ),
-                  20.horizontalSpace,
-                  Expanded(child: Container(color: Colors.black, height: 2)),
-                  10.horizontalSpace,
-                ],
-              ),
-              30.verticalSpace,
-              Column(
-                children: [
-                  SocalAuthButton(
-                    onPressed: () {},
-                    imageTextlabel: "facebook_logo.png",
-                    textlabel: "Continue With Facebook",
-                    loading: state.isFacebookLoading,
-                  ),
-                  10.verticalSpace,
-                  SocalAuthButton(
-                    onPressed:
-                        () => stateNotifier.signInWithGoogle(
-                          onTap: () => context.pushRoute(BaseRoute()),
-                        ),
-                    imageTextlabel: "google_logo.png",
-                    textlabel: "Continue With Google",
-                    loading: state.isGoogleLoading,
-                  ),
-                ],
-              ),
-              30.verticalSpace,
-            ],
+                    10.verticalSpace,
+                    SocalAuthButton(
+                      onPressed:
+                          () => stateNotifier.signInWithGoogle(
+                            onTap: () => context.pushRoute(BaseRoute()),
+                          ),
+                      imageTextlabel: "google_logo.png",
+                      textlabel: "Continue With Google",
+                      loading: state.isGoogleLoading,
+                    ),
+                  ],
+                ),
+                30.verticalSpace,
+              ],
+            ),
           ),
         ),
       ),
