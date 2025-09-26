@@ -84,7 +84,8 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                           user.userId ?? '',
                         ];
                         ids.sort();
-                        final chatRoomId = ids.join();
+                        // final chatRoomId = ids.join();
+                        final chatRoomId = "75014256255265241057";
 
                         context.pushRoute(
                           ChatRoute(

@@ -158,6 +158,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                   onPressed: () async {
                     String message =
                         stateNotifier.messageController.text.trim();
+
                     if (message.isNotEmpty) {
                       await stateNotifier.sendMessage(
                         chatRoomId: widget.chatRoomId,
