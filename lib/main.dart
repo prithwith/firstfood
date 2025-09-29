@@ -18,8 +18,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// Firebase intrigation for social authantication,push notification
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  Future.microtask(() {
+    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  });
 
   /// hide the keyboadrd while restart the app
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
