@@ -17,11 +17,9 @@ void main() async {
   /// This is used to ensure that native code is successfully initialized
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// Firebase intrigation for social authantication,push notification
-  Future.microtask(() {
-    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  });
+  /// Firebase intrigation for social authantication, push notification
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   /// hide the keyboadrd while restart the app
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
@@ -33,7 +31,7 @@ void main() async {
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   ///print("Handling a background message: ${message.messageId}");
 }

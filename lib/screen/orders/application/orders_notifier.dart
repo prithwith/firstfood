@@ -70,7 +70,7 @@ class OrdersNotifier extends StateNotifier<OrdersState> {
     );
     tempRecomendationList.add(
       RecommendationModel(
-        id: "5",
+        id: "7",
         title: "Ramen",
         price: "500",
         image: '${AppAssets.appImages}ramen.jpeg',
@@ -78,7 +78,7 @@ class OrdersNotifier extends StateNotifier<OrdersState> {
     );
     tempRecomendationList.add(
       RecommendationModel(
-        id: "5",
+        id: "8",
         title: "Spaghetti Meatball",
         price: "500",
         image: '${AppAssets.appImages}spaghetti_meatball.jpeg',
@@ -86,7 +86,7 @@ class OrdersNotifier extends StateNotifier<OrdersState> {
     );
     tempRecomendationList.add(
       RecommendationModel(
-        id: "5",
+        id: "9",
         title: "Shushi",
         price: "500",
         image: '${AppAssets.appImages}sushi.jpeg',
@@ -94,7 +94,7 @@ class OrdersNotifier extends StateNotifier<OrdersState> {
     );
     tempRecomendationList.add(
       RecommendationModel(
-        id: "5",
+        id: "10",
         title: "Tacos",
         price: "500",
         image: '${AppAssets.appImages}tacos.jpeg',
