@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProfileState {
-// UserModel? user,
-  List<dynamic> get ordersList => throw _privateConstructorUsedError;
+  List<AddressModel> get addressList => throw _privateConstructorUsedError;
+  bool get isAddressLoading => throw _privateConstructorUsedError;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +32,7 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({List<dynamic> ordersList});
+  $Res call({List<AddressModel> addressList, bool isAddressLoading});
 }
 
 /// @nodoc
@@ -50,13 +50,18 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ordersList = null,
+    Object? addressList = null,
+    Object? isAddressLoading = null,
   }) {
     return _then(_value.copyWith(
-      ordersList: null == ordersList
-          ? _value.ordersList
-          : ordersList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+      addressList: null == addressList
+          ? _value.addressList
+          : addressList // ignore: cast_nullable_to_non_nullable
+              as List<AddressModel>,
+      isAddressLoading: null == isAddressLoading
+          ? _value.isAddressLoading
+          : isAddressLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -69,7 +74,7 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       __$$ProfileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<dynamic> ordersList});
+  $Res call({List<AddressModel> addressList, bool isAddressLoading});
 }
 
 /// @nodoc
@@ -85,13 +90,18 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ordersList = null,
+    Object? addressList = null,
+    Object? isAddressLoading = null,
   }) {
     return _then(_$ProfileStateImpl(
-      ordersList: null == ordersList
-          ? _value._ordersList
-          : ordersList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+      addressList: null == addressList
+          ? _value._addressList
+          : addressList // ignore: cast_nullable_to_non_nullable
+              as List<AddressModel>,
+      isAddressLoading: null == isAddressLoading
+          ? _value.isAddressLoading
+          : isAddressLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -99,24 +109,28 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProfileStateImpl extends _ProfileState {
-  const _$ProfileStateImpl({final List<dynamic> ordersList = const []})
-      : _ordersList = ordersList,
+  const _$ProfileStateImpl(
+      {final List<AddressModel> addressList = const [],
+      this.isAddressLoading = false})
+      : _addressList = addressList,
         super._();
 
-// UserModel? user,
-  final List<dynamic> _ordersList;
-// UserModel? user,
+  final List<AddressModel> _addressList;
   @override
   @JsonKey()
-  List<dynamic> get ordersList {
-    if (_ordersList is EqualUnmodifiableListView) return _ordersList;
+  List<AddressModel> get addressList {
+    if (_addressList is EqualUnmodifiableListView) return _addressList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ordersList);
+    return EqualUnmodifiableListView(_addressList);
   }
 
   @override
+  @JsonKey()
+  final bool isAddressLoading;
+
+  @override
   String toString() {
-    return 'ProfileState(ordersList: $ordersList)';
+    return 'ProfileState(addressList: $addressList, isAddressLoading: $isAddressLoading)';
   }
 
   @override
@@ -125,12 +139,14 @@ class _$ProfileStateImpl extends _ProfileState {
         (other.runtimeType == runtimeType &&
             other is _$ProfileStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._ordersList, _ordersList));
+                .equals(other._addressList, _addressList) &&
+            (identical(other.isAddressLoading, isAddressLoading) ||
+                other.isAddressLoading == isAddressLoading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_ordersList));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_addressList), isAddressLoading);
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -142,13 +158,15 @@ class _$ProfileStateImpl extends _ProfileState {
 }
 
 abstract class _ProfileState extends ProfileState {
-  const factory _ProfileState({final List<dynamic> ordersList}) =
-      _$ProfileStateImpl;
+  const factory _ProfileState(
+      {final List<AddressModel> addressList,
+      final bool isAddressLoading}) = _$ProfileStateImpl;
   const _ProfileState._() : super._();
 
-// UserModel? user,
   @override
-  List<dynamic> get ordersList;
+  List<AddressModel> get addressList;
+  @override
+  bool get isAddressLoading;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.

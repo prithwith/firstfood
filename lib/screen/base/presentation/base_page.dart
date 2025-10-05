@@ -30,6 +30,8 @@ class _BasePageState extends ConsumerState<BasePage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final stateNotifier = ref.read(baseNotifierProvider.notifier);
+
+      stateNotifier.getUserInfo();
     });
   }
 

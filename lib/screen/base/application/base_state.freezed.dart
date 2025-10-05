@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BaseState {
   int get bottomNavIndex => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  UserModel? get currentUser => throw _privateConstructorUsedError;
 
   /// Create a copy of BaseState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,9 @@ abstract class $BaseStateCopyWith<$Res> {
   factory $BaseStateCopyWith(BaseState value, $Res Function(BaseState) then) =
       _$BaseStateCopyWithImpl<$Res, BaseState>;
   @useResult
-  $Res call({int bottomNavIndex, bool isLoading});
+  $Res call({int bottomNavIndex, bool isLoading, UserModel? currentUser});
+
+  $UserModelCopyWith<$Res>? get currentUser;
 }
 
 /// @nodoc
@@ -51,6 +54,7 @@ class _$BaseStateCopyWithImpl<$Res, $Val extends BaseState>
   $Res call({
     Object? bottomNavIndex = null,
     Object? isLoading = null,
+    Object? currentUser = freezed,
   }) {
     return _then(_value.copyWith(
       bottomNavIndex: null == bottomNavIndex
@@ -61,7 +65,25 @@ class _$BaseStateCopyWithImpl<$Res, $Val extends BaseState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentUser: freezed == currentUser
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of BaseState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get currentUser {
+    if (_value.currentUser == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.currentUser!, (value) {
+      return _then(_value.copyWith(currentUser: value) as $Val);
+    });
   }
 }
 
@@ -73,7 +95,10 @@ abstract class _$$BaseStateImplCopyWith<$Res>
       __$$BaseStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int bottomNavIndex, bool isLoading});
+  $Res call({int bottomNavIndex, bool isLoading, UserModel? currentUser});
+
+  @override
+  $UserModelCopyWith<$Res>? get currentUser;
 }
 
 /// @nodoc
@@ -91,6 +116,7 @@ class __$$BaseStateImplCopyWithImpl<$Res>
   $Res call({
     Object? bottomNavIndex = null,
     Object? isLoading = null,
+    Object? currentUser = freezed,
   }) {
     return _then(_$BaseStateImpl(
       bottomNavIndex: null == bottomNavIndex
@@ -101,6 +127,10 @@ class __$$BaseStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentUser: freezed == currentUser
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
     ));
   }
 }
@@ -108,7 +138,8 @@ class __$$BaseStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BaseStateImpl extends _BaseState {
-  const _$BaseStateImpl({this.bottomNavIndex = 0, this.isLoading = false})
+  const _$BaseStateImpl(
+      {this.bottomNavIndex = 0, this.isLoading = false, this.currentUser})
       : super._();
 
   @override
@@ -117,10 +148,12 @@ class _$BaseStateImpl extends _BaseState {
   @override
   @JsonKey()
   final bool isLoading;
+  @override
+  final UserModel? currentUser;
 
   @override
   String toString() {
-    return 'BaseState(bottomNavIndex: $bottomNavIndex, isLoading: $isLoading)';
+    return 'BaseState(bottomNavIndex: $bottomNavIndex, isLoading: $isLoading, currentUser: $currentUser)';
   }
 
   @override
@@ -131,11 +164,14 @@ class _$BaseStateImpl extends _BaseState {
             (identical(other.bottomNavIndex, bottomNavIndex) ||
                 other.bottomNavIndex == bottomNavIndex) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            (identical(other.currentUser, currentUser) ||
+                other.currentUser == currentUser));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bottomNavIndex, isLoading);
+  int get hashCode =>
+      Object.hash(runtimeType, bottomNavIndex, isLoading, currentUser);
 
   /// Create a copy of BaseState
   /// with the given fields replaced by the non-null parameter values.
@@ -147,14 +183,18 @@ class _$BaseStateImpl extends _BaseState {
 }
 
 abstract class _BaseState extends BaseState {
-  const factory _BaseState({final int bottomNavIndex, final bool isLoading}) =
-      _$BaseStateImpl;
+  const factory _BaseState(
+      {final int bottomNavIndex,
+      final bool isLoading,
+      final UserModel? currentUser}) = _$BaseStateImpl;
   const _BaseState._() : super._();
 
   @override
   int get bottomNavIndex;
   @override
   bool get isLoading;
+  @override
+  UserModel? get currentUser;
 
   /// Create a copy of BaseState
   /// with the given fields replaced by the non-null parameter values.
