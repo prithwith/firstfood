@@ -5,6 +5,7 @@ import 'package:fastfood/core/model/resturant_model.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/screen/favorite/shared/provider.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurant_popular_item_card.dart';
 import 'package:fastfood/screen/restaurants/shared/provider.dart';
@@ -32,6 +33,8 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
 
     final orderState = ref.watch(ordersNotifierProvider);
     final orderStateNotifier = ref.watch(ordersNotifierProvider.notifier);
+
+    final favoriteState = ref.watch(favoriteNotifierProvider);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -76,7 +79,19 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                       ),
                       CircleAvatar(
                         backgroundColor: Colors.white,
-                        child: Icon(Icons.favorite, color: Colors.red),
+                        child: Icon(
+                          favoriteState.favresturantsIdList.contains(
+                                widget.items.id,
+                              )
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color:
+                              favoriteState.favresturantsIdList.contains(
+                                    widget.items.id,
+                                  )
+                                  ? Colors.red
+                                  : Colors.black,
+                        ),
                       ),
                     ],
                   ),

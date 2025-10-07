@@ -1,6 +1,7 @@
 import 'package:fastfood/core/model/user_model.dart';
 import 'package:fastfood/core/utils/toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileHeader extends StatelessWidget {
   final UserModel? user;
@@ -9,7 +10,7 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24.0),
+      padding: const EdgeInsets.symmetric(vertical: 24.0).r,
       child: Center(
         child: Column(
           children: [
@@ -19,7 +20,7 @@ class ProfileHeader extends StatelessWidget {
               backgroundColor: Colors.blue.shade100,
               backgroundImage: NetworkImage(user?.profileImageUrl ?? "NA"),
             ),
-            const SizedBox(height: 12),
+            12.verticalSpace,
             // User Name
             Text(
               user?.name ?? "NA",

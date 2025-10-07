@@ -36,7 +36,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     String userid = hive.box.get(AppPreferenceKeys.uid) ?? "";
     String email = hive.box.get(AppPreferenceKeys.email) ?? "";
 
-    if (mounted && userid.isNotEmpty && email.isNotEmpty) {
+    if (mounted && (userid.isNotEmpty || email.isNotEmpty)) {
       await AutoRouter.of(
         context,
       ).pushAndPopUntil(BaseRoute(), predicate: (_) => false);

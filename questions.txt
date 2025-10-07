@@ -1,4 +1,0 @@
-1. In Firebase is it Possible that SHA key can Change ?
-2. I have a aleart dialog and there is any APICALLING method then how can i pass the sttenotifier ?
-3. How to Customized the Splash screen.
-4. 

@@ -27,8 +27,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final hive = ref.watch(hiveProvider);
+
     final authState = ref.watch(authNotifierProvider);
     final authStateNotifier = ref.watch(authNotifierProvider.notifier);
+
     final state = ref.watch(profileNotifierProvider);
     final stateNotifier = ref.watch(profileNotifierProvider.notifier);
 
@@ -116,16 +118,15 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: AppColors.colorPrimary),
                   ),
-                  onPressed: () {
-                    Future.microtask(() {
-                      hive.box.put(AppPreferenceKeys.token, "");
-                      hive.box.put(AppPreferenceKeys.id, "");
-                      hive.box.put(AppPreferenceKeys.name, "");
-                      hive.box.put(AppPreferenceKeys.email, "");
-                      hive.box.put(AppPreferenceKeys.uid, "");
-                      hive.box.put(AppPreferenceKeys.password, "");
-                    });
+                  onPressed: () async {
+                    await hive.box.delete(AppPreferenceKeys.token);
+                    await hive.box.delete(AppPreferenceKeys.id);
+                    await hive.box.delete(AppPreferenceKeys.name);
+                    await hive.box.delete(AppPreferenceKeys.email);
+                    await hive.box.delete(AppPreferenceKeys.uid);
+                    await hive.box.delete(AppPreferenceKeys.password);
 
+                    if (!context.mounted) return;
                     context.replaceRoute(WelcomeRoute());
                   },
                   icon: Image.asset(

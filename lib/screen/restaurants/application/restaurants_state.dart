@@ -8,6 +8,7 @@ part 'restaurants_state.freezed.dart';
 class RestaurantsState with _$RestaurantsState {
   const factory RestaurantsState({
     @Default([]) List<CategoryModel> categoryList,
+
     @Default([]) List<ResturantModel> resturantsList,
   }) = _RestaurantsState;
   const RestaurantsState._();

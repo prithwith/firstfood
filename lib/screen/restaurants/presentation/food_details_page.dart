@@ -8,6 +8,7 @@ import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/common_utils.dart';
 import 'package:fastfood/core/utils/toast.dart';
+import 'package:fastfood/screen/favorite/shared/provider.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/shared/provider.dart';
 import 'package:fastfood/widget/app_back_buttom.dart';
@@ -41,8 +42,12 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(restaurantsNotifierProvider);
     final stateNotifier = ref.watch(restaurantsNotifierProvider.notifier);
+
     final orderState = ref.watch(ordersNotifierProvider);
     final orderStateNotifier = ref.watch(ordersNotifierProvider.notifier);
+
+    final favoriteState = ref.watch(favoriteNotifierProvider);
+    final favoriteStateNotifier = ref.watch(favoriteNotifierProvider.notifier);
 
     return Scaffold(
       body: Padding(
@@ -88,9 +93,25 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                               fontSize: 22.sp,
                             ),
                           ),
-                          Icon(
-                            Icons.favorite_border,
-                            color: AppColors.colorPrimary,
+                          InkWell(
+                            onTap: () {
+                              favoriteStateNotifier.updateFavoriteFoodItems(
+                                itemId: widget.iems.id ?? "",
+                              );
+                            },
+                            child: Icon(
+                              favoriteState.favfoodItemsIdList.contains(
+                                    widget.iems.id,
+                                  )
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color:
+                                  favoriteState.favfoodItemsIdList.contains(
+                                        widget.iems.id,
+                                      )
+                                      ? Colors.red
+                                      : AppColors.colorPrimary,
+                            ),
                           ),
                         ],
                       ),

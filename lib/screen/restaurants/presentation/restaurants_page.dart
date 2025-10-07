@@ -1,10 +1,11 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, avoid_print
 
 import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/screen/favorite/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurants_page_category_card.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurants_page_restaurant_card.dart';
 import 'package:fastfood/screen/restaurants/shared/provider.dart';
@@ -39,6 +40,9 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(restaurantsNotifierProvider);
     final stateNotifier = ref.watch(restaurantsNotifierProvider.notifier);
+
+    final favoriteState = ref.watch(favoriteNotifierProvider);
+    final favoriteStateNotifier = ref.watch(favoriteNotifierProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -162,7 +166,14 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                         price: item.price ?? "",
                         time: item.time ?? "",
                         rating: item.rating ?? "",
-                        isLiked: item.isLiked,
+                        isLiked: favoriteState.favresturantsIdList.contains(
+                          item.id,
+                        ),
+                        onTapFavorite: () {
+                          favoriteStateNotifier.updateFavoriteResturants(
+                            itemId: item.id ?? "",
+                          );
+                        },
                         onTap:
                             () => context.pushRoute(
                               RestaurantDetalisRoute(items: item),

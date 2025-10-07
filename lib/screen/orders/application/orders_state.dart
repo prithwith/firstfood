@@ -7,7 +7,6 @@ part 'orders_state.freezed.dart';
 @freezed
 class OrdersState with _$OrdersState {
   const factory OrdersState({
-    // Model? user,
     @Default([]) List<RecommendationModel> recomendationList,
     @Default([]) List<String> cartItemList,
     @Default([]) List<OrderitemModel> ordersList,

@@ -28,7 +28,7 @@ class AddressCard extends StatelessWidget {
                     color: AppColors.colorPrimary,
                     size: 24,
                   ),
-                  const SizedBox(width: 8),
+                  8.verticalSpace,
                   Text(
                     'Default Shipping Address',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(

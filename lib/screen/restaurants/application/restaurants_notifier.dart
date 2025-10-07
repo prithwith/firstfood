@@ -29,7 +29,6 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 470',
         time: '20-50min',
         rating: '8.7',
-        isLiked: false,
         allDishes: [
           RecommendationModel(
             id: "1",
@@ -72,28 +71,27 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 580',
         time: '20-40min',
         rating: '8.1',
-        isLiked: true,
         allDishes: [
           RecommendationModel(
-            id: "1",
+            id: "6",
             title: "Chees Burger",
             price: "214",
             image: '${AppAssets.appImages}cheeseburger.jpeg',
           ),
           RecommendationModel(
-            id: "2",
+            id: "7",
             title: "Sushi",
             price: "541",
             image: '${AppAssets.appImages}sushi.jpeg',
           ),
           RecommendationModel(
-            id: "3",
+            id: "8",
             title: "Tacos",
             price: "380",
             image: '${AppAssets.appImages}tacos.jpeg',
           ),
           RecommendationModel(
-            id: "4",
+            id: "9",
             title: "Pancakes",
             price: "254",
             image: '${AppAssets.appImages}pancakes.jpeg',
@@ -109,28 +107,27 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 980',
         time: '10-30min',
         rating: '5.1',
-        isLiked: false,
         allDishes: [
           RecommendationModel(
-            id: "1",
+            id: "10",
             title: "Chees Burger",
             price: "214",
             image: '${AppAssets.appImages}cheeseburger.jpeg',
           ),
           RecommendationModel(
-            id: "2",
+            id: "11",
             title: "Pancakes",
             price: "254",
             image: '${AppAssets.appImages}pancakes.jpeg',
           ),
           RecommendationModel(
-            id: "3",
+            id: "12",
             title: "Tacos",
             price: "380",
             image: '${AppAssets.appImages}tacos.jpeg',
           ),
           RecommendationModel(
-            id: "4",
+            id: "13",
             title: "Sushi",
             price: "541",
             image: '${AppAssets.appImages}sushi.jpeg',
@@ -146,22 +143,21 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 750',
         time: '25-45min',
         rating: '9.2',
-        isLiked: true,
         allDishes: [
           RecommendationModel(
-            id: "1",
+            id: "14",
             title: "Salmon Nigiri",
             price: "299",
             image: '${AppAssets.appImages}sushi.jpeg',
           ),
           RecommendationModel(
-            id: "2",
+            id: "15",
             title: "California Roll",
             price: "349",
             image: '${AppAssets.appImages}sushi.jpeg',
           ),
           RecommendationModel(
-            id: "3",
+            id: "16",
             title: "Dragon Roll",
             price: "399",
             image: '${AppAssets.appImages}sushi.jpeg',
@@ -177,16 +173,15 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 300',
         time: '15-25min',
         rating: '9.5',
-        isLiked: false,
         allDishes: [
           RecommendationModel(
-            id: "1",
+            id: "17",
             title: "Chocolate Cake",
             price: "180",
             image: '${AppAssets.appImages}pancakes.jpeg',
           ),
           RecommendationModel(
-            id: "2",
+            id: "18",
             title: "Blueberry Pancake",
             price: "220",
             image: '${AppAssets.appImages}pancakes.jpeg',
@@ -202,16 +197,15 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 650',
         time: '30-60min',
         rating: '8.8',
-        isLiked: true,
         allDishes: [
           RecommendationModel(
-            id: "1",
+            id: "19",
             title: "Paneer Butter Masala",
             price: "280",
             image: '${AppAssets.appImages}indian_thali.jpeg',
           ),
           RecommendationModel(
-            id: "2",
+            id: "20",
             title: "Chicken Biryani",
             price: "320",
             image: '${AppAssets.appImages}indian_thali.jpeg',
@@ -227,16 +221,15 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 500',
         time: '20-35min',
         rating: '8.4',
-        isLiked: false,
         allDishes: [
           RecommendationModel(
-            id: "1",
+            id: "21",
             title: "Kung Pao Chicken",
             price: "260",
             image: '${AppAssets.appImages}cheeseburger.jpeg',
           ),
           RecommendationModel(
-            id: "2",
+            id: "22",
             title: "Fried Rice",
             price: "180",
             image: '${AppAssets.appImages}cheeseburger.jpeg',
@@ -252,16 +245,15 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 280',
         time: '10-20min',
         rating: '9.0',
-        isLiked: true,
         allDishes: [
           RecommendationModel(
-            id: "1",
+            id: "23",
             title: "Caesar Salad",
             price: "150",
             image: '${AppAssets.appImages}garden_salad.png',
           ),
           RecommendationModel(
-            id: "2",
+            id: "24",
             title: "Fruit Smoothie",
             price: "120",
             image: '${AppAssets.appImages}fresh_fruits.jpeg',
@@ -277,16 +269,15 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 720',
         time: '25-40min',
         rating: '9.1',
-        isLiked: false,
         allDishes: [
           RecommendationModel(
-            id: "1",
+            id: "25",
             title: "Spaghetti Meatballs",
             price: "300",
             image: '${AppAssets.appImages}spaghetti_meatball.jpeg',
           ),
           RecommendationModel(
-            id: "2",
+            id: "26",
             title: "Alfredo Pasta",
             price: "350",
             image: '${AppAssets.appImages}ramen.jpeg',
@@ -302,16 +293,15 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         price: '₹ 400',
         time: '15-30min',
         rating: '9.3',
-        isLiked: true,
         allDishes: [
           RecommendationModel(
-            id: "1",
+            id: "27",
             title: "Fruit Bowl",
             price: "180",
             image: '${AppAssets.appImages}fresh_fruits.jpeg',
           ),
           RecommendationModel(
-            id: "2",
+            id: "28",
             title: "Avocado Toast",
             price: "220",
             image: '${AppAssets.appImages}fresh_fruits.jpeg',

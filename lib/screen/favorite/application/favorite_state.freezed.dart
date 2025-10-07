@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FavoriteState {
-  TabController? get tabController => throw _privateConstructorUsedError;
-  int get selectedTabIndex => throw _privateConstructorUsedError;
-  List<FooditemsModel> get foodItemsList => throw _privateConstructorUsedError;
+  List<String> get favfoodItemsIdList => throw _privateConstructorUsedError;
+  List<String> get favresturantsIdList => throw _privateConstructorUsedError;
 
   /// Create a copy of FavoriteState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,9 +33,7 @@ abstract class $FavoriteStateCopyWith<$Res> {
       _$FavoriteStateCopyWithImpl<$Res, FavoriteState>;
   @useResult
   $Res call(
-      {TabController? tabController,
-      int selectedTabIndex,
-      List<FooditemsModel> foodItemsList});
+      {List<String> favfoodItemsIdList, List<String> favresturantsIdList});
 }
 
 /// @nodoc
@@ -54,23 +51,18 @@ class _$FavoriteStateCopyWithImpl<$Res, $Val extends FavoriteState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tabController = freezed,
-    Object? selectedTabIndex = null,
-    Object? foodItemsList = null,
+    Object? favfoodItemsIdList = null,
+    Object? favresturantsIdList = null,
   }) {
     return _then(_value.copyWith(
-      tabController: freezed == tabController
-          ? _value.tabController
-          : tabController // ignore: cast_nullable_to_non_nullable
-              as TabController?,
-      selectedTabIndex: null == selectedTabIndex
-          ? _value.selectedTabIndex
-          : selectedTabIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      foodItemsList: null == foodItemsList
-          ? _value.foodItemsList
-          : foodItemsList // ignore: cast_nullable_to_non_nullable
-              as List<FooditemsModel>,
+      favfoodItemsIdList: null == favfoodItemsIdList
+          ? _value.favfoodItemsIdList
+          : favfoodItemsIdList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      favresturantsIdList: null == favresturantsIdList
+          ? _value.favresturantsIdList
+          : favresturantsIdList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -84,9 +76,7 @@ abstract class _$$FavoriteStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TabController? tabController,
-      int selectedTabIndex,
-      List<FooditemsModel> foodItemsList});
+      {List<String> favfoodItemsIdList, List<String> favresturantsIdList});
 }
 
 /// @nodoc
@@ -102,23 +92,18 @@ class __$$FavoriteStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tabController = freezed,
-    Object? selectedTabIndex = null,
-    Object? foodItemsList = null,
+    Object? favfoodItemsIdList = null,
+    Object? favresturantsIdList = null,
   }) {
     return _then(_$FavoriteStateImpl(
-      tabController: freezed == tabController
-          ? _value.tabController
-          : tabController // ignore: cast_nullable_to_non_nullable
-              as TabController?,
-      selectedTabIndex: null == selectedTabIndex
-          ? _value.selectedTabIndex
-          : selectedTabIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      foodItemsList: null == foodItemsList
-          ? _value._foodItemsList
-          : foodItemsList // ignore: cast_nullable_to_non_nullable
-              as List<FooditemsModel>,
+      favfoodItemsIdList: null == favfoodItemsIdList
+          ? _value._favfoodItemsIdList
+          : favfoodItemsIdList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      favresturantsIdList: null == favresturantsIdList
+          ? _value._favresturantsIdList
+          : favresturantsIdList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -127,29 +112,35 @@ class __$$FavoriteStateImplCopyWithImpl<$Res>
 
 class _$FavoriteStateImpl extends _FavoriteState {
   const _$FavoriteStateImpl(
-      {this.tabController,
-      this.selectedTabIndex = 0,
-      final List<FooditemsModel> foodItemsList = const []})
-      : _foodItemsList = foodItemsList,
+      {final List<String> favfoodItemsIdList = const [],
+      final List<String> favresturantsIdList = const []})
+      : _favfoodItemsIdList = favfoodItemsIdList,
+        _favresturantsIdList = favresturantsIdList,
         super._();
 
-  @override
-  final TabController? tabController;
-  @override
-  @JsonKey()
-  final int selectedTabIndex;
-  final List<FooditemsModel> _foodItemsList;
+  final List<String> _favfoodItemsIdList;
   @override
   @JsonKey()
-  List<FooditemsModel> get foodItemsList {
-    if (_foodItemsList is EqualUnmodifiableListView) return _foodItemsList;
+  List<String> get favfoodItemsIdList {
+    if (_favfoodItemsIdList is EqualUnmodifiableListView)
+      return _favfoodItemsIdList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_foodItemsList);
+    return EqualUnmodifiableListView(_favfoodItemsIdList);
+  }
+
+  final List<String> _favresturantsIdList;
+  @override
+  @JsonKey()
+  List<String> get favresturantsIdList {
+    if (_favresturantsIdList is EqualUnmodifiableListView)
+      return _favresturantsIdList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favresturantsIdList);
   }
 
   @override
   String toString() {
-    return 'FavoriteState(tabController: $tabController, selectedTabIndex: $selectedTabIndex, foodItemsList: $foodItemsList)';
+    return 'FavoriteState(favfoodItemsIdList: $favfoodItemsIdList, favresturantsIdList: $favresturantsIdList)';
   }
 
   @override
@@ -157,17 +148,17 @@ class _$FavoriteStateImpl extends _FavoriteState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FavoriteStateImpl &&
-            (identical(other.tabController, tabController) ||
-                other.tabController == tabController) &&
-            (identical(other.selectedTabIndex, selectedTabIndex) ||
-                other.selectedTabIndex == selectedTabIndex) &&
             const DeepCollectionEquality()
-                .equals(other._foodItemsList, _foodItemsList));
+                .equals(other._favfoodItemsIdList, _favfoodItemsIdList) &&
+            const DeepCollectionEquality()
+                .equals(other._favresturantsIdList, _favresturantsIdList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tabController, selectedTabIndex,
-      const DeepCollectionEquality().hash(_foodItemsList));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_favfoodItemsIdList),
+      const DeepCollectionEquality().hash(_favresturantsIdList));
 
   /// Create a copy of FavoriteState
   /// with the given fields replaced by the non-null parameter values.
@@ -180,17 +171,14 @@ class _$FavoriteStateImpl extends _FavoriteState {
 
 abstract class _FavoriteState extends FavoriteState {
   const factory _FavoriteState(
-      {final TabController? tabController,
-      final int selectedTabIndex,
-      final List<FooditemsModel> foodItemsList}) = _$FavoriteStateImpl;
+      {final List<String> favfoodItemsIdList,
+      final List<String> favresturantsIdList}) = _$FavoriteStateImpl;
   const _FavoriteState._() : super._();
 
   @override
-  TabController? get tabController;
+  List<String> get favfoodItemsIdList;
   @override
-  int get selectedTabIndex;
-  @override
-  List<FooditemsModel> get foodItemsList;
+  List<String> get favresturantsIdList;
 
   /// Create a copy of FavoriteState
   /// with the given fields replaced by the non-null parameter values.

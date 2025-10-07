@@ -11,6 +11,7 @@ import 'package:fastfood/screen/profile/presentation/widget/profile_header.dart'
 import 'package:fastfood/screen/profile/shared/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
 class MyProfilePage extends ConsumerStatefulWidget {
@@ -68,13 +69,10 @@ class _MyProfilePageState extends ConsumerState<MyProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // 3. PROFILE HEADER (Avatar and Name)
             ProfileHeader(user: baseState.currentUser),
 
-            // Separator for visual hierarchy
-            const SizedBox(height: 16),
+            16.verticalSpace,
 
-            // 4. PERSONAL INFORMATION SECTION
             _buildSectionHeader('Personal Details', context),
             Padding(
               padding: EdgeInsetsGeometry.symmetric(horizontal: 16),

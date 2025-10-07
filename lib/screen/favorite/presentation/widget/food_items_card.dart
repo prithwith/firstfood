@@ -13,6 +13,7 @@ class FoodItemsCard extends StatelessWidget {
   final String rating;
   final String priceLevel;
   final bool isLiked;
+  final Function() onTapFavorite;
 
   const FoodItemsCard({
     super.key,
@@ -24,21 +25,23 @@ class FoodItemsCard extends StatelessWidget {
     required this.rating,
     required this.priceLevel,
     required this.isLiked,
+    required this.onTapFavorite,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 10).r,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 10,
-            offset: Offset(0, -1),
-          ),
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.black26,
+        //     blurRadius: 10,
+        //     offset: Offset(0, -1),
+        //   ),
+        // ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,11 +60,14 @@ class FoodItemsCard extends StatelessWidget {
               Positioned(
                 top: 10.sp,
                 right: 10.sp,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Icon(
-                    isLiked ? Icons.favorite : Icons.favorite_border,
-                    color: isLiked ? Colors.red : Colors.black,
+                child: GestureDetector(
+                  onTap: onTapFavorite,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      isLiked ? Icons.favorite : Icons.favorite_border,
+                      color: isLiked ? Colors.red : Colors.black,
+                    ),
                   ),
                 ),
               ),
@@ -98,7 +104,7 @@ class FoodItemsCard extends StatelessWidget {
                         fontSize: 12.sp,
                       ),
                     ),
-                    20.horizontalSpace,
+                    10.horizontalSpace,
                     Image.asset(
                       '${AppAssets.smallIcons}wallet.png',
                       color: AppColors.colorSecondary,
@@ -106,7 +112,7 @@ class FoodItemsCard extends StatelessWidget {
                     ),
                     4.horizontalSpace,
                     Text(priceLevel.toString()),
-                    20.horizontalSpace,
+                    10.horizontalSpace,
                     Icon(
                       Icons.access_time_filled,
                       size: 20,
@@ -114,7 +120,7 @@ class FoodItemsCard extends StatelessWidget {
                     ),
                     4.horizontalSpace,
                     Text(time),
-                    20.horizontalSpace,
+                    10.horizontalSpace,
                     Image.asset(
                       '${AppAssets.smallIcons}star.png',
                       color: AppColors.colorSecondary,

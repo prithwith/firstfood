@@ -13,6 +13,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
   final String time;
   final String rating;
   final bool isLiked;
+  final Function() onTapFavorite;
   final Function() onTap;
 
   const RestaurantsPageRestaurantCard({
@@ -25,6 +26,7 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
     required this.time,
     required this.rating,
     required this.isLiked,
+    required this.onTapFavorite,
     required this.onTap,
   });
 
@@ -62,11 +64,14 @@ class RestaurantsPageRestaurantCard extends StatelessWidget {
                 Positioned(
                   top: 10.sp,
                   right: 10.sp,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Icon(
-                      isLiked ? Icons.favorite : Icons.favorite_outline,
-                      color: isLiked ? Colors.red : Colors.black,
+                  child: GestureDetector(
+                    onTap: onTapFavorite,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Icon(
+                        isLiked ? Icons.favorite : Icons.favorite_outline,
+                        color: isLiked ? Colors.red : Colors.black,
+                      ),
                     ),
                   ),
                 ),

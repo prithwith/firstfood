@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/discover/presentation/widget/fastest_delivery_card.dart';
 import 'package:fastfood/screen/discover/presentation/widget/popular_items_card.dart';
 import 'package:fastfood/screen/discover/shared/provider.dart';
@@ -42,6 +43,8 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
     final state = ref.watch(discoverNotifierProvider);
     final stateNotifier = ref.watch(discoverNotifierProvider.notifier);
 
+    final baseState = ref.watch(baseNotifierProvider);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -58,7 +61,7 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                     radius: 18,
                     child: Image.asset(
                       AppAssets.smallIcons + 'home.png',
-                      color: AppColors.colorGrayMedium,
+                      color: AppColors.colorWhite,
                     ),
                   ),
                   8.horizontalSpace,
@@ -66,8 +69,9 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                     "Home,",
                     style: AppTextStyle.rubikTextBold.copyWith(fontSize: 15.sp),
                   ),
+                  5.horizontalSpace,
                   Text(
-                    " JI. Soekarno Hatta 15A",
+                    baseState.currentUser?.defaultAddressCity ?? "",
                     style: AppTextStyle.rubikTextLight.copyWith(
                       fontSize: 12.sp,
                     ),
