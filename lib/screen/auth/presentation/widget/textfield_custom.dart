@@ -41,9 +41,13 @@ class TextfieldCustom extends StatelessWidget {
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: AppTextStyle.rubikTextLight,
+        hintStyle: AppTextStyle.rubikTextLight.copyWith(
+          color: AppColors.colorBlack,
+        ),
         labelText: labelText,
-        labelStyle: AppTextStyle.rubikTextMedium,
+        labelStyle: AppTextStyle.rubikTextMedium.copyWith(
+          color: AppColors.colorBlack,
+        ),
         prefix: prefix,
         suffix: suffix,
         enabledBorder: OutlineInputBorder(

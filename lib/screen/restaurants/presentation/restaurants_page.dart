@@ -62,23 +62,31 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                     radius: 18,
                     child: Image.asset(
                       '${AppAssets.smallIcons}home.png',
-                      color: AppColors.colorGrayMedium,
+                      color: AppColors.colorWhite,
                     ),
                   ),
+                  5.horizontalSpace,
                   Text(
                     "Home,",
                     style: AppTextStyle.rubikTextBold.copyWith(fontSize: 15.sp),
                   ),
-                  Text(
-                    baseState.currentUser?.defaultAddressCity ?? "",
-                    style: AppTextStyle.rubikTextLight.copyWith(
-                      fontSize: 12.sp,
+                  5.horizontalSpace,
+                  Expanded(
+                    child: Text(
+                      baseState.currentUser?.defaultAddressCity ?? "",
+                      maxLines: 1,
+                      style: AppTextStyle.rubikTextLight.copyWith(
+                        fontSize: 12.sp,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
+                  5.horizontalSpace,
                   Image.asset(
                     '${AppAssets.smallIcons}arrow.png',
                     color: AppColors.colorPrimaryDeep,
                   ),
+                  5.horizontalSpace,
                   CircleAvatar(
                     radius: 18,
                     backgroundColor: AppColors.colorGrayMedium,
@@ -87,6 +95,7 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                       color: AppColors.colorTypographyDeep,
                     ),
                   ),
+                  5.horizontalSpace,
                   CircleAvatar(
                     radius: 18,
                     backgroundColor: AppColors.colorGrayMedium,

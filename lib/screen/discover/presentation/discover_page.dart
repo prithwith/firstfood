@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings, unused_local_variable
-
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fastfood/core/style/app_colors.dart';
@@ -60,25 +58,29 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                     backgroundColor: AppColors.colorPrimaryDeep,
                     radius: 18,
                     child: Image.asset(
-                      AppAssets.smallIcons + 'home.png',
+                      '${AppAssets.smallIcons}home.png',
                       color: AppColors.colorWhite,
                     ),
                   ),
-                  8.horizontalSpace,
+                  5.horizontalSpace,
                   Text(
                     "Home,",
                     style: AppTextStyle.rubikTextBold.copyWith(fontSize: 15.sp),
                   ),
                   5.horizontalSpace,
-                  Text(
-                    baseState.currentUser?.defaultAddressCity ?? "",
-                    style: AppTextStyle.rubikTextLight.copyWith(
-                      fontSize: 12.sp,
+                  Expanded(
+                    child: Text(
+                      baseState.currentUser?.defaultAddressCity ?? "",
+                      maxLines: 1,
+                      style: AppTextStyle.rubikTextLight.copyWith(
+                        fontSize: 12.sp,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                   8.horizontalSpace,
                   Image.asset(
-                    AppAssets.smallIcons + 'arrow.png',
+                    '${AppAssets.smallIcons}arrow.png',
                     color: AppColors.colorSecondary,
                   ),
                 ],
