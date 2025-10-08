@@ -313,6 +313,183 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
     state = state.copyWith(resturantsList: tempRestutantList);
   }
 
+  void getAllFooditemsData() {
+    List<RecommendationModel> tempfoodList = [];
+
+    tempfoodList.addAll([
+      RecommendationModel(
+        id: "1",
+        title: "Pizza",
+        price: "221",
+        image: '${AppAssets.appImages}pizza.jpg',
+      ),
+      RecommendationModel(
+        id: "2",
+        title: "Chees Burger",
+        price: "214",
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
+      ),
+      RecommendationModel(
+        id: "3",
+        title: "Sushi",
+        price: "541",
+        image: '${AppAssets.appImages}sushi.jpeg',
+      ),
+      RecommendationModel(
+        id: "4",
+        title: "Pancakes",
+        price: "254",
+        image: '${AppAssets.appImages}pancakes.jpeg',
+      ),
+      RecommendationModel(
+        id: "5",
+        title: "Tacos",
+        price: "380",
+        image: '${AppAssets.appImages}tacos.jpeg',
+      ),
+      RecommendationModel(
+        id: "6",
+        title: "Chees Burger",
+        price: "214",
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
+      ),
+      RecommendationModel(
+        id: "7",
+        title: "Sushi",
+        price: "541",
+        image: '${AppAssets.appImages}sushi.jpeg',
+      ),
+      RecommendationModel(
+        id: "8",
+        title: "Tacos",
+        price: "380",
+        image: '${AppAssets.appImages}tacos.jpeg',
+      ),
+      RecommendationModel(
+        id: "9",
+        title: "Pancakes",
+        price: "254",
+        image: '${AppAssets.appImages}pancakes.jpeg',
+      ),
+      RecommendationModel(
+        id: "10",
+        title: "Chees Burger",
+        price: "214",
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
+      ),
+      RecommendationModel(
+        id: "11",
+        title: "Pancakes",
+        price: "254",
+        image: '${AppAssets.appImages}pancakes.jpeg',
+      ),
+      RecommendationModel(
+        id: "12",
+        title: "Tacos",
+        price: "380",
+        image: '${AppAssets.appImages}tacos.jpeg',
+      ),
+      RecommendationModel(
+        id: "13",
+        title: "Sushi",
+        price: "541",
+        image: '${AppAssets.appImages}sushi.jpeg',
+      ),
+      RecommendationModel(
+        id: "14",
+        title: "Salmon Nigiri",
+        price: "299",
+        image: '${AppAssets.appImages}sushi.jpeg',
+      ),
+      RecommendationModel(
+        id: "15",
+        title: "California Roll",
+        price: "349",
+        image: '${AppAssets.appImages}sushi.jpeg',
+      ),
+      RecommendationModel(
+        id: "16",
+        title: "Dragon Roll",
+        price: "399",
+        image: '${AppAssets.appImages}sushi.jpeg',
+      ),
+      RecommendationModel(
+        id: "17",
+        title: "Chocolate Cake",
+        price: "180",
+        image: '${AppAssets.appImages}pancakes.jpeg',
+      ),
+      RecommendationModel(
+        id: "18",
+        title: "Blueberry Pancake",
+        price: "220",
+        image: '${AppAssets.appImages}pancakes.jpeg',
+      ),
+      RecommendationModel(
+        id: "19",
+        title: "Paneer Butter Masala",
+        price: "280",
+        image: '${AppAssets.appImages}indian_thali.jpeg',
+      ),
+      RecommendationModel(
+        id: "20",
+        title: "Chicken Biryani",
+        price: "320",
+        image: '${AppAssets.appImages}indian_thali.jpeg',
+      ),
+      RecommendationModel(
+        id: "21",
+        title: "Kung Pao Chicken",
+        price: "260",
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
+      ),
+      RecommendationModel(
+        id: "22",
+        title: "Fried Rice",
+        price: "180",
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
+      ),
+      RecommendationModel(
+        id: "23",
+        title: "Caesar Salad",
+        price: "150",
+        image: '${AppAssets.appImages}garden_salad.png',
+      ),
+      RecommendationModel(
+        id: "24",
+        title: "Fruit Smoothie",
+        price: "120",
+        image: '${AppAssets.appImages}fresh_fruits.jpeg',
+      ),
+      RecommendationModel(
+        id: "25",
+        title: "Spaghetti Meatballs",
+        price: "300",
+        image: '${AppAssets.appImages}spaghetti_meatball.jpeg',
+      ),
+      RecommendationModel(
+        id: "26",
+        title: "Alfredo Pasta",
+        price: "350",
+        image: '${AppAssets.appImages}ramen.jpeg',
+      ),
+      RecommendationModel(
+        id: "27",
+        title: "Fruit Bowl",
+        price: "180",
+        image: '${AppAssets.appImages}fresh_fruits.jpeg',
+      ),
+      RecommendationModel(
+        id: "28",
+        title: "Avocado Toast",
+        price: "220",
+        image: '${AppAssets.appImages}fresh_fruits.jpeg',
+      ),
+    ]);
+
+    state = state.copyWith(foodItemsList: tempfoodList);
+  }
+
   void getAllCategoryItems() {
     final List<CategoryModel> tempCategoryItems = [];
 

@@ -123,8 +123,9 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
                             itemCount: state.favfoodItemsIdList.length,
                             itemBuilder: (BuildContext context, int index) {
                               final itemid = state.favfoodItemsIdList[index];
+
                               try {
-                                final item = ordersState.recomendationList
+                                final item = resturantsState.foodItemsList
                                     .firstWhere(
                                       (element) => element.id == itemid,
                                     );
@@ -132,10 +133,10 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
                                 return FoodItemsCard(
                                   image: item.image ?? "",
                                   title: item.title ?? "",
-                                  subtitle: "item.subtitle",
-                                  restaurant: "item.restaurant",
-                                  time: "item.time",
-                                  rating: "item.rating",
+                                  subtitle: "Always eat Good food",
+                                  restaurant: "restaurant",
+                                  time: "12:00",
+                                  rating: "8.5",
                                   priceLevel: item.price ?? "",
                                   isLiked: state.favfoodItemsIdList.contains(
                                     item.id,

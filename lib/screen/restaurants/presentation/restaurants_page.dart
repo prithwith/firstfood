@@ -30,10 +30,10 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final stateNotifier = ref.read(restaurantsNotifierProvider.notifier);
-      Future.microtask(() {
-        stateNotifier.getAllCategoryItems();
-        stateNotifier.getResturantData();
-      });
+
+      stateNotifier.getAllCategoryItems();
+      stateNotifier.getResturantData();
+      stateNotifier.getAllFooditemsData();
     });
   }
 

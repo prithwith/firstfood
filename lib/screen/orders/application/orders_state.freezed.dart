@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OrdersState {
-// Model? user,
   List<RecommendationModel> get recomendationList =>
       throw _privateConstructorUsedError;
   List<String> get cartItemList => throw _privateConstructorUsedError;
@@ -137,9 +136,7 @@ class _$OrdersStateImpl extends _OrdersState {
         _ordersList = ordersList,
         super._();
 
-// Model? user,
   final List<RecommendationModel> _recomendationList;
-// Model? user,
   @override
   @JsonKey()
   List<RecommendationModel> get recomendationList {
@@ -208,7 +205,6 @@ abstract class _OrdersState extends OrdersState {
       final List<OrderitemModel> ordersList}) = _$OrdersStateImpl;
   const _OrdersState._() : super._();
 
-// Model? user,
   @override
   List<RecommendationModel> get recomendationList;
   @override
