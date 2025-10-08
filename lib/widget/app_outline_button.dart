@@ -16,7 +16,7 @@ class AppOutlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onPressed,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10).r,
         decoration: BoxDecoration(

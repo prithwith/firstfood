@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
@@ -138,16 +139,27 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                   }).toList(),
             ),
             10.verticalSpace,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Fastest delivery 🐦‍🔥",
-                  style: AppTextStyle.rubikTextMedium.copyWith(fontSize: 20.sp),
+            state.fastDeliveryList.isEmpty
+                ? Text("")
+                : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Fastest delivery 🐦‍🔥",
+                      style: AppTextStyle.rubikTextMedium.copyWith(
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                    AppOutlineButton(
+                      onPressed: () {
+                        context.pushRoute(
+                          FastestDeliveryRoute(items: state.fastDeliveryList),
+                        );
+                      },
+                      labelText: "See all",
+                    ),
+                  ],
                 ),
-                AppOutlineButton(onPressed: () {}, labelText: "See all"),
-              ],
-            ),
             10.verticalSpace,
             SizedBox(
               height: 200.h,
@@ -165,6 +177,7 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                     rating: item.rating ?? "",
                     image: item.image ?? "",
                     badge: item.badge ?? "",
+                    onTapCardOpen: () {},
                   );
                 },
               ),
@@ -177,7 +190,14 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                   "Popular items 👏",
                   style: AppTextStyle.rubikTextMedium.copyWith(fontSize: 20.sp),
                 ),
-                AppOutlineButton(onPressed: () {}, labelText: "See all"),
+                AppOutlineButton(
+                  onPressed: () {
+                    context.pushRoute(
+                      PopularItemsRoute(items: state.popularItemsList),
+                    );
+                  },
+                  labelText: "See all",
+                ),
               ],
             ),
             10.verticalSpace,
