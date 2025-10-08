@@ -5,6 +5,7 @@ import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/favorite/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurants_page_category_card.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurants_page_restaurant_card.dart';
@@ -44,6 +45,8 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
     final favoriteState = ref.watch(favoriteNotifierProvider);
     final favoriteStateNotifier = ref.watch(favoriteNotifierProvider.notifier);
 
+    final baseState = ref.watch(baseNotifierProvider);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -67,7 +70,7 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                     style: AppTextStyle.rubikTextBold.copyWith(fontSize: 15.sp),
                   ),
                   Text(
-                    "JI. Soekarno Hatta 15A",
+                    baseState.currentUser?.defaultAddressCity ?? "",
                     style: AppTextStyle.rubikTextLight.copyWith(
                       fontSize: 12.sp,
                     ),
