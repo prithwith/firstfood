@@ -32,10 +32,7 @@ String? validateEmail(String email) {
 String? validateMobileNumber(String number) {
   if (number.trim().isEmpty) {
     return 'Mobile number is required';
-  } else if (RegExp(r'^[0-9]{10}$').hasMatch(number) == false) {
-    return 'Enter a valid 10-digit mobile number';
   }
-
   return null;
 }
 
