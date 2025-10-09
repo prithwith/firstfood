@@ -17,8 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$RestaurantsState {
   List<CategoryModel> get categoryList => throw _privateConstructorUsedError;
-  List<RecommendationModel> get foodItemsList =>
-      throw _privateConstructorUsedError;
   List<ResturantModel> get resturantsList => throw _privateConstructorUsedError;
 
   /// Create a copy of RestaurantsState
@@ -35,9 +33,7 @@ abstract class $RestaurantsStateCopyWith<$Res> {
       _$RestaurantsStateCopyWithImpl<$Res, RestaurantsState>;
   @useResult
   $Res call(
-      {List<CategoryModel> categoryList,
-      List<RecommendationModel> foodItemsList,
-      List<ResturantModel> resturantsList});
+      {List<CategoryModel> categoryList, List<ResturantModel> resturantsList});
 }
 
 /// @nodoc
@@ -56,7 +52,6 @@ class _$RestaurantsStateCopyWithImpl<$Res, $Val extends RestaurantsState>
   @override
   $Res call({
     Object? categoryList = null,
-    Object? foodItemsList = null,
     Object? resturantsList = null,
   }) {
     return _then(_value.copyWith(
@@ -64,10 +59,6 @@ class _$RestaurantsStateCopyWithImpl<$Res, $Val extends RestaurantsState>
           ? _value.categoryList
           : categoryList // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
-      foodItemsList: null == foodItemsList
-          ? _value.foodItemsList
-          : foodItemsList // ignore: cast_nullable_to_non_nullable
-              as List<RecommendationModel>,
       resturantsList: null == resturantsList
           ? _value.resturantsList
           : resturantsList // ignore: cast_nullable_to_non_nullable
@@ -85,9 +76,7 @@ abstract class _$$RestaurantsStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<CategoryModel> categoryList,
-      List<RecommendationModel> foodItemsList,
-      List<ResturantModel> resturantsList});
+      {List<CategoryModel> categoryList, List<ResturantModel> resturantsList});
 }
 
 /// @nodoc
@@ -104,7 +93,6 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? categoryList = null,
-    Object? foodItemsList = null,
     Object? resturantsList = null,
   }) {
     return _then(_$RestaurantsStateImpl(
@@ -112,10 +100,6 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
           ? _value._categoryList
           : categoryList // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
-      foodItemsList: null == foodItemsList
-          ? _value._foodItemsList
-          : foodItemsList // ignore: cast_nullable_to_non_nullable
-              as List<RecommendationModel>,
       resturantsList: null == resturantsList
           ? _value._resturantsList
           : resturantsList // ignore: cast_nullable_to_non_nullable
@@ -129,10 +113,8 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
 class _$RestaurantsStateImpl extends _RestaurantsState {
   const _$RestaurantsStateImpl(
       {final List<CategoryModel> categoryList = const [],
-      final List<RecommendationModel> foodItemsList = const [],
       final List<ResturantModel> resturantsList = const []})
       : _categoryList = categoryList,
-        _foodItemsList = foodItemsList,
         _resturantsList = resturantsList,
         super._();
 
@@ -143,15 +125,6 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
     if (_categoryList is EqualUnmodifiableListView) return _categoryList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_categoryList);
-  }
-
-  final List<RecommendationModel> _foodItemsList;
-  @override
-  @JsonKey()
-  List<RecommendationModel> get foodItemsList {
-    if (_foodItemsList is EqualUnmodifiableListView) return _foodItemsList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_foodItemsList);
   }
 
   final List<ResturantModel> _resturantsList;
@@ -165,7 +138,7 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
 
   @override
   String toString() {
-    return 'RestaurantsState(categoryList: $categoryList, foodItemsList: $foodItemsList, resturantsList: $resturantsList)';
+    return 'RestaurantsState(categoryList: $categoryList, resturantsList: $resturantsList)';
   }
 
   @override
@@ -176,8 +149,6 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
             const DeepCollectionEquality()
                 .equals(other._categoryList, _categoryList) &&
             const DeepCollectionEquality()
-                .equals(other._foodItemsList, _foodItemsList) &&
-            const DeepCollectionEquality()
                 .equals(other._resturantsList, _resturantsList));
   }
 
@@ -185,7 +156,6 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_categoryList),
-      const DeepCollectionEquality().hash(_foodItemsList),
       const DeepCollectionEquality().hash(_resturantsList));
 
   /// Create a copy of RestaurantsState
@@ -201,14 +171,11 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
 abstract class _RestaurantsState extends RestaurantsState {
   const factory _RestaurantsState(
       {final List<CategoryModel> categoryList,
-      final List<RecommendationModel> foodItemsList,
       final List<ResturantModel> resturantsList}) = _$RestaurantsStateImpl;
   const _RestaurantsState._() : super._();
 
   @override
   List<CategoryModel> get categoryList;
-  @override
-  List<RecommendationModel> get foodItemsList;
   @override
   List<ResturantModel> get resturantsList;
 

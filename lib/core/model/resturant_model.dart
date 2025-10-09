@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fastfood/core/model/recommendation_model.dart';
+import 'package:fastfood/core/model/fooditems_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'resturant_model.freezed.dart';
@@ -17,9 +17,7 @@ abstract class ResturantModel with _$ResturantModel {
     @JsonKey(name: 'price') String? price,
     @JsonKey(name: 'time') String? time,
     @JsonKey(name: 'rating') String? rating,
-    @Default([])
-    @JsonKey(name: 'allDishes')
-    List<RecommendationModel> allDishes,
+    @Default([]) @JsonKey(name: 'allDishes') List<FooditemsModel> allDishes,
   }) = _ResturantModel;
 
   factory ResturantModel.fromJson(Map<String, dynamic> json) =>

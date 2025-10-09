@@ -5,6 +5,7 @@ import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/common_utils.dart';
+import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/orders/presentation/widget/order_items.dart';
 import 'package:fastfood/screen/orders/presentation/widget/recommendation_items.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
@@ -28,7 +29,6 @@ class _OrderPageState extends ConsumerState<OrderPage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final stateNotifier = ref.read(ordersNotifierProvider.notifier);
-      stateNotifier.getRecommendationData();
     });
   }
 
@@ -36,6 +36,9 @@ class _OrderPageState extends ConsumerState<OrderPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(ordersNotifierProvider);
     final stateNotifier = ref.watch(ordersNotifierProvider.notifier);
+
+    final baseState = ref.watch(baseNotifierProvider);
+    final baseStateNotifier = ref.watch(baseNotifierProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -67,7 +70,7 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                       (index) {
                         final itemid =
                             state.cartItemList.toSet().toList()[index];
-                        final product = state.recomendationList.firstWhere(
+                        final product = baseState.foodItemsList.firstWhere(
                           (element) => element.id == itemid,
                         );
 
@@ -136,16 +139,16 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                     style: AppTextStyle.rubikTextBold.copyWith(fontSize: 18.sp),
                   ),
                   15.verticalSpace,
-                  state.recomendationList.isEmpty
+                  baseState.foodItemsList.isEmpty
                       ? CircularProgressIndicator()
                       : SizedBox(
                         height: 150.h,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: List.generate(
-                            state.recomendationList.length,
+                            baseState.foodItemsList.length,
                             (index) {
-                              final item = state.recomendationList[index];
+                              final item = baseState.foodItemsList[index];
 
                               return RecommendationItems(
                                 onCart: () {

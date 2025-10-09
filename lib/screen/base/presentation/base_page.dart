@@ -32,6 +32,7 @@ class _BasePageState extends ConsumerState<BasePage> {
       final stateNotifier = ref.read(baseNotifierProvider.notifier);
 
       stateNotifier.getUserInfo();
+      stateNotifier.getAllFoodItemsData();
     });
   }
 

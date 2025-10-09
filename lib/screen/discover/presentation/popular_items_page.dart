@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:fastfood/core/model/popularitems_model.dart';
+import 'package:fastfood/core/model/fooditems_model.dart';
+import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/screen/discover/presentation/widget/popular_items_card.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
 class PopularItemsPage extends ConsumerStatefulWidget {
-  final List<PopularitemsModel> items;
+  final List<FooditemsModel> items;
   const PopularItemsPage({super.key, required this.items});
 
   @override
@@ -38,9 +39,12 @@ class _PopularItemsPageState extends ConsumerState<PopularItemsPage> {
             final item = widget.items[index];
 
             return PopularItemsCard(
-              imagePath: item.imagePath ?? "",
+              imagePath: item.image ?? "",
               title: item.title ?? "",
-              subtitle: item.subtitle ?? "",
+              subtitle: item.places ?? "",
+              onTap: () {
+                context.pushRoute(FoodDetailsRoute(iems: item));
+              },
             );
           },
         ),

@@ -5,9 +5,9 @@ import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/common_utils.dart';
+import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/favorite/presentation/widget/food_items_card.dart';
 import 'package:fastfood/screen/favorite/shared/provider.dart';
-import 'package:fastfood/screen/orders/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurants_page_restaurant_card.dart';
 import 'package:fastfood/screen/restaurants/shared/provider.dart';
 import 'package:flutter/material.dart';
@@ -46,14 +46,12 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
   @override
   Widget build(BuildContext context) {
     final resturantsState = ref.watch(restaurantsNotifierProvider);
-    final resturantsStateNotifier = ref.watch(
-      restaurantsNotifierProvider.notifier,
-    );
 
     final state = ref.watch(favoriteNotifierProvider);
     final stateNotifier = ref.watch(favoriteNotifierProvider.notifier);
 
-    final ordersState = ref.watch(ordersNotifierProvider);
+    final baseState = ref.watch(baseNotifierProvider);
+    final baseStateNotifier = ref.watch(baseNotifierProvider.notifier);
 
     return GestureDetector(
       onTap: () => dismissKeyboard(context),
@@ -125,18 +123,18 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
                               final itemid = state.favfoodItemsIdList[index];
 
                               try {
-                                final item = resturantsState.foodItemsList
-                                    .firstWhere(
-                                      (element) => element.id == itemid,
-                                    );
+                                final item = baseState.foodItemsList.firstWhere(
+                                  (element) => element.id == itemid,
+                                );
 
                                 return FoodItemsCard(
                                   image: item.image ?? "",
                                   title: item.title ?? "",
-                                  subtitle: "Always eat Good food",
-                                  restaurant: "restaurant",
-                                  time: "12:00",
-                                  rating: "8.5",
+                                  subtitle:
+                                      item.subtitle ?? "Always eat Good food",
+                                  restaurant: item.restaurant ?? "",
+                                  time: item.time ?? "",
+                                  rating: item.rating ?? "",
                                   priceLevel: item.price ?? "",
                                   isLiked: state.favfoodItemsIdList.contains(
                                     item.id,

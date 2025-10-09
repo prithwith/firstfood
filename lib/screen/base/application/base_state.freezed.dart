@@ -19,6 +19,7 @@ mixin _$BaseState {
   int get bottomNavIndex => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   UserModel? get currentUser => throw _privateConstructorUsedError;
+  List<FooditemsModel> get foodItemsList => throw _privateConstructorUsedError;
 
   /// Create a copy of BaseState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,11 @@ abstract class $BaseStateCopyWith<$Res> {
   factory $BaseStateCopyWith(BaseState value, $Res Function(BaseState) then) =
       _$BaseStateCopyWithImpl<$Res, BaseState>;
   @useResult
-  $Res call({int bottomNavIndex, bool isLoading, UserModel? currentUser});
+  $Res call(
+      {int bottomNavIndex,
+      bool isLoading,
+      UserModel? currentUser,
+      List<FooditemsModel> foodItemsList});
 
   $UserModelCopyWith<$Res>? get currentUser;
 }
@@ -55,6 +60,7 @@ class _$BaseStateCopyWithImpl<$Res, $Val extends BaseState>
     Object? bottomNavIndex = null,
     Object? isLoading = null,
     Object? currentUser = freezed,
+    Object? foodItemsList = null,
   }) {
     return _then(_value.copyWith(
       bottomNavIndex: null == bottomNavIndex
@@ -69,6 +75,10 @@ class _$BaseStateCopyWithImpl<$Res, $Val extends BaseState>
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
               as UserModel?,
+      foodItemsList: null == foodItemsList
+          ? _value.foodItemsList
+          : foodItemsList // ignore: cast_nullable_to_non_nullable
+              as List<FooditemsModel>,
     ) as $Val);
   }
 
@@ -95,7 +105,11 @@ abstract class _$$BaseStateImplCopyWith<$Res>
       __$$BaseStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int bottomNavIndex, bool isLoading, UserModel? currentUser});
+  $Res call(
+      {int bottomNavIndex,
+      bool isLoading,
+      UserModel? currentUser,
+      List<FooditemsModel> foodItemsList});
 
   @override
   $UserModelCopyWith<$Res>? get currentUser;
@@ -117,6 +131,7 @@ class __$$BaseStateImplCopyWithImpl<$Res>
     Object? bottomNavIndex = null,
     Object? isLoading = null,
     Object? currentUser = freezed,
+    Object? foodItemsList = null,
   }) {
     return _then(_$BaseStateImpl(
       bottomNavIndex: null == bottomNavIndex
@@ -131,6 +146,10 @@ class __$$BaseStateImplCopyWithImpl<$Res>
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
               as UserModel?,
+      foodItemsList: null == foodItemsList
+          ? _value._foodItemsList
+          : foodItemsList // ignore: cast_nullable_to_non_nullable
+              as List<FooditemsModel>,
     ));
   }
 }
@@ -139,8 +158,12 @@ class __$$BaseStateImplCopyWithImpl<$Res>
 
 class _$BaseStateImpl extends _BaseState {
   const _$BaseStateImpl(
-      {this.bottomNavIndex = 0, this.isLoading = false, this.currentUser})
-      : super._();
+      {this.bottomNavIndex = 0,
+      this.isLoading = false,
+      this.currentUser,
+      final List<FooditemsModel> foodItemsList = const []})
+      : _foodItemsList = foodItemsList,
+        super._();
 
   @override
   @JsonKey()
@@ -150,10 +173,18 @@ class _$BaseStateImpl extends _BaseState {
   final bool isLoading;
   @override
   final UserModel? currentUser;
+  final List<FooditemsModel> _foodItemsList;
+  @override
+  @JsonKey()
+  List<FooditemsModel> get foodItemsList {
+    if (_foodItemsList is EqualUnmodifiableListView) return _foodItemsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_foodItemsList);
+  }
 
   @override
   String toString() {
-    return 'BaseState(bottomNavIndex: $bottomNavIndex, isLoading: $isLoading, currentUser: $currentUser)';
+    return 'BaseState(bottomNavIndex: $bottomNavIndex, isLoading: $isLoading, currentUser: $currentUser, foodItemsList: $foodItemsList)';
   }
 
   @override
@@ -166,12 +197,14 @@ class _$BaseStateImpl extends _BaseState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.currentUser, currentUser) ||
-                other.currentUser == currentUser));
+                other.currentUser == currentUser) &&
+            const DeepCollectionEquality()
+                .equals(other._foodItemsList, _foodItemsList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, bottomNavIndex, isLoading, currentUser);
+  int get hashCode => Object.hash(runtimeType, bottomNavIndex, isLoading,
+      currentUser, const DeepCollectionEquality().hash(_foodItemsList));
 
   /// Create a copy of BaseState
   /// with the given fields replaced by the non-null parameter values.
@@ -186,7 +219,8 @@ abstract class _BaseState extends BaseState {
   const factory _BaseState(
       {final int bottomNavIndex,
       final bool isLoading,
-      final UserModel? currentUser}) = _$BaseStateImpl;
+      final UserModel? currentUser,
+      final List<FooditemsModel> foodItemsList}) = _$BaseStateImpl;
   const _BaseState._() : super._();
 
   @override
@@ -195,6 +229,8 @@ abstract class _BaseState extends BaseState {
   bool get isLoading;
   @override
   UserModel? get currentUser;
+  @override
+  List<FooditemsModel> get foodItemsList;
 
   /// Create a copy of BaseState
   /// with the given fields replaced by the non-null parameter values.

@@ -37,7 +37,7 @@ mixin _$ResturantModel {
   @JsonKey(name: 'rating')
   String? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'allDishes')
-  List<RecommendationModel> get allDishes => throw _privateConstructorUsedError;
+  List<FooditemsModel> get allDishes => throw _privateConstructorUsedError;
 
   /// Serializes this ResturantModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $ResturantModelCopyWith<$Res> {
       @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
-      @JsonKey(name: 'allDishes') List<RecommendationModel> allDishes});
+      @JsonKey(name: 'allDishes') List<FooditemsModel> allDishes});
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class _$ResturantModelCopyWithImpl<$Res, $Val extends ResturantModel>
       allDishes: null == allDishes
           ? _value.allDishes
           : allDishes // ignore: cast_nullable_to_non_nullable
-              as List<RecommendationModel>,
+              as List<FooditemsModel>,
     ) as $Val);
   }
 }
@@ -150,7 +150,7 @@ abstract class _$$ResturantModelImplCopyWith<$Res>
       @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
-      @JsonKey(name: 'allDishes') List<RecommendationModel> allDishes});
+      @JsonKey(name: 'allDishes') List<FooditemsModel> allDishes});
 }
 
 /// @nodoc
@@ -212,7 +212,7 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
       allDishes: null == allDishes
           ? _value._allDishes
           : allDishes // ignore: cast_nullable_to_non_nullable
-              as List<RecommendationModel>,
+              as List<FooditemsModel>,
     ));
   }
 }
@@ -230,7 +230,7 @@ class _$ResturantModelImpl implements _ResturantModel {
       @JsonKey(name: 'time') this.time,
       @JsonKey(name: 'rating') this.rating,
       @JsonKey(name: 'allDishes')
-      final List<RecommendationModel> allDishes = const []})
+      final List<FooditemsModel> allDishes = const []})
       : _allDishes = allDishes;
 
   factory _$ResturantModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -260,10 +260,10 @@ class _$ResturantModelImpl implements _ResturantModel {
   @override
   @JsonKey(name: 'rating')
   final String? rating;
-  final List<RecommendationModel> _allDishes;
+  final List<FooditemsModel> _allDishes;
   @override
   @JsonKey(name: 'allDishes')
-  List<RecommendationModel> get allDishes {
+  List<FooditemsModel> get allDishes {
     if (_allDishes is EqualUnmodifiableListView) return _allDishes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_allDishes);
@@ -326,16 +326,16 @@ class _$ResturantModelImpl implements _ResturantModel {
 
 abstract class _ResturantModel implements ResturantModel {
   const factory _ResturantModel(
-      {@JsonKey(name: 'id') final String? id,
-      @JsonKey(name: 'image') final String? image,
-      @JsonKey(name: 'name') final String? name,
-      @JsonKey(name: 'subtitle') final String? subtitle,
-      @JsonKey(name: 'deliveryCharge') final String? deliveryCharge,
-      @JsonKey(name: 'price') final String? price,
-      @JsonKey(name: 'time') final String? time,
-      @JsonKey(name: 'rating') final String? rating,
-      @JsonKey(name: 'allDishes')
-      final List<RecommendationModel> allDishes}) = _$ResturantModelImpl;
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'image') final String? image,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'subtitle') final String? subtitle,
+          @JsonKey(name: 'deliveryCharge') final String? deliveryCharge,
+          @JsonKey(name: 'price') final String? price,
+          @JsonKey(name: 'time') final String? time,
+          @JsonKey(name: 'rating') final String? rating,
+          @JsonKey(name: 'allDishes') final List<FooditemsModel> allDishes}) =
+      _$ResturantModelImpl;
 
   factory _ResturantModel.fromJson(Map<String, dynamic> json) =
       _$ResturantModelImpl.fromJson;
@@ -366,7 +366,7 @@ abstract class _ResturantModel implements ResturantModel {
   String? get rating;
   @override
   @JsonKey(name: 'allDishes')
-  List<RecommendationModel> get allDishes;
+  List<FooditemsModel> get allDishes;
 
   /// Create a copy of ResturantModel
   /// with the given fields replaced by the non-null parameter values.

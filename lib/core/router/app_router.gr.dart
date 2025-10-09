@@ -9,10 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i25;
-import 'package:fastfood/core/model/fastdelivery_model.dart' as _i27;
-import 'package:fastfood/core/model/popularitems_model.dart' as _i29;
-import 'package:fastfood/core/model/recommendation_model.dart' as _i28;
-import 'package:fastfood/core/model/resturant_model.dart' as _i30;
+import 'package:fastfood/core/model/fooditems_model.dart' as _i27;
+import 'package:fastfood/core/model/resturant_model.dart' as _i28;
 import 'package:fastfood/screen/auth/presentation/login_page.dart' as _i9;
 import 'package:fastfood/screen/auth/presentation/reset_password_page.dart'
     as _i14;
@@ -345,7 +343,7 @@ class FastestDeliveryRoute
     extends _i25.PageRouteInfo<FastestDeliveryRouteArgs> {
   FastestDeliveryRoute({
     _i26.Key? key,
-    required List<_i27.FastDeliveryModel> items,
+    required List<_i27.FooditemsModel> items,
     List<_i25.PageRouteInfo>? children,
   }) : super(
           FastestDeliveryRoute.name,
@@ -370,7 +368,7 @@ class FastestDeliveryRouteArgs {
 
   final _i26.Key? key;
 
-  final List<_i27.FastDeliveryModel> items;
+  final List<_i27.FooditemsModel> items;
 
   @override
   String toString() {
@@ -397,7 +395,7 @@ class FavoriteRoute extends _i25.PageRouteInfo<void> {
 class FoodDetailsRoute extends _i25.PageRouteInfo<FoodDetailsRouteArgs> {
   FoodDetailsRoute({
     _i26.Key? key,
-    required _i28.RecommendationModel iems,
+    required _i27.FooditemsModel iems,
     List<_i25.PageRouteInfo>? children,
   }) : super(
           FoodDetailsRoute.name,
@@ -422,7 +420,7 @@ class FoodDetailsRouteArgs {
 
   final _i26.Key? key;
 
-  final _i28.RecommendationModel iems;
+  final _i27.FooditemsModel iems;
 
   @override
   String toString() {
@@ -477,7 +475,7 @@ class OrderRoute extends _i25.PageRouteInfo<void> {
 class PopularItemsRoute extends _i25.PageRouteInfo<PopularItemsRouteArgs> {
   PopularItemsRoute({
     _i26.Key? key,
-    required List<_i29.PopularitemsModel> items,
+    required List<_i27.FooditemsModel> items,
     List<_i25.PageRouteInfo>? children,
   }) : super(
           PopularItemsRoute.name,
@@ -502,7 +500,7 @@ class PopularItemsRouteArgs {
 
   final _i26.Key? key;
 
-  final List<_i29.PopularitemsModel> items;
+  final List<_i27.FooditemsModel> items;
 
   @override
   String toString() {
@@ -568,7 +566,7 @@ class RestaurantDetalisRoute
     extends _i25.PageRouteInfo<RestaurantDetalisRouteArgs> {
   RestaurantDetalisRoute({
     _i26.Key? key,
-    required _i30.ResturantModel items,
+    required _i28.ResturantModel items,
     List<_i25.PageRouteInfo>? children,
   }) : super(
           RestaurantDetalisRoute.name,
@@ -593,7 +591,7 @@ class RestaurantDetalisRouteArgs {
 
   final _i26.Key? key;
 
-  final _i30.ResturantModel items;
+  final _i28.ResturantModel items;
 
   @override
   String toString() {

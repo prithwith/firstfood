@@ -1,7 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:auto_route/auto_route.dart';
-import 'package:fastfood/core/model/recommendation_model.dart';
+import 'package:fastfood/core/model/fooditems_model.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_assets.dart';
@@ -18,7 +18,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
 class FoodDetailsPage extends ConsumerStatefulWidget {
-  final RecommendationModel iems;
+  final FooditemsModel iems;
   const FoodDetailsPage({super.key, required this.iems});
 
   @override

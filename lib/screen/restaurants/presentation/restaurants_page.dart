@@ -33,7 +33,6 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
 
       stateNotifier.getAllCategoryItems();
       stateNotifier.getResturantData();
-      stateNotifier.getAllFooditemsData();
     });
   }
 

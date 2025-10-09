@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:fastfood/core/model/fastdelivery_model.dart';
+import 'package:fastfood/core/model/fooditems_model.dart';
+import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/screen/discover/presentation/widget/fastest_delivery_card.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
 class FastestDeliveryPage extends ConsumerStatefulWidget {
-  final List<FastDeliveryModel> items;
+  final List<FooditemsModel> items;
   const FastestDeliveryPage({super.key, required this.items});
 
   @override
@@ -46,7 +47,9 @@ class _FastestDeliveryPageState extends ConsumerState<FastestDeliveryPage> {
               rating: item.rating ?? "",
               image: item.image ?? "",
               badge: item.badge ?? "",
-              onTapCardOpen: () {},
+              onTap: () {
+                context.pushRoute(FoodDetailsRoute(iems: item));
+              },
             );
           },
         ),

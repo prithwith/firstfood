@@ -19,10 +19,6 @@ mixin _$DiscoverState {
   int get currentIndex => throw _privateConstructorUsedError;
   bool get isdiscoverLoading => throw _privateConstructorUsedError;
   List<String> get sliderList => throw _privateConstructorUsedError;
-  List<FastDeliveryModel> get fastDeliveryList =>
-      throw _privateConstructorUsedError;
-  List<PopularitemsModel> get popularItemsList =>
-      throw _privateConstructorUsedError;
 
   /// Create a copy of DiscoverState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,11 +34,7 @@ abstract class $DiscoverStateCopyWith<$Res> {
       _$DiscoverStateCopyWithImpl<$Res, DiscoverState>;
   @useResult
   $Res call(
-      {int currentIndex,
-      bool isdiscoverLoading,
-      List<String> sliderList,
-      List<FastDeliveryModel> fastDeliveryList,
-      List<PopularitemsModel> popularItemsList});
+      {int currentIndex, bool isdiscoverLoading, List<String> sliderList});
 }
 
 /// @nodoc
@@ -63,8 +55,6 @@ class _$DiscoverStateCopyWithImpl<$Res, $Val extends DiscoverState>
     Object? currentIndex = null,
     Object? isdiscoverLoading = null,
     Object? sliderList = null,
-    Object? fastDeliveryList = null,
-    Object? popularItemsList = null,
   }) {
     return _then(_value.copyWith(
       currentIndex: null == currentIndex
@@ -79,14 +69,6 @@ class _$DiscoverStateCopyWithImpl<$Res, $Val extends DiscoverState>
           ? _value.sliderList
           : sliderList // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      fastDeliveryList: null == fastDeliveryList
-          ? _value.fastDeliveryList
-          : fastDeliveryList // ignore: cast_nullable_to_non_nullable
-              as List<FastDeliveryModel>,
-      popularItemsList: null == popularItemsList
-          ? _value.popularItemsList
-          : popularItemsList // ignore: cast_nullable_to_non_nullable
-              as List<PopularitemsModel>,
     ) as $Val);
   }
 }
@@ -100,11 +82,7 @@ abstract class _$$DiscoverStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int currentIndex,
-      bool isdiscoverLoading,
-      List<String> sliderList,
-      List<FastDeliveryModel> fastDeliveryList,
-      List<PopularitemsModel> popularItemsList});
+      {int currentIndex, bool isdiscoverLoading, List<String> sliderList});
 }
 
 /// @nodoc
@@ -123,8 +101,6 @@ class __$$DiscoverStateImplCopyWithImpl<$Res>
     Object? currentIndex = null,
     Object? isdiscoverLoading = null,
     Object? sliderList = null,
-    Object? fastDeliveryList = null,
-    Object? popularItemsList = null,
   }) {
     return _then(_$DiscoverStateImpl(
       currentIndex: null == currentIndex
@@ -139,14 +115,6 @@ class __$$DiscoverStateImplCopyWithImpl<$Res>
           ? _value._sliderList
           : sliderList // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      fastDeliveryList: null == fastDeliveryList
-          ? _value._fastDeliveryList
-          : fastDeliveryList // ignore: cast_nullable_to_non_nullable
-              as List<FastDeliveryModel>,
-      popularItemsList: null == popularItemsList
-          ? _value._popularItemsList
-          : popularItemsList // ignore: cast_nullable_to_non_nullable
-              as List<PopularitemsModel>,
     ));
   }
 }
@@ -157,12 +125,8 @@ class _$DiscoverStateImpl extends _DiscoverState {
   const _$DiscoverStateImpl(
       {this.currentIndex = 0,
       this.isdiscoverLoading = false,
-      final List<String> sliderList = const [],
-      final List<FastDeliveryModel> fastDeliveryList = const [],
-      final List<PopularitemsModel> popularItemsList = const []})
+      final List<String> sliderList = const []})
       : _sliderList = sliderList,
-        _fastDeliveryList = fastDeliveryList,
-        _popularItemsList = popularItemsList,
         super._();
 
   @override
@@ -180,29 +144,9 @@ class _$DiscoverStateImpl extends _DiscoverState {
     return EqualUnmodifiableListView(_sliderList);
   }
 
-  final List<FastDeliveryModel> _fastDeliveryList;
-  @override
-  @JsonKey()
-  List<FastDeliveryModel> get fastDeliveryList {
-    if (_fastDeliveryList is EqualUnmodifiableListView)
-      return _fastDeliveryList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_fastDeliveryList);
-  }
-
-  final List<PopularitemsModel> _popularItemsList;
-  @override
-  @JsonKey()
-  List<PopularitemsModel> get popularItemsList {
-    if (_popularItemsList is EqualUnmodifiableListView)
-      return _popularItemsList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_popularItemsList);
-  }
-
   @override
   String toString() {
-    return 'DiscoverState(currentIndex: $currentIndex, isdiscoverLoading: $isdiscoverLoading, sliderList: $sliderList, fastDeliveryList: $fastDeliveryList, popularItemsList: $popularItemsList)';
+    return 'DiscoverState(currentIndex: $currentIndex, isdiscoverLoading: $isdiscoverLoading, sliderList: $sliderList)';
   }
 
   @override
@@ -215,21 +159,12 @@ class _$DiscoverStateImpl extends _DiscoverState {
             (identical(other.isdiscoverLoading, isdiscoverLoading) ||
                 other.isdiscoverLoading == isdiscoverLoading) &&
             const DeepCollectionEquality()
-                .equals(other._sliderList, _sliderList) &&
-            const DeepCollectionEquality()
-                .equals(other._fastDeliveryList, _fastDeliveryList) &&
-            const DeepCollectionEquality()
-                .equals(other._popularItemsList, _popularItemsList));
+                .equals(other._sliderList, _sliderList));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      currentIndex,
-      isdiscoverLoading,
-      const DeepCollectionEquality().hash(_sliderList),
-      const DeepCollectionEquality().hash(_fastDeliveryList),
-      const DeepCollectionEquality().hash(_popularItemsList));
+  int get hashCode => Object.hash(runtimeType, currentIndex, isdiscoverLoading,
+      const DeepCollectionEquality().hash(_sliderList));
 
   /// Create a copy of DiscoverState
   /// with the given fields replaced by the non-null parameter values.
@@ -244,9 +179,7 @@ abstract class _DiscoverState extends DiscoverState {
   const factory _DiscoverState(
       {final int currentIndex,
       final bool isdiscoverLoading,
-      final List<String> sliderList,
-      final List<FastDeliveryModel> fastDeliveryList,
-      final List<PopularitemsModel> popularItemsList}) = _$DiscoverStateImpl;
+      final List<String> sliderList}) = _$DiscoverStateImpl;
   const _DiscoverState._() : super._();
 
   @override
@@ -255,10 +188,6 @@ abstract class _DiscoverState extends DiscoverState {
   bool get isdiscoverLoading;
   @override
   List<String> get sliderList;
-  @override
-  List<FastDeliveryModel> get fastDeliveryList;
-  @override
-  List<PopularitemsModel> get popularItemsList;
 
   /// Create a copy of DiscoverState
   /// with the given fields replaced by the non-null parameter values.

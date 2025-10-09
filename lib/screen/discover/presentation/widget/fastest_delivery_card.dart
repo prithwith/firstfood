@@ -11,7 +11,7 @@ class FastestDeliveryCard extends StatelessWidget {
   final String rating;
   final String image;
   final String badge;
-  final GestureTapCallback onTapCardOpen;
+  final Function() onTap;
 
   const FastestDeliveryCard({
     super.key,
@@ -22,13 +22,13 @@ class FastestDeliveryCard extends StatelessWidget {
     required this.rating,
     required this.image,
     required this.badge,
-    required this.onTapCardOpen,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTapCardOpen,
+      onTap: onTap,
       child: Container(
         width: 200.w,
         margin: EdgeInsets.only(right: 10, bottom: 10).r,

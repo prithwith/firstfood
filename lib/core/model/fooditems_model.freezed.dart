@@ -21,21 +21,27 @@ FooditemsModel _$FooditemsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FooditemsModel {
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'image')
   String? get image => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'subtitle')
   String? get subtitle => throw _privateConstructorUsedError;
-  @JsonKey(name: 'restaurant')
-  String? get restaurant => throw _privateConstructorUsedError;
-  @JsonKey(name: 'priceLevel')
-  String? get priceLevel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'price')
+  String? get price => throw _privateConstructorUsedError;
   @JsonKey(name: 'time')
   String? get time => throw _privateConstructorUsedError;
   @JsonKey(name: 'rating')
   String? get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'badge')
+  String? get badge => throw _privateConstructorUsedError;
+  @JsonKey(name: 'places')
+  String? get places => throw _privateConstructorUsedError;
+  @JsonKey(name: 'restaurant')
+  String? get restaurant => throw _privateConstructorUsedError;
+  @JsonKey(name: 'priceLevel')
+  String? get priceLevel => throw _privateConstructorUsedError;
   @JsonKey(name: 'isLiked')
   bool? get isLiked => throw _privateConstructorUsedError;
 
@@ -56,14 +62,17 @@ abstract class $FooditemsModelCopyWith<$Res> {
       _$FooditemsModelCopyWithImpl<$Res, FooditemsModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'image') String? image,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'subtitle') String? subtitle,
-      @JsonKey(name: 'restaurant') String? restaurant,
-      @JsonKey(name: 'priceLevel') String? priceLevel,
+      @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
+      @JsonKey(name: 'badge') String? badge,
+      @JsonKey(name: 'places') String? places,
+      @JsonKey(name: 'restaurant') String? restaurant,
+      @JsonKey(name: 'priceLevel') String? priceLevel,
       @JsonKey(name: 'isLiked') bool? isLiked});
 }
 
@@ -86,17 +95,20 @@ class _$FooditemsModelCopyWithImpl<$Res, $Val extends FooditemsModel>
     Object? image = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
-    Object? restaurant = freezed,
-    Object? priceLevel = freezed,
+    Object? price = freezed,
     Object? time = freezed,
     Object? rating = freezed,
+    Object? badge = freezed,
+    Object? places = freezed,
+    Object? restaurant = freezed,
+    Object? priceLevel = freezed,
     Object? isLiked = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -109,13 +121,9 @@ class _$FooditemsModelCopyWithImpl<$Res, $Val extends FooditemsModel>
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
               as String?,
-      restaurant: freezed == restaurant
-          ? _value.restaurant
-          : restaurant // ignore: cast_nullable_to_non_nullable
-              as String?,
-      priceLevel: freezed == priceLevel
-          ? _value.priceLevel
-          : priceLevel // ignore: cast_nullable_to_non_nullable
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
               as String?,
       time: freezed == time
           ? _value.time
@@ -124,6 +132,22 @@ class _$FooditemsModelCopyWithImpl<$Res, $Val extends FooditemsModel>
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
+              as String?,
+      badge: freezed == badge
+          ? _value.badge
+          : badge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      places: freezed == places
+          ? _value.places
+          : places // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restaurant: freezed == restaurant
+          ? _value.restaurant
+          : restaurant // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priceLevel: freezed == priceLevel
+          ? _value.priceLevel
+          : priceLevel // ignore: cast_nullable_to_non_nullable
               as String?,
       isLiked: freezed == isLiked
           ? _value.isLiked
@@ -142,14 +166,17 @@ abstract class _$$FooditemsModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'image') String? image,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'subtitle') String? subtitle,
-      @JsonKey(name: 'restaurant') String? restaurant,
-      @JsonKey(name: 'priceLevel') String? priceLevel,
+      @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
+      @JsonKey(name: 'badge') String? badge,
+      @JsonKey(name: 'places') String? places,
+      @JsonKey(name: 'restaurant') String? restaurant,
+      @JsonKey(name: 'priceLevel') String? priceLevel,
       @JsonKey(name: 'isLiked') bool? isLiked});
 }
 
@@ -170,17 +197,20 @@ class __$$FooditemsModelImplCopyWithImpl<$Res>
     Object? image = freezed,
     Object? title = freezed,
     Object? subtitle = freezed,
-    Object? restaurant = freezed,
-    Object? priceLevel = freezed,
+    Object? price = freezed,
     Object? time = freezed,
     Object? rating = freezed,
+    Object? badge = freezed,
+    Object? places = freezed,
+    Object? restaurant = freezed,
+    Object? priceLevel = freezed,
     Object? isLiked = freezed,
   }) {
     return _then(_$FooditemsModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -193,13 +223,9 @@ class __$$FooditemsModelImplCopyWithImpl<$Res>
           ? _value.subtitle
           : subtitle // ignore: cast_nullable_to_non_nullable
               as String?,
-      restaurant: freezed == restaurant
-          ? _value.restaurant
-          : restaurant // ignore: cast_nullable_to_non_nullable
-              as String?,
-      priceLevel: freezed == priceLevel
-          ? _value.priceLevel
-          : priceLevel // ignore: cast_nullable_to_non_nullable
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
               as String?,
       time: freezed == time
           ? _value.time
@@ -208,6 +234,22 @@ class __$$FooditemsModelImplCopyWithImpl<$Res>
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
+              as String?,
+      badge: freezed == badge
+          ? _value.badge
+          : badge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      places: freezed == places
+          ? _value.places
+          : places // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restaurant: freezed == restaurant
+          ? _value.restaurant
+          : restaurant // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priceLevel: freezed == priceLevel
+          ? _value.priceLevel
+          : priceLevel // ignore: cast_nullable_to_non_nullable
               as String?,
       isLiked: freezed == isLiked
           ? _value.isLiked
@@ -225,10 +267,13 @@ class _$FooditemsModelImpl implements _FooditemsModel {
       @JsonKey(name: 'image') this.image,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'subtitle') this.subtitle,
-      @JsonKey(name: 'restaurant') this.restaurant,
-      @JsonKey(name: 'priceLevel') this.priceLevel,
+      @JsonKey(name: 'price') this.price,
       @JsonKey(name: 'time') this.time,
       @JsonKey(name: 'rating') this.rating,
+      @JsonKey(name: 'badge') this.badge,
+      @JsonKey(name: 'places') this.places,
+      @JsonKey(name: 'restaurant') this.restaurant,
+      @JsonKey(name: 'priceLevel') this.priceLevel,
       @JsonKey(name: 'isLiked') this.isLiked});
 
   factory _$FooditemsModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -236,7 +281,7 @@ class _$FooditemsModelImpl implements _FooditemsModel {
 
   @override
   @JsonKey(name: 'id')
-  final int? id;
+  final String? id;
   @override
   @JsonKey(name: 'image')
   final String? image;
@@ -247,11 +292,8 @@ class _$FooditemsModelImpl implements _FooditemsModel {
   @JsonKey(name: 'subtitle')
   final String? subtitle;
   @override
-  @JsonKey(name: 'restaurant')
-  final String? restaurant;
-  @override
-  @JsonKey(name: 'priceLevel')
-  final String? priceLevel;
+  @JsonKey(name: 'price')
+  final String? price;
   @override
   @JsonKey(name: 'time')
   final String? time;
@@ -259,12 +301,24 @@ class _$FooditemsModelImpl implements _FooditemsModel {
   @JsonKey(name: 'rating')
   final String? rating;
   @override
+  @JsonKey(name: 'badge')
+  final String? badge;
+  @override
+  @JsonKey(name: 'places')
+  final String? places;
+  @override
+  @JsonKey(name: 'restaurant')
+  final String? restaurant;
+  @override
+  @JsonKey(name: 'priceLevel')
+  final String? priceLevel;
+  @override
   @JsonKey(name: 'isLiked')
   final bool? isLiked;
 
   @override
   String toString() {
-    return 'FooditemsModel(id: $id, image: $image, title: $title, subtitle: $subtitle, restaurant: $restaurant, priceLevel: $priceLevel, time: $time, rating: $rating, isLiked: $isLiked)';
+    return 'FooditemsModel(id: $id, image: $image, title: $title, subtitle: $subtitle, price: $price, time: $time, rating: $rating, badge: $badge, places: $places, restaurant: $restaurant, priceLevel: $priceLevel, isLiked: $isLiked)';
   }
 
   @override
@@ -277,19 +331,22 @@ class _$FooditemsModelImpl implements _FooditemsModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.badge, badge) || other.badge == badge) &&
+            (identical(other.places, places) || other.places == places) &&
             (identical(other.restaurant, restaurant) ||
                 other.restaurant == restaurant) &&
             (identical(other.priceLevel, priceLevel) ||
                 other.priceLevel == priceLevel) &&
-            (identical(other.time, time) || other.time == time) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.isLiked, isLiked) || other.isLiked == isLiked));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, image, title, subtitle,
-      restaurant, priceLevel, time, rating, isLiked);
+      price, time, rating, badge, places, restaurant, priceLevel, isLiked);
 
   /// Create a copy of FooditemsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -310,14 +367,17 @@ class _$FooditemsModelImpl implements _FooditemsModel {
 
 abstract class _FooditemsModel implements FooditemsModel {
   const factory _FooditemsModel(
-      {@JsonKey(name: 'id') final int? id,
+      {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'image') final String? image,
       @JsonKey(name: 'title') final String? title,
       @JsonKey(name: 'subtitle') final String? subtitle,
-      @JsonKey(name: 'restaurant') final String? restaurant,
-      @JsonKey(name: 'priceLevel') final String? priceLevel,
+      @JsonKey(name: 'price') final String? price,
       @JsonKey(name: 'time') final String? time,
       @JsonKey(name: 'rating') final String? rating,
+      @JsonKey(name: 'badge') final String? badge,
+      @JsonKey(name: 'places') final String? places,
+      @JsonKey(name: 'restaurant') final String? restaurant,
+      @JsonKey(name: 'priceLevel') final String? priceLevel,
       @JsonKey(name: 'isLiked') final bool? isLiked}) = _$FooditemsModelImpl;
 
   factory _FooditemsModel.fromJson(Map<String, dynamic> json) =
@@ -325,7 +385,7 @@ abstract class _FooditemsModel implements FooditemsModel {
 
   @override
   @JsonKey(name: 'id')
-  int? get id;
+  String? get id;
   @override
   @JsonKey(name: 'image')
   String? get image;
@@ -336,17 +396,26 @@ abstract class _FooditemsModel implements FooditemsModel {
   @JsonKey(name: 'subtitle')
   String? get subtitle;
   @override
-  @JsonKey(name: 'restaurant')
-  String? get restaurant;
-  @override
-  @JsonKey(name: 'priceLevel')
-  String? get priceLevel;
+  @JsonKey(name: 'price')
+  String? get price;
   @override
   @JsonKey(name: 'time')
   String? get time;
   @override
   @JsonKey(name: 'rating')
   String? get rating;
+  @override
+  @JsonKey(name: 'badge')
+  String? get badge;
+  @override
+  @JsonKey(name: 'places')
+  String? get places;
+  @override
+  @JsonKey(name: 'restaurant')
+  String? get restaurant;
+  @override
+  @JsonKey(name: 'priceLevel')
+  String? get priceLevel;
   @override
   @JsonKey(name: 'isLiked')
   bool? get isLiked;

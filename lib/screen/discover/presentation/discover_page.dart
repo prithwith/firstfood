@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
@@ -31,8 +33,6 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
 
       Future.microtask(() {
         stateNotifier.showSliderImages();
-        stateNotifier.getAllFastestDeliveryItems();
-        stateNotifier.getAllPopularItems();
       });
     });
   }
@@ -43,6 +43,7 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
     final stateNotifier = ref.watch(discoverNotifierProvider.notifier);
 
     final baseState = ref.watch(baseNotifierProvider);
+    final baseStateNotifier = ref.watch(baseNotifierProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -139,35 +140,31 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                   }).toList(),
             ),
             10.verticalSpace,
-            state.fastDeliveryList.isEmpty
-                ? Text("")
-                : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Fastest delivery 🐦‍🔥",
-                      style: AppTextStyle.rubikTextMedium.copyWith(
-                        fontSize: 20.sp,
-                      ),
-                    ),
-                    AppOutlineButton(
-                      onPressed: () {
-                        context.pushRoute(
-                          FastestDeliveryRoute(items: state.fastDeliveryList),
-                        );
-                      },
-                      labelText: "See all",
-                    ),
-                  ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Fastest delivery 🐦‍🔥",
+                  style: AppTextStyle.rubikTextMedium.copyWith(fontSize: 20.sp),
                 ),
+                AppOutlineButton(
+                  onPressed: () {
+                    context.pushRoute(
+                      FastestDeliveryRoute(items: baseState.foodItemsList),
+                    );
+                  },
+                  labelText: "See all",
+                ),
+              ],
+            ),
             10.verticalSpace,
             SizedBox(
               height: 200.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: state.fastDeliveryList.length,
+                itemCount: baseState.foodItemsList.length,
                 itemBuilder: (context, index) {
-                  final item = state.fastDeliveryList[index];
+                  final item = baseState.foodItemsList[index];
 
                   return FastestDeliveryCard(
                     title: item.title ?? "",
@@ -177,7 +174,9 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                     rating: item.rating ?? "",
                     image: item.image ?? "",
                     badge: item.badge ?? "",
-                    onTapCardOpen: () {},
+                    onTap: () {
+                      context.pushRoute(FoodDetailsRoute(iems: item));
+                    },
                   );
                 },
               ),
@@ -193,7 +192,7 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                 AppOutlineButton(
                   onPressed: () {
                     context.pushRoute(
-                      PopularItemsRoute(items: state.popularItemsList),
+                      PopularItemsRoute(items: baseState.foodItemsList),
                     );
                   },
                   labelText: "See all",
@@ -205,14 +204,17 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
               height: 180.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: state.popularItemsList.length,
+                itemCount: baseState.foodItemsList.length,
                 itemBuilder: (context, index) {
-                  final item = state.popularItemsList[index];
+                  final item = baseState.foodItemsList[index];
 
                   return PopularItemsCard(
-                    imagePath: item.imagePath ?? "",
+                    imagePath: item.image ?? "",
                     title: item.title ?? "",
-                    subtitle: item.subtitle ?? "",
+                    subtitle: item.places ?? "",
+                    onTap: () {
+                      context.pushRoute(FoodDetailsRoute(iems: item));
+                    },
                   );
                 },
               ),

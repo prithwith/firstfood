@@ -1,3 +1,4 @@
+import 'package:fastfood/core/model/fooditems_model.dart';
 import 'package:fastfood/core/model/user_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,6 +11,8 @@ class BaseState with _$BaseState {
     @Default(false) bool isLoading,
 
     UserModel? currentUser,
+
+    @Default([]) List<FooditemsModel> foodItemsList,
   }) = _BaseState;
   const BaseState._();
 }

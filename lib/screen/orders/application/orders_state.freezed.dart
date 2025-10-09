@@ -16,10 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OrdersState {
-  List<RecommendationModel> get recomendationList =>
+  List<FooditemsModel> get recomendationList =>
       throw _privateConstructorUsedError;
   List<String> get cartItemList => throw _privateConstructorUsedError;
-  List<OrderitemModel> get ordersList => throw _privateConstructorUsedError;
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -35,9 +34,7 @@ abstract class $OrdersStateCopyWith<$Res> {
       _$OrdersStateCopyWithImpl<$Res, OrdersState>;
   @useResult
   $Res call(
-      {List<RecommendationModel> recomendationList,
-      List<String> cartItemList,
-      List<OrderitemModel> ordersList});
+      {List<FooditemsModel> recomendationList, List<String> cartItemList});
 }
 
 /// @nodoc
@@ -57,21 +54,16 @@ class _$OrdersStateCopyWithImpl<$Res, $Val extends OrdersState>
   $Res call({
     Object? recomendationList = null,
     Object? cartItemList = null,
-    Object? ordersList = null,
   }) {
     return _then(_value.copyWith(
       recomendationList: null == recomendationList
           ? _value.recomendationList
           : recomendationList // ignore: cast_nullable_to_non_nullable
-              as List<RecommendationModel>,
+              as List<FooditemsModel>,
       cartItemList: null == cartItemList
           ? _value.cartItemList
           : cartItemList // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      ordersList: null == ordersList
-          ? _value.ordersList
-          : ordersList // ignore: cast_nullable_to_non_nullable
-              as List<OrderitemModel>,
     ) as $Val);
   }
 }
@@ -85,9 +77,7 @@ abstract class _$$OrdersStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<RecommendationModel> recomendationList,
-      List<String> cartItemList,
-      List<OrderitemModel> ordersList});
+      {List<FooditemsModel> recomendationList, List<String> cartItemList});
 }
 
 /// @nodoc
@@ -105,21 +95,16 @@ class __$$OrdersStateImplCopyWithImpl<$Res>
   $Res call({
     Object? recomendationList = null,
     Object? cartItemList = null,
-    Object? ordersList = null,
   }) {
     return _then(_$OrdersStateImpl(
       recomendationList: null == recomendationList
           ? _value._recomendationList
           : recomendationList // ignore: cast_nullable_to_non_nullable
-              as List<RecommendationModel>,
+              as List<FooditemsModel>,
       cartItemList: null == cartItemList
           ? _value._cartItemList
           : cartItemList // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      ordersList: null == ordersList
-          ? _value._ordersList
-          : ordersList // ignore: cast_nullable_to_non_nullable
-              as List<OrderitemModel>,
     ));
   }
 }
@@ -128,18 +113,16 @@ class __$$OrdersStateImplCopyWithImpl<$Res>
 
 class _$OrdersStateImpl extends _OrdersState {
   const _$OrdersStateImpl(
-      {final List<RecommendationModel> recomendationList = const [],
-      final List<String> cartItemList = const [],
-      final List<OrderitemModel> ordersList = const []})
+      {final List<FooditemsModel> recomendationList = const [],
+      final List<String> cartItemList = const []})
       : _recomendationList = recomendationList,
         _cartItemList = cartItemList,
-        _ordersList = ordersList,
         super._();
 
-  final List<RecommendationModel> _recomendationList;
+  final List<FooditemsModel> _recomendationList;
   @override
   @JsonKey()
-  List<RecommendationModel> get recomendationList {
+  List<FooditemsModel> get recomendationList {
     if (_recomendationList is EqualUnmodifiableListView)
       return _recomendationList;
     // ignore: implicit_dynamic_type
@@ -155,18 +138,9 @@ class _$OrdersStateImpl extends _OrdersState {
     return EqualUnmodifiableListView(_cartItemList);
   }
 
-  final List<OrderitemModel> _ordersList;
-  @override
-  @JsonKey()
-  List<OrderitemModel> get ordersList {
-    if (_ordersList is EqualUnmodifiableListView) return _ordersList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ordersList);
-  }
-
   @override
   String toString() {
-    return 'OrdersState(recomendationList: $recomendationList, cartItemList: $cartItemList, ordersList: $ordersList)';
+    return 'OrdersState(recomendationList: $recomendationList, cartItemList: $cartItemList)';
   }
 
   @override
@@ -177,17 +151,14 @@ class _$OrdersStateImpl extends _OrdersState {
             const DeepCollectionEquality()
                 .equals(other._recomendationList, _recomendationList) &&
             const DeepCollectionEquality()
-                .equals(other._cartItemList, _cartItemList) &&
-            const DeepCollectionEquality()
-                .equals(other._ordersList, _ordersList));
+                .equals(other._cartItemList, _cartItemList));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_recomendationList),
-      const DeepCollectionEquality().hash(_cartItemList),
-      const DeepCollectionEquality().hash(_ordersList));
+      const DeepCollectionEquality().hash(_cartItemList));
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -200,17 +171,14 @@ class _$OrdersStateImpl extends _OrdersState {
 
 abstract class _OrdersState extends OrdersState {
   const factory _OrdersState(
-      {final List<RecommendationModel> recomendationList,
-      final List<String> cartItemList,
-      final List<OrderitemModel> ordersList}) = _$OrdersStateImpl;
+      {final List<FooditemsModel> recomendationList,
+      final List<String> cartItemList}) = _$OrdersStateImpl;
   const _OrdersState._() : super._();
 
   @override
-  List<RecommendationModel> get recomendationList;
+  List<FooditemsModel> get recomendationList;
   @override
   List<String> get cartItemList;
-  @override
-  List<OrderitemModel> get ordersList;
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.

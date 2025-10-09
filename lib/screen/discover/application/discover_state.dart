@@ -1,5 +1,3 @@
-import 'package:fastfood/core/model/fastdelivery_model.dart';
-import 'package:fastfood/core/model/popularitems_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'discover_state.freezed.dart';
@@ -11,9 +9,6 @@ class DiscoverState with _$DiscoverState {
     @Default(false) bool isdiscoverLoading,
 
     @Default([]) List<String> sliderList,
-
-    @Default([]) List<FastDeliveryModel> fastDeliveryList,
-    @Default([]) List<PopularitemsModel> popularItemsList,
   }) = _DiscoverState;
   const DiscoverState._();
 }
