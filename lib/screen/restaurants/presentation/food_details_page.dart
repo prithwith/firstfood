@@ -126,7 +126,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       Row(
                         children: [
                           Text(
-                            "€ ${widget.iems.price}",
+                            "₹ ${widget.iems.price}",
                             style: AppTextStyle.rubikTextBold.copyWith(
                               fontSize: 18.sp,
                               color: AppColors.colorPrimary,
@@ -134,7 +134,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                           ),
                           12.horizontalSpace,
                           Text(
-                            "€ 850",
+                            "₹ 850",
                             style: AppTextStyle.rubikTextLight.copyWith(
                               fontSize: 14.sp,
                               decoration: TextDecoration.lineThrough,
@@ -154,12 +154,12 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       8.verticalSpace,
                       addonTile(
                         "Parmesan cheese",
-                        "€2,50",
+                        "₹2,50",
                         '${AppAssets.appImages}pizza.jpg',
                       ),
                       addonTile(
                         "Sause",
-                        "€1,50",
+                        "₹1,50",
                         '${AppAssets.appImages}pizza.jpg',
                       ),
                       16.verticalSpace,
@@ -171,7 +171,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       ),
                       addonTile(
                         "Package box cost",
-                        "€0,50",
+                        "₹0,50",
                         '${AppAssets.smallIcons}orders.png',
                       ),
                       150.verticalSpace,

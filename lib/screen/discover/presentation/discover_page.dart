@@ -117,10 +117,15 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                   state.sliderList.map((imagePath) {
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(16),
-                      child: Image.asset(
-                        imagePath,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
+                      child: GestureDetector(
+                        // onTap: () {
+                        //   showToastMessage("message");
+                        // },
+                        child: Image.asset(
+                          imagePath,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        ),
                       ),
                     );
                   }).toList(),

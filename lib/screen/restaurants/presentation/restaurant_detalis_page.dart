@@ -167,8 +167,8 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                             title: item.title ?? "",
                             description:
                                 "Homemade basil pesto, Parmesan cheese, sun-dried tomatoes.",
-                            priceNow: "€ ${item.price}",
-                            priceOld: "€10,50",
+                            priceNow: "₹ ${item.price}",
+                            priceOld: "₹10,50",
                             imagePath: item.image ?? "",
                             onTap: () {
                               if (orderState.cartItemList

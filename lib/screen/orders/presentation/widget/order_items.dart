@@ -59,7 +59,7 @@ class OrderItems extends StatelessWidget {
                 ),
                 16.verticalSpace,
                 Text(
-                  "€ $price",
+                  "₹ $price",
                   style: AppTextStyle.rubikTextSemibold.copyWith(
                     fontSize: 15.sp,
                     color: AppColors.colorPrimary,

@@ -26,9 +26,8 @@ class _OrderPageState extends ConsumerState<OrderPage> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final stateNotifier = ref.read(ordersNotifierProvider.notifier);
+      ref.read(ordersNotifierProvider.notifier);
     });
   }
 
@@ -42,7 +41,7 @@ class _OrderPageState extends ConsumerState<OrderPage> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: AppBackButtom(),
+        leading: const AppBackButtom(),
         title: Text(
           "Your order",
           style: AppTextStyle.rubikTextBold.copyWith(fontSize: 20.sp),
@@ -57,62 +56,60 @@ class _OrderPageState extends ConsumerState<OrderPage> {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               state.cartItemList.isEmpty
                   ? SizedBox(
                     height: 100.h,
-                    child: Center(child: Text("No item Order yet")),
+                    child: const Center(child: Text("No item ordered yet")),
                   )
-                  : Column(
-                    children: List.generate(
-                      state.cartItemList.toSet().toList().length,
-                      (index) {
-                        final itemid =
-                            state.cartItemList.toSet().toList()[index];
-                        final product = baseState.foodItemsList.firstWhere(
-                          (element) => element.id == itemid,
-                        );
+                  : ListView.builder(
+                    itemCount: state.cartItemList.toSet().toList().length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      final itemId = state.cartItemList.toSet().toList()[index];
 
-                        return OrderItems(
-                          id: product.id.toString(),
-                          title: product.title ?? "UNKNOWN",
-                          price:
-                              (state.cartItemList
-                                          .where(
-                                            (element) => element == product.id,
-                                          )
-                                          .length *
-                                      int.parse(product.price.toString()))
-                                  .toString(),
-                          image: product.image ?? "N/A",
-                          extras: "NA",
-                          quantity:
-                              state.cartItemList
-                                  .where((element) => element == product.id)
-                                  .length
-                                  .toString(),
-                          onRemove: () {
-                            stateNotifier.updateCartItem(
-                              id: product.id,
-                              isRemove: true,
-                            );
-                          },
-                          onAdd: () {
-                            stateNotifier.updateCartItem(
-                              id: product.id,
-                              isAdd: true,
-                            );
-                          },
-                        );
-                      },
-                    ),
+                      final product = baseState.foodItemsList.firstWhere(
+                        (element) => element.id == itemId,
+                      );
+
+                      final quantity =
+                          state.cartItemList
+                              .where((element) => element == product.id)
+                              .length;
+
+                      final unitPrice =
+                          int.tryParse(product.price.toString()) ?? 0;
+
+                      final totalPrice = quantity * unitPrice;
+
+                      return OrderItems(
+                        id: product.id ?? "",
+                        title: product.title ?? "UNKNOWN",
+                        price: totalPrice.toString(),
+                        image: product.image ?? "N/A",
+                        extras: "N/A",
+                        quantity: quantity.toString(),
+                        onRemove: () {
+                          stateNotifier.updateCartItem(
+                            id: product.id,
+                            isRemove: true,
+                          );
+                        },
+                        onAdd: () {
+                          stateNotifier.updateCartItem(
+                            id: product.id,
+                            isAdd: true,
+                          );
+                        },
+                      );
+                    },
                   ),
 
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Divider(),
+                  const Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -124,7 +121,12 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                       ),
                       10.horizontalSpace,
                       Text(
-                        "€ 0.00",
+                        "₹ ${state.cartItemList.toSet().fold<double>(0, (total, itemId) {
+                          final product = baseState.foodItemsList.firstWhere((e) => e.id == itemId, orElse: () => baseState.foodItemsList.first);
+                          final quantity = state.cartItemList.where((id) => id == product.id).length;
+                          final price = double.tryParse(product.price.toString().replaceAll('₹', '').trim()) ?? 0;
+                          return total + quantity * price;
+                        }).toStringAsFixed(2)}",
                         style: AppTextStyle.rubikTextSemibold.copyWith(
                           fontSize: 20.sp,
                           color: AppColors.colorPrimary,
@@ -132,7 +134,7 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                       ),
                     ],
                   ),
-                  Divider(),
+                  const Divider(),
                   25.verticalSpace,
                   Text(
                     "Recommendations",
@@ -140,31 +142,27 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                   ),
                   15.verticalSpace,
                   baseState.foodItemsList.isEmpty
-                      ? CircularProgressIndicator()
+                      ? const Center(child: CircularProgressIndicator())
                       : SizedBox(
                         height: 150.h,
-                        child: ListView(
+                        child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          children: List.generate(
-                            baseState.foodItemsList.length,
-                            (index) {
-                              final item = baseState.foodItemsList[index];
-
-                              return RecommendationItems(
-                                onCart: () {
-                                  stateNotifier.updateCartItem(
-                                    id: item.id.toString(),
-                                    isAdd: true,
-                                  );
-                                },
-
-                                id: item.id.toString(),
-                                title: item.title ?? "Unknown",
-                                price: item.price ?? "N/A",
-                                image: item.image ?? "N/A",
-                              );
-                            },
-                          ),
+                          itemCount: baseState.foodItemsList.length,
+                          itemBuilder: (context, index) {
+                            final item = baseState.foodItemsList[index];
+                            return RecommendationItems(
+                              onCart: () {
+                                stateNotifier.updateCartItem(
+                                  id: item.id.toString(),
+                                  isAdd: true,
+                                );
+                              },
+                              id: item.id ?? "",
+                              title: item.title ?? "Unknown",
+                              price: item.price ?? "N/A",
+                              image: item.image ?? "N/A",
+                            );
+                          },
                         ),
                       ),
                   200.verticalSpace,
@@ -176,7 +174,7 @@ class _OrderPageState extends ConsumerState<OrderPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20).r,
+        margin: const EdgeInsets.symmetric(horizontal: 20).r,
         width: MediaQuery.sizeOf(context).width,
         child: OutlinedButton(
           onPressed: () {
@@ -185,10 +183,15 @@ class _OrderPageState extends ConsumerState<OrderPage> {
           style: OutlinedButton.styleFrom(
             backgroundColor: AppColors.colorPrimaryDeep,
             side: BorderSide(width: 0, color: AppColors.colorPrimaryDeep),
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15).r,
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15).r,
           ),
           child: Text(
-            "Go to checkout  € 0.00",
+            "Go to checkout ₹ ${state.cartItemList.toSet().fold<double>(0, (total, itemId) {
+              final product = baseState.foodItemsList.firstWhere((e) => e.id == itemId, orElse: () => baseState.foodItemsList.first);
+              final quantity = state.cartItemList.where((id) => id == product.id).length;
+              final price = double.tryParse(product.price.toString().replaceAll('₹', '').trim()) ?? 0;
+              return total + quantity * price;
+            }).toStringAsFixed(2)}",
             style: AppTextStyle.rubikTextRegular.copyWith(
               fontSize: 16.sp,
               color: Colors.white,

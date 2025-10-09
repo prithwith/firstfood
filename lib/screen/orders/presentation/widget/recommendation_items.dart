@@ -80,7 +80,7 @@ class RecommendationItems extends StatelessWidget {
           ),
           8.verticalSpace,
           Text(
-            "€ $price",
+            "₹ $price",
             style: AppTextStyle.rubikTextSemibold.copyWith(
               fontSize: 15.sp,
               color: AppColors.colorPrimary,
