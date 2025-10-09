@@ -5,6 +5,7 @@ import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/core/utils/toast.dart';
 import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/favorite/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurants_page_category_card.dart';
@@ -81,28 +82,33 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                     ),
                   ),
                   5.horizontalSpace,
-                  Image.asset(
-                    '${AppAssets.smallIcons}arrow.png',
-                    color: AppColors.colorPrimaryDeep,
-                  ),
-                  5.horizontalSpace,
-                  CircleAvatar(
-                    radius: 18,
-                    backgroundColor: AppColors.colorGrayMedium,
+                  GestureDetector(
+                    onTap: () {
+                      showToastMessage("Fetching Current Location....");
+                    },
                     child: Image.asset(
-                      '${AppAssets.smallIcons}filter.png',
-                      color: AppColors.colorTypographyDeep,
+                      '${AppAssets.smallIcons}arrow.png',
+                      color: AppColors.colorPrimaryDeep,
                     ),
                   ),
-                  5.horizontalSpace,
-                  CircleAvatar(
-                    radius: 18,
-                    backgroundColor: AppColors.colorGrayMedium,
-                    child: Image.asset(
-                      '${AppAssets.smallIcons}map.png',
-                      color: AppColors.colorTypographyDeep,
-                    ),
-                  ),
+                  // 5.horizontalSpace,
+                  // CircleAvatar(
+                  //   radius: 18,
+                  //   backgroundColor: AppColors.colorGrayMedium,
+                  //   child: Image.asset(
+                  //     '${AppAssets.smallIcons}filter.png',
+                  //     color: AppColors.colorTypographyDeep,
+                  //   ),
+                  // ),
+                  // 5.horizontalSpace,
+                  // CircleAvatar(
+                  //   radius: 18,
+                  //   backgroundColor: AppColors.colorGrayMedium,
+                  //   child: Image.asset(
+                  //     '${AppAssets.smallIcons}map.png',
+                  //     color: AppColors.colorTypographyDeep,
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -133,7 +139,14 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                       fontSize: 20.sp,
                     ),
                   ),
-                  AppOutlineButton(onPressed: () {}, labelText: "See all"),
+                  AppOutlineButton(
+                    onPressed: () {
+                      context.pushRoute(
+                        AllCategoriesRoute(items: state.categoryList),
+                      );
+                    },
+                    labelText: "See all",
+                  ),
                 ],
               ),
               10.verticalSpace,
@@ -149,6 +162,11 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
                       imagePath: item.imagePath ?? "",
                       title: item.title ?? "",
                       subtitle: item.subtitle ?? "",
+                      onTap: () {
+                        context.pushRoute(
+                          FastestDeliveryRoute(items: baseState.foodItemsList),
+                        );
+                      },
                     );
                   },
                 ),

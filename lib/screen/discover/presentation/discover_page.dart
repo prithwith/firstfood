@@ -6,6 +6,7 @@ import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/core/utils/toast.dart';
 import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/discover/presentation/widget/fastest_delivery_card.dart';
 import 'package:fastfood/screen/discover/presentation/widget/popular_items_card.dart';
@@ -81,9 +82,14 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                     ),
                   ),
                   8.horizontalSpace,
-                  Image.asset(
-                    '${AppAssets.smallIcons}arrow.png',
-                    color: AppColors.colorSecondary,
+                  GestureDetector(
+                    onTap: () {
+                      showToastMessage("Fetching Current Location....");
+                    },
+                    child: Image.asset(
+                      '${AppAssets.smallIcons}arrow.png',
+                      color: AppColors.colorSecondary,
+                    ),
                   ),
                 ],
               ),
