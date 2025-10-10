@@ -1,3 +1,4 @@
+import 'package:fastfood/core/model/sliderimage_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'discover_state.freezed.dart';
@@ -8,7 +9,7 @@ class DiscoverState with _$DiscoverState {
     @Default(0) int currentIndex,
     @Default(false) bool isdiscoverLoading,
 
-    @Default([]) List<String> sliderList,
+    @Default([]) List<SliderImageModel> sliderList,
   }) = _DiscoverState;
   const DiscoverState._();
 }

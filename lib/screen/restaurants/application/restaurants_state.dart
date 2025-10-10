@@ -10,6 +10,9 @@ class RestaurantsState with _$RestaurantsState {
     @Default([]) List<CategoryModel> categoryList,
 
     @Default([]) List<ResturantModel> resturantsList,
+
+    @Default("") String selectedAddmoreValue,
+    @Default("") String selectedPackagesValue,
   }) = _RestaurantsState;
   const RestaurantsState._();
 }

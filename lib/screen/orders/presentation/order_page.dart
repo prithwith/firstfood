@@ -73,36 +73,42 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                         (element) => element.id == itemId,
                       );
 
-                      final quantity =
-                          state.cartItemList
-                              .where((element) => element == product.id)
-                              .length;
+                      try {
+                        final quantity =
+                            state.cartItemList
+                                .where((element) => element == product.id)
+                                .length;
 
-                      final unitPrice =
-                          int.tryParse(product.price.toString()) ?? 0;
+                        final unitPrice =
+                            int.tryParse(product.price.toString()) ?? 0;
 
-                      final totalPrice = quantity * unitPrice;
+                        final totalPrice = quantity * unitPrice;
 
-                      return OrderItems(
-                        id: product.id ?? "",
-                        title: product.title ?? "UNKNOWN",
-                        price: totalPrice.toString(),
-                        image: product.image ?? "N/A",
-                        extras: "N/A",
-                        quantity: quantity.toString(),
-                        onRemove: () {
-                          stateNotifier.updateCartItem(
-                            id: product.id,
-                            isRemove: true,
-                          );
-                        },
-                        onAdd: () {
-                          stateNotifier.updateCartItem(
-                            id: product.id,
-                            isAdd: true,
-                          );
-                        },
-                      );
+                        return OrderItems(
+                          id: product.id ?? "",
+                          title: product.title ?? "UNKNOWN",
+                          price: totalPrice.toString(),
+                          image: product.image ?? "N/A",
+                          extras: "N/A",
+                          quantity: quantity.toString(),
+                          onRemove: () {
+                            stateNotifier.updateCartItem(
+                              id: product.id,
+                              isRemove: true,
+                            );
+                          },
+                          onAdd: () {
+                            stateNotifier.updateCartItem(
+                              id: product.id,
+                              isAdd: true,
+                            );
+                          },
+                        );
+                      } catch (e) {
+                        return Text(
+                          "Product Id ${product.id} Doesn't Avaliable",
+                        );
+                      }
                     },
                   ),
 

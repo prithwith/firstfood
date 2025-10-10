@@ -36,8 +36,6 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
     });
   }
 
-  final Set<String> selectedAddons = {};
-
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(restaurantsNotifierProvider);
@@ -153,26 +151,38 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       ),
                       8.verticalSpace,
                       addonTile(
-                        "Parmesan cheese",
-                        "₹2,50",
-                        '${AppAssets.appImages}pizza.jpg',
+                        title: "Sause",
+                        price: "₹ 2,50",
+                        iconPath: '${AppAssets.appImages}sushi.jpeg',
+                        onChanged: (value) {
+                          stateNotifier.addMoreValue(value);
+                        },
+                        groupValue: state.selectedAddmoreValue,
                       ),
                       addonTile(
-                        "Sause",
-                        "₹1,50",
-                        '${AppAssets.appImages}pizza.jpg',
+                        title: "Parmesan cheese",
+                        price: "₹ 1,50",
+                        iconPath: '${AppAssets.appImages}tacos.jpeg',
+                        onChanged: (value) {
+                          stateNotifier.addMoreValue(value);
+                        },
+                        groupValue: state.selectedAddmoreValue,
                       ),
                       16.verticalSpace,
                       Text(
-                        "Package",
+                        "Packages",
                         style: AppTextStyle.rubikTextMedium.copyWith(
                           fontSize: 16.sp,
                         ),
                       ),
                       addonTile(
-                        "Package box cost",
-                        "₹0,50",
-                        '${AppAssets.smallIcons}orders.png',
+                        title: "Package box cost",
+                        price: "₹ 0,50",
+                        iconPath: '${AppAssets.smallIcons}orders.png',
+                        onChanged: (value) {
+                          stateNotifier.addPackagesValue(value);
+                        },
+                        groupValue: state.selectedPackagesValue,
                       ),
                       150.verticalSpace,
                     ],
@@ -279,24 +289,29 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
     );
   }
 
-  Widget addonTile(String title, String price, String iconPath) {
+  Widget addonTile({
+    required String title,
+    required String price,
+    required String iconPath,
+    required String? groupValue,
+    required Function(String?)? onChanged,
+  }) {
     return ListTile(
       leading: Image.asset(iconPath, width: 36.w, height: 36.w),
       title: Text(title),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("+$price", style: AppTextStyle.rubikTextRegular),
+          Text("+ $price", style: AppTextStyle.rubikTextRegular),
           8.horizontalSpace,
           Radio<String>(
-            value: title,
-            groupValue: selectedAddons.contains(title) ? title : null,
-            onChanged: (_) {},
+            value: price,
+            groupValue: groupValue,
+            onChanged: onChanged,
             activeColor: AppColors.colorPrimary,
           ),
         ],
       ),
-      onTap: () {},
     );
   }
 }

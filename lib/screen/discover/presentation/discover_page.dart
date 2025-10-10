@@ -118,11 +118,15 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: GestureDetector(
-                        // onTap: () {
-                        //   showToastMessage("message");
-                        // },
+                        onTap: () {
+                          final item = baseState.foodItemsList.firstWhere(
+                            (items) => items.id == imagePath.id,
+                          );
+
+                          context.pushRoute(FoodDetailsRoute(iems: item));
+                        },
                         child: Image.asset(
-                          imagePath,
+                          imagePath.image ?? "",
                           fit: BoxFit.cover,
                           width: double.infinity,
                         ),

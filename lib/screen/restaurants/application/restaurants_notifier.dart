@@ -115,19 +115,19 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
             image: '${AppAssets.appImages}cheeseburger.jpeg',
           ),
           FooditemsModel(
-            id: "11",
+            id: "1",
             title: "Pancakes",
             price: "254",
             image: '${AppAssets.appImages}pancakes.jpeg',
           ),
           FooditemsModel(
-            id: "12",
+            id: "2",
             title: "Tacos",
             price: "380",
             image: '${AppAssets.appImages}tacos.jpeg',
           ),
           FooditemsModel(
-            id: "13",
+            id: "3",
             title: "Sushi",
             price: "541",
             image: '${AppAssets.appImages}sushi.jpeg',
@@ -145,19 +145,19 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         rating: '9.2',
         allDishes: [
           FooditemsModel(
-            id: "14",
+            id: "4",
             title: "Salmon Nigiri",
             price: "299",
             image: '${AppAssets.appImages}sushi.jpeg',
           ),
           FooditemsModel(
-            id: "15",
+            id: "5",
             title: "California Roll",
             price: "349",
             image: '${AppAssets.appImages}sushi.jpeg',
           ),
           FooditemsModel(
-            id: "16",
+            id: "6",
             title: "Dragon Roll",
             price: "399",
             image: '${AppAssets.appImages}sushi.jpeg',
@@ -175,13 +175,13 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         rating: '9.5',
         allDishes: [
           FooditemsModel(
-            id: "17",
+            id: "7",
             title: "Chocolate Cake",
             price: "180",
             image: '${AppAssets.appImages}pancakes.jpeg',
           ),
           FooditemsModel(
-            id: "18",
+            id: "8",
             title: "Blueberry Pancake",
             price: "220",
             image: '${AppAssets.appImages}pancakes.jpeg',
@@ -199,13 +199,13 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         rating: '8.8',
         allDishes: [
           FooditemsModel(
-            id: "19",
+            id: "9",
             title: "Paneer Butter Masala",
             price: "280",
             image: '${AppAssets.appImages}indian_thali.jpeg',
           ),
           FooditemsModel(
-            id: "20",
+            id: "10",
             title: "Chicken Biryani",
             price: "320",
             image: '${AppAssets.appImages}indian_thali.jpeg',
@@ -223,13 +223,13 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         rating: '8.4',
         allDishes: [
           FooditemsModel(
-            id: "21",
+            id: "1",
             title: "Kung Pao Chicken",
             price: "260",
             image: '${AppAssets.appImages}cheeseburger.jpeg',
           ),
           FooditemsModel(
-            id: "22",
+            id: "2",
             title: "Fried Rice",
             price: "180",
             image: '${AppAssets.appImages}cheeseburger.jpeg',
@@ -247,13 +247,13 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         rating: '9.0',
         allDishes: [
           FooditemsModel(
-            id: "23",
+            id: "3",
             title: "Caesar Salad",
             price: "150",
             image: '${AppAssets.appImages}garden_salad.png',
           ),
           FooditemsModel(
-            id: "24",
+            id: "4",
             title: "Fruit Smoothie",
             price: "120",
             image: '${AppAssets.appImages}fresh_fruits.jpeg',
@@ -271,13 +271,13 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         rating: '9.1',
         allDishes: [
           FooditemsModel(
-            id: "25",
+            id: "5",
             title: "Spaghetti Meatballs",
             price: "300",
             image: '${AppAssets.appImages}spaghetti_meatball.jpeg',
           ),
           FooditemsModel(
-            id: "26",
+            id: "6",
             title: "Alfredo Pasta",
             price: "350",
             image: '${AppAssets.appImages}ramen.jpeg',
@@ -295,13 +295,13 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
         rating: '9.3',
         allDishes: [
           FooditemsModel(
-            id: "27",
+            id: "7",
             title: "Fruit Bowl",
             price: "180",
             image: '${AppAssets.appImages}fresh_fruits.jpeg',
           ),
           FooditemsModel(
-            id: "28",
+            id: "8",
             title: "Avocado Toast",
             price: "220",
             image: '${AppAssets.appImages}fresh_fruits.jpeg',
@@ -380,5 +380,13 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
     ]);
 
     state = state.copyWith(categoryList: tempCategoryItems);
+  }
+
+  void addMoreValue(value) {
+    state = state.copyWith(selectedAddmoreValue: value);
+  }
+
+  void addPackagesValue(value) {
+    state = state.copyWith(selectedPackagesValue: value);
   }
 }

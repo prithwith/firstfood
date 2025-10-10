@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DiscoverState {
   int get currentIndex => throw _privateConstructorUsedError;
   bool get isdiscoverLoading => throw _privateConstructorUsedError;
-  List<String> get sliderList => throw _privateConstructorUsedError;
+  List<SliderImageModel> get sliderList => throw _privateConstructorUsedError;
 
   /// Create a copy of DiscoverState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +34,9 @@ abstract class $DiscoverStateCopyWith<$Res> {
       _$DiscoverStateCopyWithImpl<$Res, DiscoverState>;
   @useResult
   $Res call(
-      {int currentIndex, bool isdiscoverLoading, List<String> sliderList});
+      {int currentIndex,
+      bool isdiscoverLoading,
+      List<SliderImageModel> sliderList});
 }
 
 /// @nodoc
@@ -68,7 +70,7 @@ class _$DiscoverStateCopyWithImpl<$Res, $Val extends DiscoverState>
       sliderList: null == sliderList
           ? _value.sliderList
           : sliderList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<SliderImageModel>,
     ) as $Val);
   }
 }
@@ -82,7 +84,9 @@ abstract class _$$DiscoverStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int currentIndex, bool isdiscoverLoading, List<String> sliderList});
+      {int currentIndex,
+      bool isdiscoverLoading,
+      List<SliderImageModel> sliderList});
 }
 
 /// @nodoc
@@ -114,7 +118,7 @@ class __$$DiscoverStateImplCopyWithImpl<$Res>
       sliderList: null == sliderList
           ? _value._sliderList
           : sliderList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<SliderImageModel>,
     ));
   }
 }
@@ -125,7 +129,7 @@ class _$DiscoverStateImpl extends _DiscoverState {
   const _$DiscoverStateImpl(
       {this.currentIndex = 0,
       this.isdiscoverLoading = false,
-      final List<String> sliderList = const []})
+      final List<SliderImageModel> sliderList = const []})
       : _sliderList = sliderList,
         super._();
 
@@ -135,10 +139,10 @@ class _$DiscoverStateImpl extends _DiscoverState {
   @override
   @JsonKey()
   final bool isdiscoverLoading;
-  final List<String> _sliderList;
+  final List<SliderImageModel> _sliderList;
   @override
   @JsonKey()
-  List<String> get sliderList {
+  List<SliderImageModel> get sliderList {
     if (_sliderList is EqualUnmodifiableListView) return _sliderList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_sliderList);
@@ -179,7 +183,7 @@ abstract class _DiscoverState extends DiscoverState {
   const factory _DiscoverState(
       {final int currentIndex,
       final bool isdiscoverLoading,
-      final List<String> sliderList}) = _$DiscoverStateImpl;
+      final List<SliderImageModel> sliderList}) = _$DiscoverStateImpl;
   const _DiscoverState._() : super._();
 
   @override
@@ -187,7 +191,7 @@ abstract class _DiscoverState extends DiscoverState {
   @override
   bool get isdiscoverLoading;
   @override
-  List<String> get sliderList;
+  List<SliderImageModel> get sliderList;
 
   /// Create a copy of DiscoverState
   /// with the given fields replaced by the non-null parameter values.

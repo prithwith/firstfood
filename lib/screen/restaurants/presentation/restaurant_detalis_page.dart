@@ -9,7 +9,6 @@ import 'package:fastfood/screen/favorite/shared/provider.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurant_popular_item_card.dart';
 import 'package:fastfood/screen/restaurants/shared/provider.dart';
-import 'package:fastfood/widget/app_outline_button.dart';
 import 'package:fastfood/widget/app_back_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,9 +51,14 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                 Positioned(
                   top: 40.h,
                   right: 16.w,
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.colorTypographyMedium,
-                    child: Icon(Icons.more_horiz, color: Colors.white),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.maybePop();
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: AppColors.colorTypographyMedium,
+                      child: Icon(Icons.cancel_outlined, color: Colors.white),
+                    ),
                   ),
                 ),
               ],
@@ -129,21 +133,32 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                           style: TextStyle(fontSize: 13.sp),
                         ),
                       ),
-                      AppOutlineButton(onPressed: () {}, labelText: "Change"),
-                    ],
-                  ),
-                  8.verticalSpace,
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.access_time,
-                        color: AppColors.colorSecondary,
-                        size: 20,
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            color: AppColors.colorSecondary,
+                            size: 20,
+                          ),
+                          4.horizontalSpace,
+                          Text(widget.items.time ?? ""),
+                        ],
                       ),
-                      4.horizontalSpace,
-                      Text(widget.items.time ?? ""),
+                      // AppOutlineButton(onPressed: () {}, labelText: "Change"),
                     ],
                   ),
+                  // 8.verticalSpace,
+                  // Row(
+                  //   children: [
+                  //     Icon(
+                  //       Icons.access_time,
+                  //       color: AppColors.colorSecondary,
+                  //       size: 20,
+                  //     ),
+                  //     4.horizontalSpace,
+                  //     Text(widget.items.time ?? ""),
+                  //   ],
+                  // ),
                   20.verticalSpace,
                   Text(
                     "Popular items 🔥",

@@ -8,6 +8,7 @@ import 'package:fastfood/core/utils/toast.dart';
 import 'package:fastfood/core/utils/validator.dart';
 import 'package:fastfood/screen/auth/presentation/widget/textfield_custom.dart';
 import 'package:fastfood/screen/base/shared/provider.dart';
+import 'package:fastfood/screen/profile/presentation/widget/image_selection_dialog.dart';
 import 'package:fastfood/screen/profile/shared/provider.dart';
 import 'package:fastfood/widget/custom_button.dart';
 import 'package:fastfood/widget/image_widget.dart';
@@ -81,10 +82,34 @@ class _MyProfilePageState extends ConsumerState<MyProfilePage> {
                 child: Center(
                   child: Column(
                     children: [
-                      ClipOval(
-                        child: ImageWidget(
-                          imageUrl:
-                              baseState.currentUser?.profileImageUrl ?? "",
+                      GestureDetector(
+                        onTap:
+                            () => imageSelectionDialog(
+                              context,
+                              onTapCamera: (value) {
+                                showToastMessage("Camera $value");
+                                baseStateNotifier.updateProfile(
+                                  profilePicture: value,
+                                );
+                              },
+                              onTapGellary: (value) {
+                                showToastMessage("Gellary $value");
+                                baseStateNotifier.updateProfile(
+                                  profilePicture: value,
+                                );
+                              },
+                              onTapDelete: (value) {
+                                showToastMessage("Empty $value");
+                                baseStateNotifier.updateProfile(
+                                  profilePicture: value,
+                                );
+                              },
+                            ),
+                        child: ClipOval(
+                          child: ImageWidget(
+                            imageUrl:
+                                baseState.currentUser?.profileImageUrl ?? "",
+                          ),
                         ),
                       ),
                       12.verticalSpace,

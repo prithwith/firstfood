@@ -2,6 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
+import 'package:fastfood/core/model/sliderimage_model.dart';
 import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/screen/discover/application/discover_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,12 +19,21 @@ class DiscoverNotifier extends StateNotifier<DiscoverState> {
   }
 
   void showSliderImages() {
-    final List<String> tempImageList = [
-      '${AppAssets.appImages}fresh_fruits.jpeg',
-      '${AppAssets.appImages}garden_salad.png',
-      '${AppAssets.appImages}indian_thali.jpeg',
-      '${AppAssets.appImages}spaghetti_meatball.jpeg',
-    ];
+    final List<SliderImageModel> tempImageList = [];
+
+    tempImageList.addAll([
+      SliderImageModel(
+        id: "1",
+        image: '${AppAssets.appImages}fresh_fruits.jpeg',
+      ),
+      SliderImageModel(id: "2", image: '${AppAssets.appImages}pizza.jpg'),
+      SliderImageModel(
+        id: "3",
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
+      ),
+      SliderImageModel(id: "4", image: '${AppAssets.appImages}sushi.jpeg'),
+      SliderImageModel(id: "5", image: '${AppAssets.appImages}ramen.jpeg'),
+    ]);
 
     state = state.copyWith(sliderList: tempImageList);
   }

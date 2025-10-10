@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RestaurantsState {
   List<CategoryModel> get categoryList => throw _privateConstructorUsedError;
   List<ResturantModel> get resturantsList => throw _privateConstructorUsedError;
+  String get selectedAddmoreValue => throw _privateConstructorUsedError;
+  String get selectedPackagesValue => throw _privateConstructorUsedError;
 
   /// Create a copy of RestaurantsState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +35,10 @@ abstract class $RestaurantsStateCopyWith<$Res> {
       _$RestaurantsStateCopyWithImpl<$Res, RestaurantsState>;
   @useResult
   $Res call(
-      {List<CategoryModel> categoryList, List<ResturantModel> resturantsList});
+      {List<CategoryModel> categoryList,
+      List<ResturantModel> resturantsList,
+      String selectedAddmoreValue,
+      String selectedPackagesValue});
 }
 
 /// @nodoc
@@ -53,6 +58,8 @@ class _$RestaurantsStateCopyWithImpl<$Res, $Val extends RestaurantsState>
   $Res call({
     Object? categoryList = null,
     Object? resturantsList = null,
+    Object? selectedAddmoreValue = null,
+    Object? selectedPackagesValue = null,
   }) {
     return _then(_value.copyWith(
       categoryList: null == categoryList
@@ -63,6 +70,14 @@ class _$RestaurantsStateCopyWithImpl<$Res, $Val extends RestaurantsState>
           ? _value.resturantsList
           : resturantsList // ignore: cast_nullable_to_non_nullable
               as List<ResturantModel>,
+      selectedAddmoreValue: null == selectedAddmoreValue
+          ? _value.selectedAddmoreValue
+          : selectedAddmoreValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedPackagesValue: null == selectedPackagesValue
+          ? _value.selectedPackagesValue
+          : selectedPackagesValue // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -76,7 +91,10 @@ abstract class _$$RestaurantsStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<CategoryModel> categoryList, List<ResturantModel> resturantsList});
+      {List<CategoryModel> categoryList,
+      List<ResturantModel> resturantsList,
+      String selectedAddmoreValue,
+      String selectedPackagesValue});
 }
 
 /// @nodoc
@@ -94,6 +112,8 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? categoryList = null,
     Object? resturantsList = null,
+    Object? selectedAddmoreValue = null,
+    Object? selectedPackagesValue = null,
   }) {
     return _then(_$RestaurantsStateImpl(
       categoryList: null == categoryList
@@ -104,6 +124,14 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
           ? _value._resturantsList
           : resturantsList // ignore: cast_nullable_to_non_nullable
               as List<ResturantModel>,
+      selectedAddmoreValue: null == selectedAddmoreValue
+          ? _value.selectedAddmoreValue
+          : selectedAddmoreValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedPackagesValue: null == selectedPackagesValue
+          ? _value.selectedPackagesValue
+          : selectedPackagesValue // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -113,7 +141,9 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
 class _$RestaurantsStateImpl extends _RestaurantsState {
   const _$RestaurantsStateImpl(
       {final List<CategoryModel> categoryList = const [],
-      final List<ResturantModel> resturantsList = const []})
+      final List<ResturantModel> resturantsList = const [],
+      this.selectedAddmoreValue = "",
+      this.selectedPackagesValue = ""})
       : _categoryList = categoryList,
         _resturantsList = resturantsList,
         super._();
@@ -137,8 +167,15 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
   }
 
   @override
+  @JsonKey()
+  final String selectedAddmoreValue;
+  @override
+  @JsonKey()
+  final String selectedPackagesValue;
+
+  @override
   String toString() {
-    return 'RestaurantsState(categoryList: $categoryList, resturantsList: $resturantsList)';
+    return 'RestaurantsState(categoryList: $categoryList, resturantsList: $resturantsList, selectedAddmoreValue: $selectedAddmoreValue, selectedPackagesValue: $selectedPackagesValue)';
   }
 
   @override
@@ -149,14 +186,20 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
             const DeepCollectionEquality()
                 .equals(other._categoryList, _categoryList) &&
             const DeepCollectionEquality()
-                .equals(other._resturantsList, _resturantsList));
+                .equals(other._resturantsList, _resturantsList) &&
+            (identical(other.selectedAddmoreValue, selectedAddmoreValue) ||
+                other.selectedAddmoreValue == selectedAddmoreValue) &&
+            (identical(other.selectedPackagesValue, selectedPackagesValue) ||
+                other.selectedPackagesValue == selectedPackagesValue));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_categoryList),
-      const DeepCollectionEquality().hash(_resturantsList));
+      const DeepCollectionEquality().hash(_resturantsList),
+      selectedAddmoreValue,
+      selectedPackagesValue);
 
   /// Create a copy of RestaurantsState
   /// with the given fields replaced by the non-null parameter values.
@@ -171,13 +214,19 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
 abstract class _RestaurantsState extends RestaurantsState {
   const factory _RestaurantsState(
       {final List<CategoryModel> categoryList,
-      final List<ResturantModel> resturantsList}) = _$RestaurantsStateImpl;
+      final List<ResturantModel> resturantsList,
+      final String selectedAddmoreValue,
+      final String selectedPackagesValue}) = _$RestaurantsStateImpl;
   const _RestaurantsState._() : super._();
 
   @override
   List<CategoryModel> get categoryList;
   @override
   List<ResturantModel> get resturantsList;
+  @override
+  String get selectedAddmoreValue;
+  @override
+  String get selectedPackagesValue;
 
   /// Create a copy of RestaurantsState
   /// with the given fields replaced by the non-null parameter values.

@@ -9,8 +9,11 @@ import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/common_utils.dart';
 import 'package:fastfood/screen/auth/shared/provider.dart';
+import 'package:fastfood/screen/base/shared/provider.dart';
+import 'package:fastfood/screen/profile/presentation/widget/image_selection_dialog.dart';
 import 'package:fastfood/screen/profile/presentation/widget/settings_tile.dart';
 import 'package:fastfood/screen/profile/shared/provider.dart';
+import 'package:fastfood/widget/image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +30,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final hive = ref.watch(hiveProvider);
+
+    final baseState = ref.watch(baseNotifierProvider);
+    final baseStateNotifier = ref.watch(baseNotifierProvider.notifier);
 
     final authState = ref.watch(authNotifierProvider);
     final authStateNotifier = ref.watch(authNotifierProvider.notifier);
@@ -52,11 +58,31 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ClipOval(
-                      child: Image.asset(
-                        '${AppAssets.appImages}app_icon.png',
-                        height: 150,
-                        width: 150,
+                    GestureDetector(
+                      onTap:
+                          () => imageSelectionDialog(
+                            context,
+                            onTapCamera: (value) {
+                              baseStateNotifier.updateProfile(
+                                profilePicture: value,
+                              );
+                            },
+                            onTapGellary: (value) {
+                              baseStateNotifier.updateProfile(
+                                profilePicture: value,
+                              );
+                            },
+                            onTapDelete: (value) {
+                              baseStateNotifier.updateProfile(
+                                profilePicture: value,
+                              );
+                            },
+                          ),
+                      child: ClipOval(
+                        child: ImageWidget(
+                          imageUrl:
+                              baseState.currentUser?.profileImageUrl ?? "",
+                        ),
                       ),
                     ),
                     10.verticalSpace,
