@@ -33,7 +33,7 @@ class BaseNotifier extends StateNotifier<BaseState> {
       name: "Prithwith Sahoo",
       email: "windows000x@example.com",
       phone: "+91 9878456532",
-      profileImageUrl: "https://placehold.co/100x100/A0BFFF/FFFFFF/png?text=PS",
+      profileImageUrl: "${AppAssets.appImages}app_icon.png",
       defaultAddressLine1: "123 Main Street",
       defaultAddressLine2: "Apt 4B",
       defaultAddressCity: "Springfield, IL 62704",
@@ -51,28 +51,12 @@ class BaseNotifier extends StateNotifier<BaseState> {
     zipController.text = state.currentUser?.defaultAddressZip ?? "";
   }
 
-  // void updateProfilePicture() {
-  //   final UserModel dummyUpdatedUsersInfo = UserModel(
-  //     name: nameController.text,
-  //     email: emailController.text,
-  //     phone: numberController.text,
-  //     defaultAddressLine1: address1Controller.text,
-  //     defaultAddressLine2: address2Controller.text,
-  //     defaultAddressCity: cityController.text,
-  //     defaultAddressZip: zipController.text,
-  //   );
-
-  //   state = state.copyWith(currentUser: dummyUpdatedUsersInfo);
-
-  //   showToastMessage("Profile Picture update Successfull");
-  // }
-
   void updateProfile({VoidCallback? onTap, String? profilePicture}) {
     final UserModel dummyUpdatedUsersInfo = UserModel(
       name: nameController.text,
       email: emailController.text,
       phone: numberController.text,
-      profileImageUrl: "",
+      profileImageUrl: profilePicture,
       defaultAddressLine1: address1Controller.text,
       defaultAddressLine2: address2Controller.text,
       defaultAddressCity: cityController.text,

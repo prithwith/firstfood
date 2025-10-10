@@ -1,5 +1,7 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
@@ -13,7 +15,6 @@ import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/profile/presentation/widget/image_selection_dialog.dart';
 import 'package:fastfood/screen/profile/presentation/widget/settings_tile.dart';
 import 'package:fastfood/screen/profile/shared/provider.dart';
-import 'package:fastfood/widget/image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -79,9 +80,18 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             },
                           ),
                       child: ClipOval(
-                        child: ImageWidget(
-                          imageUrl:
+                        child: Image.file(
+                          File(baseState.currentUser?.profileImageUrl ?? ""),
+                          width: 180,
+                          height: 180,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
                               baseState.currentUser?.profileImageUrl ?? "",
+                              height: 150,
+                              width: 150,
+                            );
+                          },
                         ),
                       ),
                     ),

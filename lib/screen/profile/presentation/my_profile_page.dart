@@ -1,5 +1,7 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
@@ -11,7 +13,6 @@ import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/profile/presentation/widget/image_selection_dialog.dart';
 import 'package:fastfood/screen/profile/shared/provider.dart';
 import 'package:fastfood/widget/custom_button.dart';
-import 'package:fastfood/widget/image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -87,28 +88,34 @@ class _MyProfilePageState extends ConsumerState<MyProfilePage> {
                             () => imageSelectionDialog(
                               context,
                               onTapCamera: (value) {
-                                showToastMessage("Camera $value");
                                 baseStateNotifier.updateProfile(
                                   profilePicture: value,
                                 );
                               },
                               onTapGellary: (value) {
-                                showToastMessage("Gellary $value");
                                 baseStateNotifier.updateProfile(
                                   profilePicture: value,
                                 );
                               },
                               onTapDelete: (value) {
-                                showToastMessage("Empty $value");
                                 baseStateNotifier.updateProfile(
                                   profilePicture: value,
                                 );
                               },
                             ),
                         child: ClipOval(
-                          child: ImageWidget(
-                            imageUrl:
+                          child: Image.file(
+                            File(baseState.currentUser?.profileImageUrl ?? ""),
+                            width: 180,
+                            height: 180,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Image.asset(
                                 baseState.currentUser?.profileImageUrl ?? "",
+                                height: 150,
+                                width: 150,
+                              );
+                            },
                           ),
                         ),
                       ),
