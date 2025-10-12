@@ -37,7 +37,7 @@ mixin _$ResturantModel {
   @JsonKey(name: 'rating')
   String? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'allDishes')
-  List<FooditemsModel> get allDishes => throw _privateConstructorUsedError;
+  List<String> get allDishes => throw _privateConstructorUsedError;
 
   /// Serializes this ResturantModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $ResturantModelCopyWith<$Res> {
       @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
-      @JsonKey(name: 'allDishes') List<FooditemsModel> allDishes});
+      @JsonKey(name: 'allDishes') List<String> allDishes});
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class _$ResturantModelCopyWithImpl<$Res, $Val extends ResturantModel>
       allDishes: null == allDishes
           ? _value.allDishes
           : allDishes // ignore: cast_nullable_to_non_nullable
-              as List<FooditemsModel>,
+              as List<String>,
     ) as $Val);
   }
 }
@@ -150,7 +150,7 @@ abstract class _$$ResturantModelImplCopyWith<$Res>
       @JsonKey(name: 'price') String? price,
       @JsonKey(name: 'time') String? time,
       @JsonKey(name: 'rating') String? rating,
-      @JsonKey(name: 'allDishes') List<FooditemsModel> allDishes});
+      @JsonKey(name: 'allDishes') List<String> allDishes});
 }
 
 /// @nodoc
@@ -212,7 +212,7 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
       allDishes: null == allDishes
           ? _value._allDishes
           : allDishes // ignore: cast_nullable_to_non_nullable
-              as List<FooditemsModel>,
+              as List<String>,
     ));
   }
 }
@@ -229,8 +229,7 @@ class _$ResturantModelImpl implements _ResturantModel {
       @JsonKey(name: 'price') this.price,
       @JsonKey(name: 'time') this.time,
       @JsonKey(name: 'rating') this.rating,
-      @JsonKey(name: 'allDishes')
-      final List<FooditemsModel> allDishes = const []})
+      @JsonKey(name: 'allDishes') final List<String> allDishes = const []})
       : _allDishes = allDishes;
 
   factory _$ResturantModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -260,10 +259,10 @@ class _$ResturantModelImpl implements _ResturantModel {
   @override
   @JsonKey(name: 'rating')
   final String? rating;
-  final List<FooditemsModel> _allDishes;
+  final List<String> _allDishes;
   @override
   @JsonKey(name: 'allDishes')
-  List<FooditemsModel> get allDishes {
+  List<String> get allDishes {
     if (_allDishes is EqualUnmodifiableListView) return _allDishes;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_allDishes);
@@ -334,7 +333,7 @@ abstract class _ResturantModel implements ResturantModel {
           @JsonKey(name: 'price') final String? price,
           @JsonKey(name: 'time') final String? time,
           @JsonKey(name: 'rating') final String? rating,
-          @JsonKey(name: 'allDishes') final List<FooditemsModel> allDishes}) =
+          @JsonKey(name: 'allDishes') final List<String> allDishes}) =
       _$ResturantModelImpl;
 
   factory _ResturantModel.fromJson(Map<String, dynamic> json) =
@@ -366,7 +365,7 @@ abstract class _ResturantModel implements ResturantModel {
   String? get rating;
   @override
   @JsonKey(name: 'allDishes')
-  List<FooditemsModel> get allDishes;
+  List<String> get allDishes;
 
   /// Create a copy of ResturantModel
   /// with the given fields replaced by the non-null parameter values.

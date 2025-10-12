@@ -5,6 +5,7 @@ import 'package:fastfood/core/model/resturant_model.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/favorite/shared/provider.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/presentation/widget/restaurant_popular_item_card.dart';
@@ -29,6 +30,9 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(restaurantsNotifierProvider);
     final stateNotifier = ref.watch(restaurantsNotifierProvider.notifier);
+
+    final baseState = ref.watch(baseNotifierProvider);
+    final baseStateNotifier = ref.watch(baseNotifierProvider.notifier);
 
     final orderState = ref.watch(ordersNotifierProvider);
     final orderStateNotifier = ref.watch(ordersNotifierProvider.notifier);
@@ -168,14 +172,17 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                   ),
                   12.verticalSpace,
                   widget.items.allDishes.isEmpty
-                      ? CircularProgressIndicator()
-                      : ListView(
-                        physics: NeverScrollableScrollPhysics(),
+                      ? const Center(child: CircularProgressIndicator())
+                      : ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        children: List.generate(widget.items.allDishes.length, (
-                          index,
-                        ) {
-                          final item = widget.items.allDishes[index];
+                        itemCount: widget.items.allDishes.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final items = widget.items.allDishes[index];
+
+                          final item = baseState.foodItemsList.firstWhere(
+                            (element) => element.id == items,
+                          );
 
                           return RestaurantPopularItemCard(
                             index: item.id ?? "",
@@ -198,7 +205,7 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                               context.pushRoute(FoodDetailsRoute(iems: item));
                             },
                           );
-                        }),
+                        },
                       ),
                 ],
               ),

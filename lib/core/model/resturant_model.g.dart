@@ -17,7 +17,7 @@ _$ResturantModelImpl _$$ResturantModelImplFromJson(Map<String, dynamic> json) =>
       time: json['time'] as String?,
       rating: json['rating'] as String?,
       allDishes: (json['allDishes'] as List<dynamic>?)
-              ?.map((e) => FooditemsModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => e as String)
               .toList() ??
           const [],
     );

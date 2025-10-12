@@ -217,4 +217,21 @@ class BaseNotifier extends StateNotifier<BaseState> {
 
     state = state.copyWith(foodItemsList: tempFoodItems);
   }
+
+  void addTaxCharges({required String id, String? totalAmount}) {
+    final tempList = [...state.foodItemsList];
+
+    final item = tempList.firstWhere((element) => element.id == id);
+
+    final basePrice = int.tryParse(item.price ?? '0') ?? 0;
+    final tax = int.tryParse(totalAmount ?? '0') ?? 0;
+    final newPrice = (basePrice + tax).toString();
+
+    // Replace the old item with the updated one
+    final updatedItem = item.copyWith(price: newPrice);
+    final updatedList =
+        tempList.map((e) => e.id == id ? updatedItem : e).toList();
+
+    state = state.copyWith(foodItemsList: updatedList);
+  }
 }

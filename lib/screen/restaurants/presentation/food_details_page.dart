@@ -8,6 +8,7 @@ import 'package:fastfood/core/style/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/common_utils.dart';
 import 'package:fastfood/core/utils/toast.dart';
+import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/favorite/shared/provider.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
 import 'package:fastfood/screen/restaurants/shared/provider.dart';
@@ -41,11 +42,24 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
     final state = ref.watch(restaurantsNotifierProvider);
     final stateNotifier = ref.watch(restaurantsNotifierProvider.notifier);
 
+    final baseState = ref.watch(baseNotifierProvider);
+    final baseStateNotifier = ref.watch(baseNotifierProvider.notifier);
+
     final orderState = ref.watch(ordersNotifierProvider);
     final orderStateNotifier = ref.watch(ordersNotifierProvider.notifier);
 
     final favoriteState = ref.watch(favoriteNotifierProvider);
     final favoriteStateNotifier = ref.watch(favoriteNotifierProvider.notifier);
+
+    // --- PRICE CALCULATION LOGIC ---
+    final addMorePrice = int.tryParse(state.selectedAddmoreValue) ?? 0;
+    final packagePrice = int.tryParse(state.selectedPackagesValue) ?? 0;
+    final basePrice = int.tryParse(widget.iems.price ?? '0') ?? 0;
+
+    final itemCount =
+        orderState.cartItemList.where((e) => e == widget.iems.id).length;
+
+    final totalAmount = (basePrice + addMorePrice + packagePrice) * itemCount;
 
     return Scaffold(
       body: Padding(
@@ -68,7 +82,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                     onTap: () => context.maybePop(),
                     child: CircleAvatar(
                       backgroundColor: AppColors.colorTypographyMedium,
-                      child: Icon(Icons.close, color: Colors.white),
+                      child: const Icon(Icons.close, color: Colors.white),
                     ),
                   ),
                 ),
@@ -77,7 +91,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(16).r,
-                decoration: BoxDecoration(color: Colors.white),
+                decoration: const BoxDecoration(color: Colors.white),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,7 +155,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                         ],
                       ),
                       20.verticalSpace,
-                      Divider(),
+                      const Divider(),
                       8.verticalSpace,
                       Text(
                         "Add more",
@@ -208,10 +222,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                 10.horizontalSpace,
                 GestureDetector(
                   onTap: () {
-                    if (orderState.cartItemList
-                            .where((element) => element == widget.iems.id)
-                            .length >
-                        1) {
+                    if (itemCount > 1) {
                       orderStateNotifier.updateCartItem(
                         id: widget.iems.id,
                         isUpdate: false,
@@ -226,15 +237,16 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       color: AppColors.colorPrimaryDeep,
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: Icon(Icons.remove, color: Colors.white, size: 20),
+                    child: const Icon(
+                      Icons.remove,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                   ),
                 ),
                 20.horizontalSpace,
                 Text(
-                  orderState.cartItemList
-                      .where((element) => element == widget.iems.id)
-                      .length
-                      .toString(),
+                  itemCount.toString(),
                   style: AppTextStyle.rubikTextLight.copyWith(
                     fontSize: 16.sp,
                     color: AppColors.colorPrimary,
@@ -254,7 +266,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       color: AppColors.colorPrimaryDeep,
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: Icon(Icons.add, color: Colors.white, size: 20),
+                    child: const Icon(Icons.add, color: Colors.white, size: 20),
                   ),
                 ),
                 10.horizontalSpace,
@@ -268,16 +280,18 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
               padding: EdgeInsets.symmetric(horizontal: 30.sp, vertical: 15.sp),
             ),
             onPressed: () {
-              if (orderState.cartItemList
-                  .where((element) => element == widget.iems.id)
-                  .isEmpty) {
+              if (itemCount == 0) {
                 showToastMessage("Select at least 1 quantity");
               } else {
+                // baseStateNotifier.addTaxCharges(
+                //   id: widget.iems.id.toString(),
+                //   totalAmount: totalAmount.toString(),
+                // );
                 context.pushRoute(OrderRoute());
               }
             },
             child: Text(
-              "Add to order ₹${(int.tryParse(widget.iems.price ?? "0") ?? 0) * orderState.cartItemList.where((e) => e == widget.iems.id).length}",
+              "Add to order ₹$totalAmount",
               style: AppTextStyle.rubikTextMedium.copyWith(
                 fontSize: 16.sp,
                 color: Colors.white,
