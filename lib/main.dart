@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:fastfood/core/constants/app_urls.dart';
 import 'package:fastfood/core/router/app_router.dart';
 import 'package:fastfood/core/shared/providers.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +18,7 @@ void main() async {
 
   /// Firebase intrigation for social authantication, push notification
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   /// hide the keyboadrd while restart the app
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
@@ -30,11 +29,10 @@ void main() async {
   });
 }
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  // print("Handling a background message: ${message.messageId}");
-}
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+//   // print("Handling a background message: ${message.messageId}");
+// }
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   await ref.read(hiveProvider).init();
