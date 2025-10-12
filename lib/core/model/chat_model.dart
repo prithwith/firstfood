@@ -14,7 +14,6 @@ class TimestampConverter implements JsonConverter<Timestamp?, Object?> {
     if (json == null) return null;
     if (json is Timestamp) return json;
     if (json is Map<String, dynamic>) {
-      // Firestore might encode timestamp as a map in some cases
       return Timestamp(
         (json['_seconds'] as int?) ?? 0,
         (json['_nanoseconds'] as int?) ?? 0,

@@ -11,19 +11,13 @@ class OrdersNotifier extends StateNotifier<OrdersState> {
   final HiveDatabase _hiveDataBase;
   final Dio _dio;
 
-  void updateCartItem({
-    required String? id,
-    bool isAdd = false,
-    bool isRemove = false,
-  }) {
-    if (id != null) {
-      List<String> tempCartItemList = [...state.cartItemList];
-      if (isAdd) {
-        tempCartItemList.add(id);
-      } else if (isRemove) {
-        tempCartItemList.remove(id);
-      }
-      state = state.copyWith(cartItemList: tempCartItemList);
-    }
+  void updateCartItem({required String? id, required bool isUpdate}) {
+    if (id == null) return;
+
+    List<String> tempCartItemList = [...state.cartItemList];
+
+    isUpdate ? tempCartItemList.add(id) : tempCartItemList.remove(id);
+
+    state = state.copyWith(cartItemList: tempCartItemList);
   }
 }

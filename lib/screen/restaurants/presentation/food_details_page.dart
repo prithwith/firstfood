@@ -152,7 +152,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       8.verticalSpace,
                       addonTile(
                         title: "Sause",
-                        price: "₹ 2,50",
+                        price: "250",
                         iconPath: '${AppAssets.appImages}sushi.jpeg',
                         onChanged: (value) {
                           stateNotifier.addMoreValue(value);
@@ -161,7 +161,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       ),
                       addonTile(
                         title: "Parmesan cheese",
-                        price: "₹ 1,50",
+                        price: "150",
                         iconPath: '${AppAssets.appImages}tacos.jpeg',
                         onChanged: (value) {
                           stateNotifier.addMoreValue(value);
@@ -177,7 +177,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                       ),
                       addonTile(
                         title: "Package box cost",
-                        price: "₹ 0,50",
+                        price: "50",
                         iconPath: '${AppAssets.smallIcons}orders.png',
                         onChanged: (value) {
                           stateNotifier.addPackagesValue(value);
@@ -214,7 +214,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                         1) {
                       orderStateNotifier.updateCartItem(
                         id: widget.iems.id,
-                        isRemove: true,
+                        isUpdate: false,
                       );
                     } else {
                       showToastMessage("Minimum quantity is 1");
@@ -245,7 +245,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                   onTap: () {
                     orderStateNotifier.updateCartItem(
                       id: widget.iems.id,
-                      isAdd: true,
+                      isUpdate: true,
                     );
                   },
                   child: Container(
@@ -277,7 +277,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
               }
             },
             child: Text(
-              "Add to order",
+              "Add to order ₹${(int.tryParse(widget.iems.price ?? "0") ?? 0) * orderState.cartItemList.where((e) => e == widget.iems.id).length}",
               style: AppTextStyle.rubikTextMedium.copyWith(
                 fontSize: 16.sp,
                 color: Colors.white,
@@ -302,7 +302,7 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("+ $price", style: AppTextStyle.rubikTextRegular),
+          Text("+ ₹ $price", style: AppTextStyle.rubikTextRegular),
           8.horizontalSpace,
           Radio<String>(
             value: price,

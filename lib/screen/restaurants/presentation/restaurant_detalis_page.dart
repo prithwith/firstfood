@@ -191,7 +191,7 @@ class _RestaurantDetalisPageState extends ConsumerState<RestaurantDetalisPage> {
                                   .isEmpty) {
                                 orderStateNotifier.updateCartItem(
                                   id: item.id,
-                                  isAdd: true,
+                                  isUpdate: true,
                                 );
                               }
 

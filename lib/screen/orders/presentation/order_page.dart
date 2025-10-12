@@ -94,13 +94,13 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                           onRemove: () {
                             stateNotifier.updateCartItem(
                               id: product.id,
-                              isRemove: true,
+                              isUpdate: false,
                             );
                           },
                           onAdd: () {
                             stateNotifier.updateCartItem(
                               id: product.id,
-                              isAdd: true,
+                              isUpdate: true,
                             );
                           },
                         );
@@ -156,11 +156,12 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                           itemCount: baseState.foodItemsList.length,
                           itemBuilder: (context, index) {
                             final item = baseState.foodItemsList[index];
+
                             return RecommendationItems(
                               onCart: () {
                                 stateNotifier.updateCartItem(
                                   id: item.id.toString(),
-                                  isAdd: true,
+                                  isUpdate: true,
                                 );
                               },
                               id: item.id ?? "",
