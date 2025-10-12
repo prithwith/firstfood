@@ -41,6 +41,7 @@ class _WalletPageState extends ConsumerState<WalletPage> {
           ),
         ),
       ),
+      body: Center(child: Text("NO Card Added")),
     );
   }
 }

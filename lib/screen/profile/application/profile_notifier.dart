@@ -25,6 +25,14 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
     }
   }
 
+  Future<void> openWebsite() async {
+    final Uri url = Uri.parse('https://pub.dev');
+
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'Could not open website';
+    }
+  }
+
   Future<void> getAllAddress() async {
     state = state.copyWith(isAddressLoading: true);
     final List<AddressModel> dummyAddresses = [];

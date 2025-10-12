@@ -22,7 +22,6 @@ class AppRouter extends $AppRouter {
     AutoRoute(page: DeliveryAddressRoute.page),
     AutoRoute(page: WalletRoute.page),
     AutoRoute(page: DeliveryMapRouteRoute.page),
-    AutoRoute(page: SettingsRoute.page),
     AutoRoute(page: UsersRoute.page),
     AutoRoute(page: ChatRoute.page),
     AutoRoute(page: OrderRoute.page),

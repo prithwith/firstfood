@@ -67,12 +67,6 @@ class _MyProfilePageState extends ConsumerState<MyProfilePage> {
               color: AppColors.colorWhite,
             ),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.settings_outlined),
-              onPressed: () {},
-            ),
-          ],
         ),
         body: SingleChildScrollView(
           child: Column(

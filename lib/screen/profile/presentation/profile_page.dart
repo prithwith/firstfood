@@ -140,7 +140,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               SettingsTile(
                 label: 'Settings',
                 imageLabel: 'settings.png',
-                onTap: () => context.pushRoute(SettingsRoute()),
+                onTap: () => stateNotifier.openWebsite(),
               ),
               SettingsTile(
                 label: 'Chats',
