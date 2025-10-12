@@ -223,12 +223,7 @@ class BaseNotifier extends StateNotifier<BaseState> {
 
     final item = tempList.firstWhere((element) => element.id == id);
 
-    final basePrice = int.tryParse(item.price ?? '0') ?? 0;
-    final tax = int.tryParse(totalAmount ?? '0') ?? 0;
-    final newPrice = (basePrice + tax).toString();
-
-    // Replace the old item with the updated one
-    final updatedItem = item.copyWith(price: newPrice);
+    final updatedItem = item.copyWith(price: totalAmount);
     final updatedList =
         tempList.map((e) => e.id == id ? updatedItem : e).toList();
 

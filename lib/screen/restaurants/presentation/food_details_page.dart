@@ -283,10 +283,10 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
               if (itemCount == 0) {
                 showToastMessage("Select at least 1 quantity");
               } else {
-                // baseStateNotifier.addTaxCharges(
-                //   id: widget.iems.id.toString(),
-                //   totalAmount: totalAmount.toString(),
-                // );
+                baseStateNotifier.addTaxCharges(
+                  id: widget.iems.id.toString(),
+                  totalAmount: totalAmount.toString(),
+                );
                 context.pushRoute(OrderRoute());
               }
             },
