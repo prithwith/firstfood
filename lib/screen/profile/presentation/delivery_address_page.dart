@@ -44,7 +44,6 @@ class _DeliveryAddressPageState extends ConsumerState<DeliveryAddressPage> {
             color: AppColors.colorWhite,
           ),
         ),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
       ),
       body:
           state.isAddressLoading
@@ -96,9 +95,38 @@ class _DeliveryAddressPageState extends ConsumerState<DeliveryAddressPage> {
                                   color: AppColors.colorPrimary,
                                 ),
                               )
-                              : IconButton(
-                                onPressed: () {},
+                              : PopupMenuButton<String>(
                                 icon: Icon(Icons.more_vert),
+                                itemBuilder:
+                                    (BuildContext context) =>
+                                        <PopupMenuEntry<String>>[
+                                          PopupMenuItem<String>(
+                                            onTap: () {},
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.edit,
+                                                  color: Colors.blue,
+                                                ),
+                                                5.horizontalSpace,
+                                                Text('Set As Primary'),
+                                              ],
+                                            ),
+                                          ),
+                                          PopupMenuItem<String>(
+                                            onTap: () {},
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.delete,
+                                                  color: Colors.deepOrange,
+                                                ),
+                                                5.horizontalSpace,
+                                                Text('Delete'),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                               ),
                         ],
                       ),
