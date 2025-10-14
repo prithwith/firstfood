@@ -2,6 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
+import 'package:fastfood/core/model/addonitems_model.dart';
 import 'package:fastfood/core/model/fooditems_model.dart';
 import 'package:fastfood/core/model/user_model.dart';
 import 'package:fastfood/core/style/app_assets.dart';
@@ -218,15 +219,52 @@ class BaseNotifier extends StateNotifier<BaseState> {
     state = state.copyWith(foodItemsList: tempFoodItems);
   }
 
-  void addTaxCharges({required String id, String? totalAmount}) {
-    final tempList = [...state.foodItemsList];
+  void getAllAddonItemsData() {
+    final List<AddOnItemsModel> tempAddonItems = [];
 
-    final item = tempList.firstWhere((element) => element.id == id);
+    tempAddonItems.addAll([
+      AddOnItemsModel(
+        id: "1",
+        image: '${AppAssets.appImages}fresh_fruits.jpeg',
+        title: 'Crazy Taco',
+        price: '300',
+      ),
+      AddOnItemsModel(
+        id: "2",
+        image: '${AppAssets.appImages}pizza.jpg',
+        title: 'Hot Pizza',
+        price: '800',
+      ),
+      AddOnItemsModel(
+        id: "3",
+        image: '${AppAssets.appImages}cheeseburger.jpeg',
+        title: 'Big Burger',
+        price: '600',
+      ),
+      AddOnItemsModel(
+        id: "4",
+        image: '${AppAssets.appImages}sushi.jpeg',
+        title: 'Sushi Express',
+        price: '120',
+      ),
+      AddOnItemsModel(
+        id: "5",
+        image: '${AppAssets.appImages}ramen.jpeg',
+        title: 'Italian Pasta',
+        price: '901',
+      ),
+    ]);
 
-    final updatedItem = item.copyWith(price: totalAmount);
-    final updatedList =
-        tempList.map((e) => e.id == id ? updatedItem : e).toList();
-
-    state = state.copyWith(foodItemsList: updatedList);
+    state = state.copyWith(addonItemsList: tempAddonItems);
   }
+
+  // void addTaxCharges({required String id, String? totalAmount}) {
+  //   final tempList = [...state.foodItemsList];
+  //   final item = tempList.firstWhere((element) => element.id == id);
+  //   final updatedItem = item.copyWith(price: totalAmount);
+  //   final updatedList =
+  //       tempList.map((e) => e.id == id ? updatedItem : e).toList();
+
+  //   state = state.copyWith(foodItemsList: updatedList);
+  // }
 }

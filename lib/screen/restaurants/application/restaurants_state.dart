@@ -11,8 +11,7 @@ class RestaurantsState with _$RestaurantsState {
 
     @Default([]) List<ResturantModel> resturantsList,
 
-    @Default("") String selectedAddmoreValue,
-    @Default("") String selectedPackagesValue,
+    @Default([]) List<String> addonItemsIdList,
   }) = _RestaurantsState;
   const RestaurantsState._();
 }

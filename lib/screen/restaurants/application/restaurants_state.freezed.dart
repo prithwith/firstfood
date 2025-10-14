@@ -18,8 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RestaurantsState {
   List<CategoryModel> get categoryList => throw _privateConstructorUsedError;
   List<ResturantModel> get resturantsList => throw _privateConstructorUsedError;
-  String get selectedAddmoreValue => throw _privateConstructorUsedError;
-  String get selectedPackagesValue => throw _privateConstructorUsedError;
+  List<String> get addonItemsIdList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RestaurantsStateCopyWith<RestaurantsState> get copyWith =>
@@ -35,8 +34,7 @@ abstract class $RestaurantsStateCopyWith<$Res> {
   $Res call(
       {List<CategoryModel> categoryList,
       List<ResturantModel> resturantsList,
-      String selectedAddmoreValue,
-      String selectedPackagesValue});
+      List<String> addonItemsIdList});
 }
 
 /// @nodoc
@@ -54,8 +52,7 @@ class _$RestaurantsStateCopyWithImpl<$Res, $Val extends RestaurantsState>
   $Res call({
     Object? categoryList = null,
     Object? resturantsList = null,
-    Object? selectedAddmoreValue = null,
-    Object? selectedPackagesValue = null,
+    Object? addonItemsIdList = null,
   }) {
     return _then(_value.copyWith(
       categoryList: null == categoryList
@@ -66,14 +63,10 @@ class _$RestaurantsStateCopyWithImpl<$Res, $Val extends RestaurantsState>
           ? _value.resturantsList
           : resturantsList // ignore: cast_nullable_to_non_nullable
               as List<ResturantModel>,
-      selectedAddmoreValue: null == selectedAddmoreValue
-          ? _value.selectedAddmoreValue
-          : selectedAddmoreValue // ignore: cast_nullable_to_non_nullable
-              as String,
-      selectedPackagesValue: null == selectedPackagesValue
-          ? _value.selectedPackagesValue
-          : selectedPackagesValue // ignore: cast_nullable_to_non_nullable
-              as String,
+      addonItemsIdList: null == addonItemsIdList
+          ? _value.addonItemsIdList
+          : addonItemsIdList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -89,8 +82,7 @@ abstract class _$$RestaurantsStateImplCopyWith<$Res>
   $Res call(
       {List<CategoryModel> categoryList,
       List<ResturantModel> resturantsList,
-      String selectedAddmoreValue,
-      String selectedPackagesValue});
+      List<String> addonItemsIdList});
 }
 
 /// @nodoc
@@ -106,8 +98,7 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? categoryList = null,
     Object? resturantsList = null,
-    Object? selectedAddmoreValue = null,
-    Object? selectedPackagesValue = null,
+    Object? addonItemsIdList = null,
   }) {
     return _then(_$RestaurantsStateImpl(
       categoryList: null == categoryList
@@ -118,14 +109,10 @@ class __$$RestaurantsStateImplCopyWithImpl<$Res>
           ? _value._resturantsList
           : resturantsList // ignore: cast_nullable_to_non_nullable
               as List<ResturantModel>,
-      selectedAddmoreValue: null == selectedAddmoreValue
-          ? _value.selectedAddmoreValue
-          : selectedAddmoreValue // ignore: cast_nullable_to_non_nullable
-              as String,
-      selectedPackagesValue: null == selectedPackagesValue
-          ? _value.selectedPackagesValue
-          : selectedPackagesValue // ignore: cast_nullable_to_non_nullable
-              as String,
+      addonItemsIdList: null == addonItemsIdList
+          ? _value._addonItemsIdList
+          : addonItemsIdList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -136,10 +123,10 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
   const _$RestaurantsStateImpl(
       {final List<CategoryModel> categoryList = const [],
       final List<ResturantModel> resturantsList = const [],
-      this.selectedAddmoreValue = "",
-      this.selectedPackagesValue = ""})
+      final List<String> addonItemsIdList = const []})
       : _categoryList = categoryList,
         _resturantsList = resturantsList,
+        _addonItemsIdList = addonItemsIdList,
         super._();
 
   final List<CategoryModel> _categoryList;
@@ -160,16 +147,19 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
     return EqualUnmodifiableListView(_resturantsList);
   }
 
+  final List<String> _addonItemsIdList;
   @override
   @JsonKey()
-  final String selectedAddmoreValue;
-  @override
-  @JsonKey()
-  final String selectedPackagesValue;
+  List<String> get addonItemsIdList {
+    if (_addonItemsIdList is EqualUnmodifiableListView)
+      return _addonItemsIdList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_addonItemsIdList);
+  }
 
   @override
   String toString() {
-    return 'RestaurantsState(categoryList: $categoryList, resturantsList: $resturantsList, selectedAddmoreValue: $selectedAddmoreValue, selectedPackagesValue: $selectedPackagesValue)';
+    return 'RestaurantsState(categoryList: $categoryList, resturantsList: $resturantsList, addonItemsIdList: $addonItemsIdList)';
   }
 
   @override
@@ -181,10 +171,8 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
                 .equals(other._categoryList, _categoryList) &&
             const DeepCollectionEquality()
                 .equals(other._resturantsList, _resturantsList) &&
-            (identical(other.selectedAddmoreValue, selectedAddmoreValue) ||
-                other.selectedAddmoreValue == selectedAddmoreValue) &&
-            (identical(other.selectedPackagesValue, selectedPackagesValue) ||
-                other.selectedPackagesValue == selectedPackagesValue));
+            const DeepCollectionEquality()
+                .equals(other._addonItemsIdList, _addonItemsIdList));
   }
 
   @override
@@ -192,8 +180,7 @@ class _$RestaurantsStateImpl extends _RestaurantsState {
       runtimeType,
       const DeepCollectionEquality().hash(_categoryList),
       const DeepCollectionEquality().hash(_resturantsList),
-      selectedAddmoreValue,
-      selectedPackagesValue);
+      const DeepCollectionEquality().hash(_addonItemsIdList));
 
   @JsonKey(ignore: true)
   @override
@@ -207,8 +194,7 @@ abstract class _RestaurantsState extends RestaurantsState {
   const factory _RestaurantsState(
       {final List<CategoryModel> categoryList,
       final List<ResturantModel> resturantsList,
-      final String selectedAddmoreValue,
-      final String selectedPackagesValue}) = _$RestaurantsStateImpl;
+      final List<String> addonItemsIdList}) = _$RestaurantsStateImpl;
   const _RestaurantsState._() : super._();
 
   @override
@@ -216,9 +202,7 @@ abstract class _RestaurantsState extends RestaurantsState {
   @override
   List<ResturantModel> get resturantsList;
   @override
-  String get selectedAddmoreValue;
-  @override
-  String get selectedPackagesValue;
+  List<String> get addonItemsIdList;
   @override
   @JsonKey(ignore: true)
   _$$RestaurantsStateImplCopyWith<_$RestaurantsStateImpl> get copyWith =>

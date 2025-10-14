@@ -9,6 +9,8 @@ import 'package:fastfood/screen/base/shared/provider.dart';
 import 'package:fastfood/screen/orders/presentation/widget/order_items.dart';
 import 'package:fastfood/screen/orders/presentation/widget/recommendation_items.dart';
 import 'package:fastfood/screen/orders/shared/provider.dart';
+import 'package:fastfood/screen/restaurants/presentation/widget/addon_items_tile.dart';
+import 'package:fastfood/screen/restaurants/shared/provider.dart';
 import 'package:fastfood/widget/app_back_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,6 +37,11 @@ class _OrderPageState extends ConsumerState<OrderPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(ordersNotifierProvider);
     final stateNotifier = ref.watch(ordersNotifierProvider.notifier);
+
+    final resturantsState = ref.watch(restaurantsNotifierProvider);
+    final resturantsStateNotifier = ref.watch(
+      restaurantsNotifierProvider.notifier,
+    );
 
     final baseState = ref.watch(baseNotifierProvider);
     final baseStateNotifier = ref.watch(baseNotifierProvider.notifier);
@@ -111,7 +118,36 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                       }
                     },
                   ),
+              5.verticalSpace,
+              resturantsState.addonItemsIdList.isEmpty
+                  ? Text("")
+                  : Text("Add On Items :: "),
 
+              resturantsState.addonItemsIdList.isEmpty
+                  ? Text("")
+                  : ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: resturantsState.addonItemsIdList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final itemId = resturantsState.addonItemsIdList[index];
+
+                      final item = baseState.addonItemsList.firstWhere(
+                        (value) => value.id == itemId,
+                      );
+
+                      return AddonItemsTile(
+                        title: item.title ?? "",
+                        price: item.price ?? "",
+                        iconPath: item.image ?? "",
+                        isUpdate: resturantsState.addonItemsIdList.contains(
+                          item.id,
+                        ),
+                        isSelection: true,
+                      );
+                    },
+                  ),
+              5.verticalSpace,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -126,13 +162,36 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                         ),
                       ),
                       10.horizontalSpace,
+                      // Text(
+                      //   "₹ ${state.cartItemList.toSet().fold<double>(0, (total, itemId) {
+                      //     final product = baseState.foodItemsList.firstWhere((e) => e.id == itemId);
+                      //     final quantity = state.cartItemList.where((id) => id == product.id).length;
+                      //     final price = double.tryParse(product.price.toString().replaceAll('₹', '').trim()) ?? 0;
+                      //     return total + quantity * price;
+                      //   }).toStringAsFixed(2)}",
+                      //   style: AppTextStyle.rubikTextSemibold.copyWith(
+                      //     fontSize: 20.sp,
+                      //     color: AppColors.colorPrimary,
+                      //   ),
+                      // ),
                       Text(
-                        "₹ ${state.cartItemList.toSet().fold<double>(0, (total, itemId) {
-                          final product = baseState.foodItemsList.firstWhere((e) => e.id == itemId, orElse: () => baseState.foodItemsList.first);
-                          final quantity = state.cartItemList.where((id) => id == product.id).length;
-                          final price = double.tryParse(product.price.toString().replaceAll('₹', '').trim()) ?? 0;
-                          return total + quantity * price;
-                        }).toStringAsFixed(2)}",
+                        "₹ ${(() {
+                          final addonTotal = resturantsState.addonItemsIdList.toSet().fold<double>(0, (total, itemId) {
+                            final product = baseState.addonItemsList.firstWhere((e) => e.id == itemId);
+                            final quantity = resturantsState.addonItemsIdList.where((id) => id == product.id).length;
+                            final price = double.tryParse(product.price.toString().replaceAll('₹', '').trim()) ?? 0;
+                            return total + quantity * price;
+                          });
+
+                          final itemTotal = state.cartItemList.toSet().fold<double>(0, (total, itemId) {
+                            final product = baseState.foodItemsList.firstWhere((e) => e.id == itemId);
+                            final quantity = state.cartItemList.where((id) => id == product.id).length;
+                            final price = double.tryParse(product.price.toString().replaceAll('₹', '').trim()) ?? 0;
+                            return total + quantity * price;
+                          });
+
+                          return (addonTotal + itemTotal).toStringAsFixed(2);
+                        })()}",
                         style: AppTextStyle.rubikTextSemibold.copyWith(
                           fontSize: 20.sp,
                           color: AppColors.colorPrimary,
@@ -193,12 +252,23 @@ class _OrderPageState extends ConsumerState<OrderPage> {
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15).r,
           ),
           child: Text(
-            "Go to checkout ₹ ${state.cartItemList.toSet().fold<double>(0, (total, itemId) {
-              final product = baseState.foodItemsList.firstWhere((e) => e.id == itemId, orElse: () => baseState.foodItemsList.first);
-              final quantity = state.cartItemList.where((id) => id == product.id).length;
-              final price = double.tryParse(product.price.toString().replaceAll('₹', '').trim()) ?? 0;
-              return total + quantity * price;
-            }).toStringAsFixed(2)}",
+            "Go to checkout ₹ ${(() {
+              final addonTotal = resturantsState.addonItemsIdList.toSet().fold<double>(0, (total, itemId) {
+                final product = baseState.addonItemsList.firstWhere((e) => e.id == itemId);
+                final quantity = resturantsState.addonItemsIdList.where((id) => id == product.id).length;
+                final price = double.tryParse(product.price.toString().replaceAll('₹', '').trim()) ?? 0;
+                return total + quantity * price;
+              });
+
+              final itemTotal = state.cartItemList.toSet().fold<double>(0, (total, itemId) {
+                final product = baseState.foodItemsList.firstWhere((e) => e.id == itemId);
+                final quantity = state.cartItemList.where((id) => id == product.id).length;
+                final price = double.tryParse(product.price.toString().replaceAll('₹', '').trim()) ?? 0;
+                return total + quantity * price;
+              });
+
+              return (addonTotal + itemTotal).toStringAsFixed(2);
+            })()}",
             style: AppTextStyle.rubikTextRegular.copyWith(
               fontSize: 16.sp,
               color: Colors.white,

@@ -204,10 +204,12 @@ class RestaurantsNotifier extends StateNotifier<RestaurantsState> {
   }
 
   void addMoreValue(value) {
-    state = state.copyWith(selectedAddmoreValue: value);
-  }
+    final tempList = [...state.addonItemsIdList];
 
-  void addPackagesValue(value) {
-    state = state.copyWith(selectedPackagesValue: value);
+    state.addonItemsIdList.contains(value)
+        ? tempList.remove(value)
+        : tempList.add(value);
+
+    state = state.copyWith(addonItemsIdList: tempList);
   }
 }

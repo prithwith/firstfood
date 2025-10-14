@@ -20,6 +20,8 @@ mixin _$BaseState {
   bool get isLoading => throw _privateConstructorUsedError;
   UserModel? get currentUser => throw _privateConstructorUsedError;
   List<FooditemsModel> get foodItemsList => throw _privateConstructorUsedError;
+  List<AddOnItemsModel> get addonItemsList =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BaseStateCopyWith<BaseState> get copyWith =>
@@ -35,7 +37,8 @@ abstract class $BaseStateCopyWith<$Res> {
       {int bottomNavIndex,
       bool isLoading,
       UserModel? currentUser,
-      List<FooditemsModel> foodItemsList});
+      List<FooditemsModel> foodItemsList,
+      List<AddOnItemsModel> addonItemsList});
 
   $UserModelCopyWith<$Res>? get currentUser;
 }
@@ -57,6 +60,7 @@ class _$BaseStateCopyWithImpl<$Res, $Val extends BaseState>
     Object? isLoading = null,
     Object? currentUser = freezed,
     Object? foodItemsList = null,
+    Object? addonItemsList = null,
   }) {
     return _then(_value.copyWith(
       bottomNavIndex: null == bottomNavIndex
@@ -75,6 +79,10 @@ class _$BaseStateCopyWithImpl<$Res, $Val extends BaseState>
           ? _value.foodItemsList
           : foodItemsList // ignore: cast_nullable_to_non_nullable
               as List<FooditemsModel>,
+      addonItemsList: null == addonItemsList
+          ? _value.addonItemsList
+          : addonItemsList // ignore: cast_nullable_to_non_nullable
+              as List<AddOnItemsModel>,
     ) as $Val);
   }
 
@@ -103,7 +111,8 @@ abstract class _$$BaseStateImplCopyWith<$Res>
       {int bottomNavIndex,
       bool isLoading,
       UserModel? currentUser,
-      List<FooditemsModel> foodItemsList});
+      List<FooditemsModel> foodItemsList,
+      List<AddOnItemsModel> addonItemsList});
 
   @override
   $UserModelCopyWith<$Res>? get currentUser;
@@ -124,6 +133,7 @@ class __$$BaseStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? currentUser = freezed,
     Object? foodItemsList = null,
+    Object? addonItemsList = null,
   }) {
     return _then(_$BaseStateImpl(
       bottomNavIndex: null == bottomNavIndex
@@ -142,6 +152,10 @@ class __$$BaseStateImplCopyWithImpl<$Res>
           ? _value._foodItemsList
           : foodItemsList // ignore: cast_nullable_to_non_nullable
               as List<FooditemsModel>,
+      addonItemsList: null == addonItemsList
+          ? _value._addonItemsList
+          : addonItemsList // ignore: cast_nullable_to_non_nullable
+              as List<AddOnItemsModel>,
     ));
   }
 }
@@ -153,8 +167,10 @@ class _$BaseStateImpl extends _BaseState {
       {this.bottomNavIndex = 0,
       this.isLoading = false,
       this.currentUser,
-      final List<FooditemsModel> foodItemsList = const []})
+      final List<FooditemsModel> foodItemsList = const [],
+      final List<AddOnItemsModel> addonItemsList = const []})
       : _foodItemsList = foodItemsList,
+        _addonItemsList = addonItemsList,
         super._();
 
   @override
@@ -174,9 +190,18 @@ class _$BaseStateImpl extends _BaseState {
     return EqualUnmodifiableListView(_foodItemsList);
   }
 
+  final List<AddOnItemsModel> _addonItemsList;
+  @override
+  @JsonKey()
+  List<AddOnItemsModel> get addonItemsList {
+    if (_addonItemsList is EqualUnmodifiableListView) return _addonItemsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_addonItemsList);
+  }
+
   @override
   String toString() {
-    return 'BaseState(bottomNavIndex: $bottomNavIndex, isLoading: $isLoading, currentUser: $currentUser, foodItemsList: $foodItemsList)';
+    return 'BaseState(bottomNavIndex: $bottomNavIndex, isLoading: $isLoading, currentUser: $currentUser, foodItemsList: $foodItemsList, addonItemsList: $addonItemsList)';
   }
 
   @override
@@ -191,12 +216,19 @@ class _$BaseStateImpl extends _BaseState {
             (identical(other.currentUser, currentUser) ||
                 other.currentUser == currentUser) &&
             const DeepCollectionEquality()
-                .equals(other._foodItemsList, _foodItemsList));
+                .equals(other._foodItemsList, _foodItemsList) &&
+            const DeepCollectionEquality()
+                .equals(other._addonItemsList, _addonItemsList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, bottomNavIndex, isLoading,
-      currentUser, const DeepCollectionEquality().hash(_foodItemsList));
+  int get hashCode => Object.hash(
+      runtimeType,
+      bottomNavIndex,
+      isLoading,
+      currentUser,
+      const DeepCollectionEquality().hash(_foodItemsList),
+      const DeepCollectionEquality().hash(_addonItemsList));
 
   @JsonKey(ignore: true)
   @override
@@ -210,7 +242,8 @@ abstract class _BaseState extends BaseState {
       {final int bottomNavIndex,
       final bool isLoading,
       final UserModel? currentUser,
-      final List<FooditemsModel> foodItemsList}) = _$BaseStateImpl;
+      final List<FooditemsModel> foodItemsList,
+      final List<AddOnItemsModel> addonItemsList}) = _$BaseStateImpl;
   const _BaseState._() : super._();
 
   @override
@@ -221,6 +254,8 @@ abstract class _BaseState extends BaseState {
   UserModel? get currentUser;
   @override
   List<FooditemsModel> get foodItemsList;
+  @override
+  List<AddOnItemsModel> get addonItemsList;
   @override
   @JsonKey(ignore: true)
   _$$BaseStateImplCopyWith<_$BaseStateImpl> get copyWith =>

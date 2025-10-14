@@ -128,23 +128,26 @@ class _DeliveryMapPagePageState extends State<DeliveryMapPagePage> {
                     ),
                   ),
                   Spacer(),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.colorPrimary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      minimumSize: Size(MediaQuery.sizeOf(context).width, 50),
-                    ),
-                    child: Text(
-                      'Hide delivery status',
-                      style: AppTextStyle.rubikTextRegular.copyWith(
-                        fontSize: 16.sp,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     showToastMessage("Order SuccessFull");
+                  //     context.maybePop();
+                  //   },
+                  //   style: ElevatedButton.styleFrom(
+                  //     backgroundColor: AppColors.colorPrimary,
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(30),
+                  //     ),
+                  //     minimumSize: Size(MediaQuery.sizeOf(context).width, 50),
+                  //   ),
+                  //   child: Text(
+                  //     'Hide delivery status',
+                  //     style: AppTextStyle.rubikTextRegular.copyWith(
+                  //       fontSize: 16.sp,
+                  //       color: Colors.white,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

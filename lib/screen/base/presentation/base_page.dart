@@ -33,6 +33,7 @@ class _BasePageState extends ConsumerState<BasePage> {
 
       stateNotifier.getUserInfo();
       stateNotifier.getAllFoodItemsData();
+      stateNotifier.getAllAddonItemsData();
     });
   }
 
