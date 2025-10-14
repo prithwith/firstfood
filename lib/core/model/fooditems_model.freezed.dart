@@ -45,12 +45,8 @@ mixin _$FooditemsModel {
   @JsonKey(name: 'isLiked')
   bool? get isLiked => throw _privateConstructorUsedError;
 
-  /// Serializes this FooditemsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FooditemsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FooditemsModelCopyWith<FooditemsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -86,8 +82,6 @@ class _$FooditemsModelCopyWithImpl<$Res, $Val extends FooditemsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FooditemsModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -188,8 +182,6 @@ class __$$FooditemsModelImplCopyWithImpl<$Res>
       _$FooditemsModelImpl _value, $Res Function(_$FooditemsModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FooditemsModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -343,14 +335,12 @@ class _$FooditemsModelImpl implements _FooditemsModel {
             (identical(other.isLiked, isLiked) || other.isLiked == isLiked));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, image, title, subtitle,
       price, time, rating, badge, places, restaurant, priceLevel, isLiked);
 
-  /// Create a copy of FooditemsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FooditemsModelImplCopyWith<_$FooditemsModelImpl> get copyWith =>
@@ -419,11 +409,8 @@ abstract class _FooditemsModel implements FooditemsModel {
   @override
   @JsonKey(name: 'isLiked')
   bool? get isLiked;
-
-  /// Create a copy of FooditemsModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FooditemsModelImplCopyWith<_$FooditemsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

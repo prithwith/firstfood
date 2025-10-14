@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, deprecated_member_use
 
 import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/model/fooditems_model.dart';

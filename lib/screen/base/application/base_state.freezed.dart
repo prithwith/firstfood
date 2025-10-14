@@ -21,9 +21,7 @@ mixin _$BaseState {
   UserModel? get currentUser => throw _privateConstructorUsedError;
   List<FooditemsModel> get foodItemsList => throw _privateConstructorUsedError;
 
-  /// Create a copy of BaseState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BaseStateCopyWith<BaseState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,8 +50,6 @@ class _$BaseStateCopyWithImpl<$Res, $Val extends BaseState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BaseState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -82,8 +78,6 @@ class _$BaseStateCopyWithImpl<$Res, $Val extends BaseState>
     ) as $Val);
   }
 
-  /// Create a copy of BaseState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res>? get currentUser {
@@ -123,8 +117,6 @@ class __$$BaseStateImplCopyWithImpl<$Res>
       _$BaseStateImpl _value, $Res Function(_$BaseStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BaseState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -206,9 +198,7 @@ class _$BaseStateImpl extends _BaseState {
   int get hashCode => Object.hash(runtimeType, bottomNavIndex, isLoading,
       currentUser, const DeepCollectionEquality().hash(_foodItemsList));
 
-  /// Create a copy of BaseState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BaseStateImplCopyWith<_$BaseStateImpl> get copyWith =>
@@ -231,11 +221,8 @@ abstract class _BaseState extends BaseState {
   UserModel? get currentUser;
   @override
   List<FooditemsModel> get foodItemsList;
-
-  /// Create a copy of BaseState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BaseStateImplCopyWith<_$BaseStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

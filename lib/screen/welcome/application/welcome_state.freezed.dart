@@ -21,9 +21,7 @@ mixin _$WelcomeState {
   bool get isFacebookLoading => throw _privateConstructorUsedError;
   bool get isGoogleLoading => throw _privateConstructorUsedError;
 
-  /// Create a copy of WelcomeState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $WelcomeStateCopyWith<WelcomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,8 +46,6 @@ class _$WelcomeStateCopyWithImpl<$Res, $Val extends WelcomeState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of WelcomeState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,8 +90,6 @@ class __$$WelcomeStateImplCopyWithImpl<$Res>
       _$WelcomeStateImpl _value, $Res Function(_$WelcomeStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of WelcomeState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,9 +156,7 @@ class _$WelcomeStateImpl extends _WelcomeState {
   int get hashCode => Object.hash(
       runtimeType, isStartGmailLoading, isFacebookLoading, isGoogleLoading);
 
-  /// Create a copy of WelcomeState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$WelcomeStateImplCopyWith<_$WelcomeStateImpl> get copyWith =>
@@ -178,18 +170,14 @@ abstract class _WelcomeState extends WelcomeState {
       final bool isGoogleLoading}) = _$WelcomeStateImpl;
   const _WelcomeState._() : super._();
 
-// UserModel? user,
-  @override
+  @override // UserModel? user,
   bool get isStartGmailLoading;
   @override
   bool get isFacebookLoading;
   @override
   bool get isGoogleLoading;
-
-  /// Create a copy of WelcomeState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$WelcomeStateImplCopyWith<_$WelcomeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

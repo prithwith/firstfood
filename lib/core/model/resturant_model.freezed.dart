@@ -39,12 +39,8 @@ mixin _$ResturantModel {
   @JsonKey(name: 'allDishes')
   List<String> get allDishes => throw _privateConstructorUsedError;
 
-  /// Serializes this ResturantModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ResturantModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ResturantModelCopyWith<ResturantModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -77,8 +73,6 @@ class _$ResturantModelCopyWithImpl<$Res, $Val extends ResturantModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ResturantModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -161,8 +155,6 @@ class __$$ResturantModelImplCopyWithImpl<$Res>
       _$ResturantModelImpl _value, $Res Function(_$ResturantModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ResturantModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -292,7 +284,7 @@ class _$ResturantModelImpl implements _ResturantModel {
                 .equals(other._allDishes, _allDishes));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -306,9 +298,7 @@ class _$ResturantModelImpl implements _ResturantModel {
       rating,
       const DeepCollectionEquality().hash(_allDishes));
 
-  /// Create a copy of ResturantModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ResturantModelImplCopyWith<_$ResturantModelImpl> get copyWith =>
@@ -366,11 +356,8 @@ abstract class _ResturantModel implements ResturantModel {
   @override
   @JsonKey(name: 'allDishes')
   List<String> get allDishes;
-
-  /// Create a copy of ResturantModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ResturantModelImplCopyWith<_$ResturantModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

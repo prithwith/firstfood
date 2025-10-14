@@ -29,12 +29,8 @@ mixin _$ChatusersModel {
   @JsonKey(name: 'createdAt')
   String? get createdAt => throw _privateConstructorUsedError;
 
-  /// Serializes this ChatusersModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ChatusersModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ChatusersModelCopyWith<ChatusersModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,8 +58,6 @@ class _$ChatusersModelCopyWithImpl<$Res, $Val extends ChatusersModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ChatusersModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -116,8 +110,6 @@ class __$$ChatusersModelImplCopyWithImpl<$Res>
       _$ChatusersModelImpl _value, $Res Function(_$ChatusersModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ChatusersModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -190,14 +182,12 @@ class _$ChatusersModelImpl implements _ChatusersModel {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, userId, displayName, email, createdAt);
 
-  /// Create a copy of ChatusersModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ChatusersModelImplCopyWith<_$ChatusersModelImpl> get copyWith =>
@@ -235,11 +225,8 @@ abstract class _ChatusersModel implements ChatusersModel {
   @override
   @JsonKey(name: 'createdAt')
   String? get createdAt;
-
-  /// Create a copy of ChatusersModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ChatusersModelImplCopyWith<_$ChatusersModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

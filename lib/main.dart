@@ -70,7 +70,7 @@ class MyApp extends ConsumerWidget {
             title: 'FastFood',
             theme: ThemeData(
               sliderTheme: const SliderThemeData(
-                showValueIndicator: ShowValueIndicator.always,
+                showValueIndicator: ShowValueIndicator.alwaysVisible,
               ),
               pageTransitionsTheme: const PageTransitionsTheme(
                 builders: {

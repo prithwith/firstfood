@@ -25,12 +25,8 @@ mixin _$SliderImageModel {
   @JsonKey(name: 'image')
   String? get image => throw _privateConstructorUsedError;
 
-  /// Serializes this SliderImageModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SliderImageModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SliderImageModelCopyWith<SliderImageModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,8 +51,6 @@ class _$SliderImageModelCopyWithImpl<$Res, $Val extends SliderImageModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SliderImageModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -96,8 +90,6 @@ class __$$SliderImageModelImplCopyWithImpl<$Res>
       $Res Function(_$SliderImageModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SliderImageModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -147,13 +139,11 @@ class _$SliderImageModelImpl implements _SliderImageModel {
             (identical(other.image, image) || other.image == image));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, image);
 
-  /// Create a copy of SliderImageModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SliderImageModelImplCopyWith<_$SliderImageModelImpl> get copyWith =>
@@ -182,11 +172,8 @@ abstract class _SliderImageModel implements SliderImageModel {
   @override
   @JsonKey(name: 'image')
   String? get image;
-
-  /// Create a copy of SliderImageModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SliderImageModelImplCopyWith<_$SliderImageModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

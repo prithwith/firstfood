@@ -19,9 +19,7 @@ mixin _$FavoriteState {
   List<String> get favfoodItemsIdList => throw _privateConstructorUsedError;
   List<String> get favresturantsIdList => throw _privateConstructorUsedError;
 
-  /// Create a copy of FavoriteState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FavoriteStateCopyWith<FavoriteState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,8 +44,6 @@ class _$FavoriteStateCopyWithImpl<$Res, $Val extends FavoriteState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FavoriteState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,8 +83,6 @@ class __$$FavoriteStateImplCopyWithImpl<$Res>
       _$FavoriteStateImpl _value, $Res Function(_$FavoriteStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FavoriteState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,9 +154,7 @@ class _$FavoriteStateImpl extends _FavoriteState {
       const DeepCollectionEquality().hash(_favfoodItemsIdList),
       const DeepCollectionEquality().hash(_favresturantsIdList));
 
-  /// Create a copy of FavoriteState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FavoriteStateImplCopyWith<_$FavoriteStateImpl> get copyWith =>
@@ -179,11 +171,8 @@ abstract class _FavoriteState extends FavoriteState {
   List<String> get favfoodItemsIdList;
   @override
   List<String> get favresturantsIdList;
-
-  /// Create a copy of FavoriteState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FavoriteStateImplCopyWith<_$FavoriteStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

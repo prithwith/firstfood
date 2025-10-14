@@ -20,9 +20,7 @@ mixin _$OrdersState {
       throw _privateConstructorUsedError;
   List<String> get cartItemList => throw _privateConstructorUsedError;
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $OrdersStateCopyWith<OrdersState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,8 +45,6 @@ class _$OrdersStateCopyWithImpl<$Res, $Val extends OrdersState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -88,8 +84,6 @@ class __$$OrdersStateImplCopyWithImpl<$Res>
       _$OrdersStateImpl _value, $Res Function(_$OrdersStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,9 +154,7 @@ class _$OrdersStateImpl extends _OrdersState {
       const DeepCollectionEquality().hash(_recomendationList),
       const DeepCollectionEquality().hash(_cartItemList));
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OrdersStateImplCopyWith<_$OrdersStateImpl> get copyWith =>
@@ -179,11 +171,8 @@ abstract class _OrdersState extends OrdersState {
   List<FooditemsModel> get recomendationList;
   @override
   List<String> get cartItemList;
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OrdersStateImplCopyWith<_$OrdersStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
