@@ -45,95 +45,100 @@ class _DeliveryAddressPageState extends ConsumerState<DeliveryAddressPage> {
           ),
         ),
       ),
-      body:
-          state.isAddressLoading
-              ? CircularProgressIndicator()
-              : state.addressList.isEmpty
-              ? Center(child: Text("No Address Found"))
-              : ListView.builder(
-                itemCount: state.addressList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final address = state.addressList[index];
+      body: state.isAddressLoading
+          ? CircularProgressIndicator()
+          : state.addressList.isEmpty
+          ? Center(child: Text("No Address Found"))
+          : ListView.builder(
+              itemCount: state.addressList.length,
+              itemBuilder: (BuildContext context, int index) {
+                final address = state.addressList[index];
 
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12).r,
-                    ),
-                    elevation: 4,
-                    margin:
-                        const EdgeInsets.symmetric(
-                          vertical: 4,
-                          horizontal: 12,
-                        ).r,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10).r,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                address.name ?? "No Name",
-                                style: AppTextStyle.rubikTextBold.copyWith(
-                                  fontSize: 18.sp,
-                                ),
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12).r,
+                  ),
+                  elevation: 4,
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 4,
+                    horizontal: 12,
+                  ).r,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10).r,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              address.name ?? "No Name",
+                              style: AppTextStyle.rubikTextBold.copyWith(
+                                fontSize: 18.sp,
                               ),
-                              6.verticalSpace,
-                              Text("Number: ${address.number ?? '-'}"),
-                              Text("Address: ${address.address ?? '-'}"),
-                              Text("City: ${address.city ?? '-'}"),
-                              Text("State: ${address.state ?? '-'}"),
-                              Text("Pincode: ${address.pincode ?? '-'}"),
-                              Text("Landmark: ${address.landmark ?? '-'}"),
-                            ],
-                          ),
-                          address.isPrimary
-                              ? Text(
+                            ),
+                            6.verticalSpace,
+                            Text("Number: ${address.number ?? '-'}"),
+                            Text("Address: ${address.address ?? '-'}"),
+                            Text("City: ${address.city ?? '-'}"),
+                            Text("State: ${address.state ?? '-'}"),
+                            Text("Pincode: ${address.pincode ?? '-'}"),
+                            Text("Landmark: ${address.landmark ?? '-'}"),
+                          ],
+                        ),
+                        address.isPrimary
+                            ? Text(
                                 "Primary",
                                 style: AppTextStyle.rubikTextMedium.copyWith(
                                   color: AppColors.colorPrimary,
                                 ),
                               )
-                              : PopupMenuButton<String>(
+                            : PopupMenuButton<String>(
                                 icon: Icon(Icons.more_vert),
-                                itemBuilder:
-                                    (BuildContext context) =>
-                                        <PopupMenuEntry<String>>[
-                                          PopupMenuItem<String>(
-                                            onTap: () {},
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.edit,
-                                                  color: Colors.blue,
-                                                ),
-                                                5.horizontalSpace,
-                                                Text('Set As Primary'),
-                                              ],
+                                itemBuilder: (BuildContext context) =>
+                                    <PopupMenuEntry<String>>[
+                                      PopupMenuItem<String>(
+                                        onTap: () {
+                                          stateNotifier.updateAddress(
+                                            id: address.id ?? "",
+                                          );
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.edit,
+                                              color: Colors.blue,
                                             ),
-                                          ),
-                                          PopupMenuItem<String>(
-                                            onTap: () {},
-                                            child: Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.delete,
-                                                  color: Colors.deepOrange,
-                                                ),
-                                                5.horizontalSpace,
-                                                Text('Delete'),
-                                              ],
+                                            5.horizontalSpace,
+                                            Text('Set As Primary'),
+                                          ],
+                                        ),
+                                      ),
+                                      PopupMenuItem<String>(
+                                        onTap: () {
+                                          stateNotifier.deleteAddress(
+                                            id: address.id ?? "",
+                                          );
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.delete,
+                                              color: Colors.deepOrange,
                                             ),
-                                          ),
-                                        ],
+                                            5.horizontalSpace,
+                                            Text('Delete'),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                               ),
-                        ],
-                      ),
+                      ],
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
+            ),
     );
   }
 }

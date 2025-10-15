@@ -39,7 +39,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
 
     dummyAddresses.addAll([
       AddressModel(
-        id: 1,
+        id: "1",
         name: "John Doe",
         number: "9876543210",
         alternativeNumber: "9123456780",
@@ -52,7 +52,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       ),
 
       AddressModel(
-        id: 2,
+        id: "2",
         name: "Jane Smith",
         number: "8765432109",
         alternativeNumber: "9345678120",
@@ -65,7 +65,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       ),
 
       AddressModel(
-        id: 3,
+        id: "3",
         name: "Michael Johnson",
         number: "7654321098",
         alternativeNumber: "9456781230",
@@ -78,7 +78,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       ),
 
       AddressModel(
-        id: 4,
+        id: "4",
         name: "Emily Davis",
         number: "6543210987",
         alternativeNumber: "9567812340",
@@ -91,7 +91,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       ),
 
       AddressModel(
-        id: 5,
+        id: "5",
         name: "William Brown",
         number: "5432109876",
         alternativeNumber: "9678123450",
@@ -104,7 +104,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       ),
 
       AddressModel(
-        id: 6,
+        id: "6",
         name: "Olivia Wilson",
         number: "4321098765",
         alternativeNumber: "9781234560",
@@ -117,7 +117,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       ),
 
       AddressModel(
-        id: 7,
+        id: "7",
         name: "James Miller",
         number: "3210987654",
         alternativeNumber: "9892345670",
@@ -130,7 +130,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       ),
 
       AddressModel(
-        id: 8,
+        id: "8",
         name: "Sophia Martinez",
         number: "2109876543",
         alternativeNumber: "9012345678",
@@ -143,7 +143,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       ),
 
       AddressModel(
-        id: 9,
+        id: "9",
         name: "David Anderson",
         number: "1098765432",
         alternativeNumber: "9123456709",
@@ -156,7 +156,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       ),
 
       AddressModel(
-        id: 10,
+        id: "10",
         name: "Isabella Thomas",
         number: "1987654321",
         alternativeNumber: "9234567810",
@@ -173,5 +173,32 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
       isAddressLoading: false,
       addressList: dummyAddresses,
     );
+  }
+
+  void updateAddress({required String id}) {
+    final List<AddressModel> updatedList = [];
+
+    for (var address in state.addressList) {
+      if (address.isPrimary) {
+        address = address.copyWith(isPrimary: false);
+      }
+
+      if (address.id == id) {
+        updatedList.add(address.copyWith(isPrimary: true));
+      } else {
+        updatedList.add(address.copyWith(isPrimary: false));
+      }
+    }
+
+    state = state.copyWith(addressList: updatedList);
+  }
+
+  void deleteAddress({required String id}) {
+    final List<AddressModel> updatedList = [...state.addressList];
+
+    final itemId = updatedList.firstWhere((item) => item.id == id);
+    updatedList.remove(itemId);
+
+    state = state.copyWith(addressList: updatedList);
   }
 }
