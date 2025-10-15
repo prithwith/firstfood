@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "727332831743",
+    "firebase_url": "https://fastfood-a0d93-default-rtdb.firebaseio.com",
     "project_id": "fastfood-a0d93",
     "storage_bucket": "fastfood-a0d93.firebasestorage.app"
   },
@@ -14,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "727332831743-333pdr5v5ieg2allo8o1t2rpsvc8vo4u.apps.googleusercontent.com",
+          "client_id": "727332831743-1o12kfhpjrrrtupkmejor7u6v37pii8n.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.fastfood",
-            "certificate_hash": "45aaefe70d14308971835bf84ec223a7712ebfb7"
+            "certificate_hash": "234a040016220b11d9ea1bf403eafc929968fba3"
           }
         },
         {

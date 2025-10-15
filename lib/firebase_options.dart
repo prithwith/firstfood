@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:727332831743:android:806e1f6cdf3c65cb89a7ca',
     messagingSenderId: '727332831743',
     projectId: 'fastfood-a0d93',
+    databaseURL: 'https://fastfood-a0d93-default-rtdb.firebaseio.com',
     storageBucket: 'fastfood-a0d93.firebasestorage.app',
   );
 
@@ -62,7 +63,11 @@ class DefaultFirebaseOptions {
     appId: '1:727332831743:ios:8ceb8937347b831989a7ca',
     messagingSenderId: '727332831743',
     projectId: 'fastfood-a0d93',
+    databaseURL: 'https://fastfood-a0d93-default-rtdb.firebaseio.com',
     storageBucket: 'fastfood-a0d93.firebasestorage.app',
+    androidClientId: '727332831743-1o12kfhpjrrrtupkmejor7u6v37pii8n.apps.googleusercontent.com',
+    iosClientId: '727332831743-g1t17tp5v7i72cft1blm8vt2dkspu5p8.apps.googleusercontent.com',
     iosBundleId: 'com.example.fastfood',
   );
+
 }

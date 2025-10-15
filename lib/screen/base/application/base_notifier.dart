@@ -34,7 +34,7 @@ class BaseNotifier extends StateNotifier<BaseState> {
       name: "Prithwith Sahoo",
       email: "windows000x@example.com",
       phone: "+91 9878456532",
-      profileImageUrl: "${AppAssets.appImages}app_icon.png",
+      profileImageUrl: "${AppAssets.appImages}appicon_512x512.png",
       defaultAddressLine1: "123 Main Street",
       defaultAddressLine2: "Apt 4B",
       defaultAddressCity: "Springfield, IL 62704",

@@ -54,7 +54,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
       backgroundColor: AppColors.colorPrimary,
       body: Center(
         child: Image.asset(
-          "${AppAssets.appImages}app_icon.png",
+          "${AppAssets.appImages}appicon_512x512.png",
           width: MediaQuery.sizeOf(context).width / 1.5,
         ),
       ),
