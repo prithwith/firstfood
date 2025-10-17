@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
-// UserModel? user,
   bool get isLoginLoading => throw _privateConstructorUsedError;
   bool get isSighupLoading => throw _privateConstructorUsedError;
   bool get isFacebookLoading => throw _privateConstructorUsedError;
@@ -210,7 +209,6 @@ class _$AuthStateImpl extends _AuthState {
       this.isLoginCheckbox = false})
       : super._();
 
-// UserModel? user,
   @override
   @JsonKey()
   final bool isLoginLoading;
@@ -302,7 +300,7 @@ abstract class _AuthState extends AuthState {
       final bool isLoginCheckbox}) = _$AuthStateImpl;
   const _AuthState._() : super._();
 
-  @override // UserModel? user,
+  @override
   bool get isLoginLoading;
   @override
   bool get isSighupLoading;

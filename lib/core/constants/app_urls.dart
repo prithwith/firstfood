@@ -1,3 +1,3 @@
-class AppUrls {
+abstract class AppUrls {
   static const baseUrl = '';
 }

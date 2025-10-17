@@ -17,7 +17,7 @@ class BaseNotifier extends StateNotifier<BaseState> {
   final HiveDatabase _hiveDataBase;
   final Dio _dio;
 
-  void updateBottomIndex(int index) {
+  void updateBottomIndex({required int index}) {
     state = state.copyWith(bottomNavIndex: index);
   }
 

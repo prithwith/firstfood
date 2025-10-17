@@ -47,58 +47,51 @@ class _UsersPageState extends ConsumerState<UsersPage> {
           ),
         ),
       ),
-      body:
-          state.isUserLoading
-              ? const Center(child: CircularProgressIndicator())
-              : state.usersList.isEmpty
-              ? const Center(child: Text("No Users Data Found"))
-              : ListView.builder(
-                itemCount: state.usersList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final user = state.usersList[index];
-                  if (user.email == hive.box.get(AppPreferenceKeys.email)) {
-                    return const SizedBox.shrink();
-                  }
+      body: state.isUserLoading
+          ? const Center(child: CircularProgressIndicator())
+          : state.usersList.isEmpty
+          ? const Center(child: Text("No Users Data Found"))
+          : ListView.builder(
+              itemCount: state.usersList.length,
+              itemBuilder: (BuildContext context, int index) {
+                final user = state.usersList[index];
+                if (user.email == hive.box.get(AppPreferenceKeys.email)) {
+                  return const SizedBox.shrink();
+                }
 
-                  return Card(
-                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5).r,
-                    child: ListTile(
-                      leading: const CircleAvatar(
-                        maxRadius: 30.0,
-                        child: Icon(Icons.person),
-                      ),
-                      title: Text(
-                        user.displayName ?? "UNKNOWN NAME",
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        user.email ?? '',
-                        style: const TextStyle(
-                          color: Colors.black54,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      onTap: () {
-                        List<String> ids = [
-                          hive.box.get(AppPreferenceKeys.uid),
-                          user.userId ?? '',
-                        ];
-                        ids.sort();
-                        // final chatRoomId = ids.join();
-                        final chatRoomId = "75014256255265241057";
-
-                        context.pushRoute(
-                          ChatRoute(
-                            chatRoomId: chatRoomId,
-                            reciverId: user.email ?? "",
-                            userName: user.displayName ?? "Unknown",
-                          ),
-                        );
-                      },
+                return Card(
+                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5).r,
+                  child: ListTile(
+                    leading: const CircleAvatar(
+                      maxRadius: 30.0,
+                      child: Icon(Icons.person),
                     ),
-                  );
-                },
-              ),
+                    title: Text(
+                      user.displayName ?? "UNKNOWN NAME",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      user.email ?? '',
+                      style: const TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onTap: () {
+                      final chatRoomId = "75014256255265241057";
+
+                      context.pushRoute(
+                        ChatRoute(
+                          chatRoomId: chatRoomId,
+                          reciverId: user.email ?? "",
+                          userName: user.displayName ?? "Unknown",
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
     );
   }
 }

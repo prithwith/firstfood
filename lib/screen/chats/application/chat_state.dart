@@ -12,6 +12,10 @@ class ChatState with _$ChatState {
 
     @Default([]) List<ChatusersModel> usersList,
     @Default([]) List<ChatModel> userChatsList,
+
+    @Default("") String recordPath,
+    @Default(false) bool isRecording,
+    @Default(false) bool isPlaying,
   }) = _ChatState;
   const ChatState._();
 }

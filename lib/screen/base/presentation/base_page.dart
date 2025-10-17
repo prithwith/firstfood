@@ -88,7 +88,7 @@ class _BasePageState extends ConsumerState<BasePage> {
                         unselectedItemColor: AppColors.colorTypography,
                         type: BottomNavigationBarType.fixed,
                         onTap: (index) {
-                          stateNotifier.updateBottomIndex(index);
+                          stateNotifier.updateBottomIndex(index: index);
                         },
                         selectedLabelStyle: AppTextStyle.rubikTextMedium
                             .copyWith(fontSize: 10.sp),
@@ -98,50 +98,45 @@ class _BasePageState extends ConsumerState<BasePage> {
                           BottomNavigationBarItem(
                             icon: Image.asset(
                               '${AppAssets.smallIcons}discover.png',
-                              color:
-                                  state.bottomNavIndex == 0
-                                      ? AppColors.colorPrimary
-                                      : AppColors.colorTypography,
+                              color: state.bottomNavIndex == 0
+                                  ? AppColors.colorPrimary
+                                  : AppColors.colorTypography,
                             ),
                             label: 'Discover',
                           ),
                           BottomNavigationBarItem(
                             icon: Image.asset(
                               '${AppAssets.smallIcons}restaurants.png',
-                              color:
-                                  state.bottomNavIndex == 1
-                                      ? AppColors.colorPrimary
-                                      : AppColors.colorTypography,
+                              color: state.bottomNavIndex == 1
+                                  ? AppColors.colorPrimary
+                                  : AppColors.colorTypography,
                             ),
                             label: 'Restaurants',
                           ),
                           BottomNavigationBarItem(
                             icon: Image.asset(
                               '${AppAssets.smallIcons}search.png',
-                              color:
-                                  state.bottomNavIndex == 2
-                                      ? AppColors.colorPrimary
-                                      : AppColors.colorTypography,
+                              color: state.bottomNavIndex == 2
+                                  ? AppColors.colorPrimary
+                                  : AppColors.colorTypography,
                             ),
                             label: 'Search',
                           ),
                           BottomNavigationBarItem(
                             icon: Image.asset(
                               '${AppAssets.smallIcons}favorite.png',
-                              color:
-                                  state.bottomNavIndex == 3
-                                      ? AppColors.colorPrimary
-                                      : AppColors.colorTypography,
+                              color: state.bottomNavIndex == 3
+                                  ? AppColors.colorPrimary
+                                  : AppColors.colorTypography,
                             ),
                             label: 'Favorite',
                           ),
                           BottomNavigationBarItem(
                             icon: Image.asset(
                               '${AppAssets.smallIcons}profile.png',
-                              color:
-                                  state.bottomNavIndex == 4
-                                      ? AppColors.colorPrimary
-                                      : AppColors.colorTypography,
+                              color: state.bottomNavIndex == 4
+                                  ? AppColors.colorPrimary
+                                  : AppColors.colorTypography,
                             ),
                             label: 'Profile',
                           ),

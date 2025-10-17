@@ -1,7 +1,6 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
@@ -44,13 +43,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          margin:
-              EdgeInsets.symmetric(horizontal: 20)
-                  .copyWith(
-                    top: statusHeight(context),
-                    bottom: navHeight(context),
-                  )
-                  .r,
+          margin: EdgeInsets.symmetric(
+            horizontal: 20,
+          ).copyWith(top: statusHeight(context), bottom: navHeight(context)).r,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -60,25 +55,24 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      onTap:
-                          () => imageSelectionDialog(
-                            context,
-                            onTapCamera: (value) {
-                              baseStateNotifier.updateProfile(
-                                profilePicture: value,
-                              );
-                            },
-                            onTapGellary: (value) {
-                              baseStateNotifier.updateProfile(
-                                profilePicture: value,
-                              );
-                            },
-                            onTapDelete: (value) {
-                              baseStateNotifier.updateProfile(
-                                profilePicture: value,
-                              );
-                            },
-                          ),
+                      onTap: () => imageSelectionDialog(
+                        context,
+                        onTapCamera: (value) {
+                          baseStateNotifier.updateProfile(
+                            profilePicture: value,
+                          );
+                        },
+                        onTapGellary: (value) {
+                          baseStateNotifier.updateProfile(
+                            profilePicture: value,
+                          );
+                        },
+                        onTapDelete: (value) {
+                          baseStateNotifier.updateProfile(
+                            profilePicture: value,
+                          );
+                        },
+                      ),
                       child: ClipOval(
                         child: Image.file(
                           File(baseState.currentUser?.profileImageUrl ?? ""),
@@ -164,6 +158,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
                     if (!context.mounted) return;
                     context.replaceRoute(WelcomeRoute());
+                    baseStateNotifier.updateBottomIndex(index: 0);
                   },
                   icon: Image.asset(
                     '${AppAssets.smallIcons}logout.png',
