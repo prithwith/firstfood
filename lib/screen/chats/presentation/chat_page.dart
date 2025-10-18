@@ -1,3 +1,6 @@
+// ignore_for_file: unused_local_variable
+
+import 'dart:io';
 import 'package:auto_route/annotations.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/shared/providers.dart';
@@ -6,6 +9,7 @@ import 'package:fastfood/screen/chats/shared/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 @RoutePage()
 class ChatPage extends ConsumerStatefulWidget {
@@ -28,7 +32,6 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final stateNotifier = ref.read(chatNotifierProvider.notifier);
       stateNotifier.usersFetchMessage(chatRoomId: widget.chatRoomId);
@@ -53,54 +56,54 @@ class _ChatPageState extends ConsumerState<ChatPage> {
       body: Column(
         children: [
           Expanded(
-            child:
-                state.isChatLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : state.userChatsList.isEmpty
-                    ? const Center(
-                      child: Text("Start your chat with this user"),
-                    )
-                    : ListView.builder(
-                      itemCount: state.userChatsList.length,
-                      reverse: true,
-                      itemBuilder: (context, index) {
-                        final message = state.userChatsList[index];
-                        final bool isSent =
-                            (message.reciverId == widget.reciverId);
+            child: state.isChatLoading
+                ? const Center(child: CircularProgressIndicator())
+                : state.userChatsList.isEmpty
+                ? const Center(child: Text("Start your chat with this user"))
+                : ListView.builder(
+                    itemCount: state.userChatsList.length,
+                    reverse: true,
+                    itemBuilder: (context, index) {
+                      final message = state.userChatsList[index];
 
-                        return Align(
-                          alignment:
-                              isSent
-                                  ? Alignment.centerRight
-                                  : Alignment.centerLeft,
-                          child: Container(
-                            margin:
-                                EdgeInsets.symmetric(
-                                  vertical: 5,
-                                  horizontal: 10,
-                                ).r,
-                            padding: EdgeInsets.all(10).r,
-                            decoration: BoxDecoration(
-                              color:
-                                  isSent
-                                      ? AppColors.colorPrimary
-                                      : AppColors.colorGray,
-                              borderRadius: BorderRadius.circular(10).r,
-                            ),
-                            child: Text(
-                              message.messages ?? '',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.sp,
-                              ),
-                            ),
+                      // Check if the message was sent by the current user
+                      final bool isSent =
+                          message.senderId ==
+                          hive.box.get(AppPreferenceKeys.email);
+
+                      final String? content = message.messages;
+
+                      return Align(
+                        alignment: isSent
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(
+                            vertical: 5,
+                            horizontal: 10,
+                          ).r,
+                          padding: EdgeInsets.all(10).r,
+                          decoration: BoxDecoration(
+                            color: isSent
+                                ? AppColors.colorPrimary
+                                : AppColors.colorGray,
+                            borderRadius: BorderRadius.circular(10).r,
                           ),
-                        );
-                      },
-                    ),
+                          child: _buildMessageContent(
+                            content: content ?? "",
+                            isSent: isSent,
+                            isPlaying: state.isPlaying,
+                            recordPath: state.recordPath,
+                            // playerController: stateNotifier.playerController,
+                            onTapAudio: () async {},
+                          ),
+                        ),
+                      );
+                    },
+                  ),
           ),
           Padding(
-            padding: EdgeInsets.all(10.0).r,
+            padding: EdgeInsets.symmetric(vertical: 10).r,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -114,41 +117,67 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                     ),
                     child: Row(
                       children: [
-                        const Icon(
-                          Icons.emoji_emotions_outlined,
-                          color: Colors.grey,
-                        ),
-                        10.horizontalSpace,
                         Expanded(
                           child: TextField(
                             controller: stateNotifier.messageController,
                             decoration: const InputDecoration(
-                              hintText: "Type Your Message...",
+                              hintText: "Type your message...",
                               hintStyle: TextStyle(color: Colors.grey),
                               border: InputBorder.none,
                             ),
                             style: const TextStyle(color: Colors.white),
                           ),
                         ),
+                        // Gallery Button
                         IconButton(
                           icon: const Icon(
-                            Icons.attach_file,
+                            Icons.photo_library,
                             color: Colors.grey,
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            final picker = ImagePicker();
+                            final XFile? pickedFile = await picker.pickImage(
+                              source: ImageSource.gallery,
+                            );
+
+                            if (pickedFile != null) {
+                              await stateNotifier.sendMessage(
+                                chatRoomId: widget.chatRoomId,
+                                message: pickedFile.path,
+                                reciverId: widget.reciverId,
+                                senderId: hive.box.get(AppPreferenceKeys.email),
+                              );
+                            }
+                          },
                         ),
+                        // Camera Button
                         IconButton(
                           icon: const Icon(
                             Icons.camera_alt,
                             color: Colors.grey,
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            final picker = ImagePicker();
+                            final XFile? pickedFile = await picker.pickImage(
+                              source: ImageSource.camera,
+                            );
+
+                            if (pickedFile != null) {
+                              await stateNotifier.sendMessage(
+                                chatRoomId: widget.chatRoomId,
+                                message: pickedFile.path,
+                                reciverId: widget.reciverId,
+                                senderId: hive.box.get(AppPreferenceKeys.email),
+                              );
+                            }
+                          },
                         ),
                       ],
                     ),
                   ),
                 ),
                 10.horizontalSpace,
+                // Send Button
                 FloatingActionButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
@@ -156,8 +185,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                   backgroundColor: AppColors.colorPrimaryDeep,
                   child: const Icon(Icons.send, color: Colors.white),
                   onPressed: () async {
-                    String message =
-                        stateNotifier.messageController.text.trim();
+                    final message = stateNotifier.messageController.text.trim();
 
                     if (message.isNotEmpty) {
                       await stateNotifier.sendMessage(
@@ -176,6 +204,43 @@ class _ChatPageState extends ConsumerState<ChatPage> {
           ),
         ],
       ),
+    );
+  }
+
+  // Refactored message content builder to be a pure widget function
+  Widget _buildMessageContent({
+    required String content,
+    required bool isSent,
+    required String recordPath,
+    required bool isPlaying,
+    required Function() onTapAudio,
+  }) {
+    final isThisMessageActive = recordPath == content;
+    final isThisMessagePlaying = isThisMessageActive && isPlaying;
+
+    final file = File(content);
+
+    // --- Image Message ---
+    if (file.existsSync() &&
+        (content.endsWith(".jpg") ||
+            content.endsWith(".jpeg") ||
+            content.endsWith(".png"))) {
+      return Image.file(
+        file,
+        width: 180,
+        height: 180,
+        fit: BoxFit.cover,
+        errorBuilder: (_, __, ___) => Text(
+          "Image: $content",
+          style: TextStyle(color: Colors.white, fontSize: 16.sp),
+        ),
+      );
+    }
+
+    // --- Text Message ---
+    return Text(
+      content,
+      style: TextStyle(color: Colors.white, fontSize: 16.sp),
     );
   }
 }
