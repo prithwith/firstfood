@@ -1,10 +1,9 @@
-// ignore_for_file: unused_local_variable
-
-import 'dart:io';
 import 'package:auto_route/annotations.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/shared/providers.dart';
 import 'package:fastfood/core/style/app_colors.dart';
+import 'package:fastfood/core/style/app_textstyle.dart';
+import 'package:fastfood/screen/chats/presentation/widget/message_content_card.dart';
 import 'package:fastfood/screen/chats/shared/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,6 +34,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final stateNotifier = ref.read(chatNotifierProvider.notifier);
       stateNotifier.usersFetchMessage(chatRoomId: widget.chatRoomId);
+      stateNotifier.initializeController();
     });
   }
 
@@ -66,7 +66,6 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                     itemBuilder: (context, index) {
                       final message = state.userChatsList[index];
 
-                      // Check if the message was sent by the current user
                       final bool isSent =
                           message.senderId ==
                           hive.box.get(AppPreferenceKeys.email);
@@ -89,13 +88,17 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                                 : AppColors.colorGray,
                             borderRadius: BorderRadius.circular(10).r,
                           ),
-                          child: _buildMessageContent(
+                          child: MessageContentCard(
                             content: content ?? "",
                             isSent: isSent,
                             isPlaying: state.isPlaying,
                             recordPath: state.recordPath,
-                            // playerController: stateNotifier.playerController,
-                            onTapAudio: () async {},
+                            playerController: stateNotifier.playerController,
+                            onTapAudio: () async {
+                              await stateNotifier.togglePlayback(
+                                path: "$content",
+                              );
+                            },
                           ),
                         ),
                       );
@@ -117,86 +120,126 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                     ),
                     child: Row(
                       children: [
+                        IconButton(
+                          onPressed: () async {
+                            await stateNotifier.startRecording();
+                          },
+                          icon: Icon(
+                            state.isRecording ? Icons.mic : Icons.mic_off_sharp,
+                            color: state.isRecording
+                                ? AppColors.colorPrimary
+                                : AppColors.colorWhite,
+                          ),
+                        ),
+                        10.horizontalSpace,
                         Expanded(
-                          child: TextField(
-                            controller: stateNotifier.messageController,
-                            decoration: const InputDecoration(
-                              hintText: "Type your message...",
-                              hintStyle: TextStyle(color: Colors.grey),
-                              border: InputBorder.none,
-                            ),
-                            style: const TextStyle(color: Colors.white),
-                          ),
+                          child: state.isRecording
+                              ? Text(
+                                  "Audio is recording .....",
+                                  style: AppTextStyle.rubikTextRegular.copyWith(
+                                    color: AppColors.colorPrimary,
+                                  ),
+                                )
+                              : TextField(
+                                  controller: stateNotifier.messageController,
+                                  decoration: const InputDecoration(
+                                    hintText: "Type your message...",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none,
+                                  ),
+                                  style: const TextStyle(color: Colors.white),
+                                ),
                         ),
-                        // Gallery Button
-                        IconButton(
-                          icon: const Icon(
-                            Icons.photo_library,
-                            color: Colors.grey,
-                          ),
-                          onPressed: () async {
-                            final picker = ImagePicker();
-                            final XFile? pickedFile = await picker.pickImage(
-                              source: ImageSource.gallery,
-                            );
+                        state.isRecording
+                            ? Text("")
+                            : IconButton(
+                                icon: const Icon(
+                                  Icons.photo_library,
+                                  color: Colors.grey,
+                                ),
+                                onPressed: () async {
+                                  final picker = ImagePicker();
+                                  final XFile? pickedFile = await picker
+                                      .pickImage(source: ImageSource.gallery);
 
-                            if (pickedFile != null) {
-                              await stateNotifier.sendMessage(
-                                chatRoomId: widget.chatRoomId,
-                                message: pickedFile.path,
-                                reciverId: widget.reciverId,
-                                senderId: hive.box.get(AppPreferenceKeys.email),
-                              );
-                            }
-                          },
-                        ),
-                        // Camera Button
-                        IconButton(
-                          icon: const Icon(
-                            Icons.camera_alt,
-                            color: Colors.grey,
-                          ),
-                          onPressed: () async {
-                            final picker = ImagePicker();
-                            final XFile? pickedFile = await picker.pickImage(
-                              source: ImageSource.camera,
-                            );
+                                  if (pickedFile != null) {
+                                    await stateNotifier.sendMessage(
+                                      chatRoomId: widget.chatRoomId,
+                                      message: pickedFile.path,
+                                      reciverId: widget.reciverId,
+                                      senderId: hive.box.get(
+                                        AppPreferenceKeys.email,
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
+                        state.isRecording
+                            ? Text("")
+                            : IconButton(
+                                icon: const Icon(
+                                  Icons.camera_alt,
+                                  color: Colors.grey,
+                                ),
+                                onPressed: () async {
+                                  final picker = ImagePicker();
+                                  final XFile? pickedFile = await picker
+                                      .pickImage(source: ImageSource.camera);
 
-                            if (pickedFile != null) {
-                              await stateNotifier.sendMessage(
-                                chatRoomId: widget.chatRoomId,
-                                message: pickedFile.path,
-                                reciverId: widget.reciverId,
-                                senderId: hive.box.get(AppPreferenceKeys.email),
-                              );
-                            }
-                          },
-                        ),
+                                  if (pickedFile != null) {
+                                    await stateNotifier.sendMessage(
+                                      chatRoomId: widget.chatRoomId,
+                                      message: pickedFile.path,
+                                      reciverId: widget.reciverId,
+                                      senderId: hive.box.get(
+                                        AppPreferenceKeys.email,
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
                       ],
                     ),
                   ),
                 ),
                 10.horizontalSpace,
-                // Send Button
                 FloatingActionButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),
                   backgroundColor: AppColors.colorPrimaryDeep,
-                  child: const Icon(Icons.send, color: Colors.white),
-                  onPressed: () async {
-                    final message = stateNotifier.messageController.text.trim();
+                  onPressed: state.isRecording
+                      ? () async {
+                          await stateNotifier.stopRecording();
 
-                    if (message.isNotEmpty) {
-                      await stateNotifier.sendMessage(
-                        chatRoomId: widget.chatRoomId,
-                        message: message,
-                        reciverId: widget.reciverId,
-                        senderId: hive.box.get(AppPreferenceKeys.email),
-                      );
-                      stateNotifier.messageController.clear();
-                    }
-                  },
+                          if (state.recordPath.isNotEmpty) {
+                            await stateNotifier.sendMessage(
+                              chatRoomId: widget.chatRoomId,
+                              message: state.recordPath,
+                              reciverId: widget.reciverId,
+                              senderId: hive.box.get(AppPreferenceKeys.email),
+                            );
+
+                            stateNotifier.updateRecordPath("");
+                          }
+                        }
+                      : () async {
+                          final message = stateNotifier.messageController.text
+                              .trim();
+
+                          if (message.isNotEmpty) {
+                            await stateNotifier.sendMessage(
+                              chatRoomId: widget.chatRoomId,
+                              message: message,
+                              reciverId: widget.reciverId,
+                              senderId: hive.box.get(AppPreferenceKeys.email),
+                            );
+                            stateNotifier.messageController.clear();
+                          }
+                        },
+                  child: state.isRecording
+                      ? Icon(Icons.stop, color: Colors.white)
+                      : Icon(Icons.send, color: Colors.white),
                 ),
                 10.horizontalSpace,
               ],
@@ -204,43 +247,6 @@ class _ChatPageState extends ConsumerState<ChatPage> {
           ),
         ],
       ),
-    );
-  }
-
-  // Refactored message content builder to be a pure widget function
-  Widget _buildMessageContent({
-    required String content,
-    required bool isSent,
-    required String recordPath,
-    required bool isPlaying,
-    required Function() onTapAudio,
-  }) {
-    final isThisMessageActive = recordPath == content;
-    final isThisMessagePlaying = isThisMessageActive && isPlaying;
-
-    final file = File(content);
-
-    // --- Image Message ---
-    if (file.existsSync() &&
-        (content.endsWith(".jpg") ||
-            content.endsWith(".jpeg") ||
-            content.endsWith(".png"))) {
-      return Image.file(
-        file,
-        width: 180,
-        height: 180,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => Text(
-          "Image: $content",
-          style: TextStyle(color: Colors.white, fontSize: 16.sp),
-        ),
-      );
-    }
-
-    // --- Text Message ---
-    return Text(
-      content,
-      style: TextStyle(color: Colors.white, fontSize: 16.sp),
     );
   }
 }

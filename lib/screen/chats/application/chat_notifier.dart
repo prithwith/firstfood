@@ -1,15 +1,18 @@
 // ignore_for_file: unused_field
 
 import 'dart:async';
+import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/model/chat_model.dart';
 import 'package:fastfood/core/model/chat_users_model.dart';
+import 'package:fastfood/core/utils/toast.dart';
 import 'package:fastfood/screen/chats/application/chat_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ChatNotifier extends StateNotifier<ChatState> {
   ChatNotifier(this._dio, this._hiveDataBase) : super(const ChatState());
@@ -18,6 +21,9 @@ class ChatNotifier extends StateNotifier<ChatState> {
   final HiveDatabase _hiveDataBase;
 
   final TextEditingController messageController = TextEditingController();
+
+  late RecorderController recorderController;
+  late PlayerController playerController;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -95,12 +101,119 @@ class ChatNotifier extends StateNotifier<ChatState> {
         .add(newMessage);
   }
 
+  ///.......................................................
+  /// Audio Records and listen .............................
+  ///.......................................................
+
+  void initializeController() {
+    recorderController = RecorderController()
+      ..androidEncoder = AndroidEncoder.aac
+      ..androidOutputFormat = AndroidOutputFormat.mpeg4
+      ..iosEncoder = IosEncoder.kAudioFormatMPEG4AAC
+      ..sampleRate = 44100;
+
+    playerController = PlayerController();
+
+    playerController.onPlayerStateChanged.listen((states) {
+      if (states == PlayerState.stopped || states == PlayerState.paused) {
+        state = state.copyWith(isPlaying: false);
+      } else if (states == PlayerState.playing) {
+        state = state.copyWith(isPlaying: true);
+      }
+    });
+    playerController.onCompletion.listen((_) {
+      state = state.copyWith(isPlaying: false, recordPath: '');
+    });
+  }
+
+  void updateRecordPath(String path) {
+    state = state.copyWith(recordPath: path);
+  }
+
+  Future<String> _getFilePath() async {
+    final dir = await getApplicationDocumentsDirectory();
+    return '${dir.path}/rec_${DateTime.now().millisecondsSinceEpoch}.m4a';
+  }
+
+  Future<void> startRecording() async {
+    try {
+      final finalPath = await _getFilePath();
+      await recorderController.record(path: finalPath);
+      state = state.copyWith(isRecording: true, recordPath: finalPath);
+    } catch (e) {
+      showToastMessage("Unable to Start Recording $e");
+    }
+  }
+
+  Future<String?> stopRecording() async {
+    try {
+      await recorderController.stop();
+      final recordedFilePath = state.recordPath;
+      state = state.copyWith(isRecording: false);
+
+      return recordedFilePath.isNotEmpty ? recordedFilePath : null;
+    } catch (e) {
+      state = state.copyWith(isRecording: false);
+      return null;
+    }
+  }
+
+  // Future<void> playRecording({required String path}) async {
+  //   if (state.recordPath == path) {
+  //     await playerController.stopPlayer();
+  //     await playerController.seekTo(Duration.microsecondsPerSecond);
+  //     await playerController.startPlayer(forceRefresh: true);
+  //     return;
+  //   }
+  //   if (state.isPlaying) {
+  //     await playerController.stopPlayer();
+  //   }
+  //   updateRecordPath(path);
+  //   try {
+  //     await playerController.preparePlayer(
+  //       path: path,
+  //       shouldExtractWaveform: true,
+  //       volume: 1.0,
+  //     );
+  //   } catch (e) {
+  //     updateRecordPath('');
+  //     return;
+  //   }
+  //   await playerController.startPlayer(forceRefresh: true);
+  // }
+
+  Future<void> togglePlayback({required String path}) async {
+    if (state.isPlaying && state.recordPath == path) {
+      await playerController.pausePlayer();
+      updateRecordPath('');
+      return;
+    }
+    if (state.isPlaying) {
+      await playerController.stopPlayer();
+    }
+    updateRecordPath(path);
+    try {
+      await playerController.preparePlayer(
+        path: path,
+        shouldExtractWaveform: true,
+        volume: 1.0,
+      );
+    } catch (e) {
+      updateRecordPath('');
+      return;
+    }
+    await playerController.startPlayer(forceRefresh: true);
+  }
+
   @override
   void dispose() {
     _usersSub?.cancel();
     messageController.dispose();
 
     _usersChats?.cancel();
+
+    recorderController.dispose();
+    playerController.dispose();
 
     super.dispose();
   }
