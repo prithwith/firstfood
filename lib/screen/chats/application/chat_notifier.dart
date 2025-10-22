@@ -158,34 +158,11 @@ class ChatNotifier extends StateNotifier<ChatState> {
     }
   }
 
-  // Future<void> playRecording({required String path}) async {
-  //   if (state.recordPath == path) {
-  //     await playerController.stopPlayer();
-  //     await playerController.seekTo(Duration.microsecondsPerSecond);
-  //     await playerController.startPlayer(forceRefresh: true);
-  //     return;
-  //   }
-  //   if (state.isPlaying) {
-  //     await playerController.stopPlayer();
-  //   }
-  //   updateRecordPath(path);
-  //   try {
-  //     await playerController.preparePlayer(
-  //       path: path,
-  //       shouldExtractWaveform: true,
-  //       volume: 1.0,
-  //     );
-  //   } catch (e) {
-  //     updateRecordPath('');
-  //     return;
-  //   }
-  //   await playerController.startPlayer(forceRefresh: true);
-  // }
-
-  Future<void> togglePlayback({required String path}) async {
-    if (state.isPlaying && state.recordPath == path) {
-      await playerController.pausePlayer();
-      updateRecordPath('');
+  Future<void> playRecording({required String path}) async {
+    if (state.recordPath == path) {
+      await playerController.stopPlayer();
+      await playerController.seekTo(Duration.microsecondsPerSecond);
+      await playerController.startPlayer(forceRefresh: true);
       return;
     }
     if (state.isPlaying) {
@@ -204,6 +181,29 @@ class ChatNotifier extends StateNotifier<ChatState> {
     }
     await playerController.startPlayer(forceRefresh: true);
   }
+
+  // Future<void> togglePlayback({required String path}) async {
+  //   if (state.isPlaying && state.recordPath == path) {
+  //     await playerController.pausePlayer();
+  //     updateRecordPath('');
+  //     return;
+  //   }
+  //   if (state.isPlaying) {
+  //     await playerController.stopPlayer();
+  //   }
+  //   updateRecordPath(path);
+  //   try {
+  //     await playerController.preparePlayer(
+  //       path: path,
+  //       shouldExtractWaveform: true,
+  //       volume: 1.0,
+  //     );
+  //   } catch (e) {
+  //     updateRecordPath('');
+  //     return;
+  //   }
+  //   await playerController.startPlayer(forceRefresh: true);
+  // }
 
   @override
   void dispose() {

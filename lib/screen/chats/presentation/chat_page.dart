@@ -95,7 +95,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                             recordPath: state.recordPath,
                             playerController: stateNotifier.playerController,
                             onTapAudio: () async {
-                              await stateNotifier.togglePlayback(
+                              await stateNotifier.playRecording(
                                 path: "$content",
                               );
                             },
