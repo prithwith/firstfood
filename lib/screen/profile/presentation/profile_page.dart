@@ -6,7 +6,7 @@ import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/shared/providers.dart';
 import 'package:fastfood/core/style/app_colors.dart';
-import 'package:fastfood/core/style/app_assets.dart';
+import 'package:fastfood/core/constants/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/common_utils.dart';
 import 'package:fastfood/screen/auth/shared/provider.dart';
@@ -141,6 +141,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 imageLabel: 'chat.png',
                 onTap: () => context.pushRoute(UsersRoute()),
               ),
+              SettingsTile(
+                label: 'Reminder',
+                imageLabel: 'wallet.png',
+                onTap: () => context.pushRoute(WalletRoute()),
+              ),
               30.verticalSpace,
               Padding(
                 padding: EdgeInsets.only(left: 20).r,
@@ -173,6 +178,23 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 80, right: 10).r,
+        child: FloatingActionButton(
+          onPressed: () => context.pushRoute(GeminiRoute()),
+          backgroundColor: AppColors.colorPrimary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          child: Text(
+            "AI",
+            style: AppTextStyle.rubikTextSemibold.copyWith(
+              fontSize: 20,
+              color: AppColors.colorWhite,
+            ),
           ),
         ),
       ),

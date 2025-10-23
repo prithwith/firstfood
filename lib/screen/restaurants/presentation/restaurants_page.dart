@@ -3,7 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
-import 'package:fastfood/core/style/app_assets.dart';
+import 'package:fastfood/core/constants/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/toast.dart';
 import 'package:fastfood/screen/base/shared/provider.dart';
@@ -180,36 +180,35 @@ class _RestaurantsPageState extends ConsumerState<RestaurantsPage> {
               state.resturantsList.isEmpty
                   ? CircularProgressIndicator()
                   : ListView(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: List.generate(state.resturantsList.length, (
-                      index,
-                    ) {
-                      final item = state.resturantsList[index];
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      children: List.generate(state.resturantsList.length, (
+                        index,
+                      ) {
+                        final item = state.resturantsList[index];
 
-                      return RestaurantsPageRestaurantCard(
-                        image: item.image ?? "",
-                        title: item.name ?? "",
-                        subtitle: item.subtitle ?? "",
-                        deliveryCharge: item.deliveryCharge ?? "",
-                        price: item.price ?? "",
-                        time: item.time ?? "",
-                        rating: item.rating ?? "",
-                        isLiked: favoriteState.favresturantsIdList.contains(
-                          item.id,
-                        ),
-                        onTapFavorite: () {
-                          favoriteStateNotifier.updateFavoriteResturants(
-                            itemId: item.id ?? "",
-                          );
-                        },
-                        onTap:
-                            () => context.pushRoute(
-                              RestaurantDetalisRoute(items: item),
-                            ),
-                      );
-                    }),
-                  ),
+                        return RestaurantsPageRestaurantCard(
+                          image: item.image ?? "",
+                          title: item.name ?? "",
+                          subtitle: item.subtitle ?? "",
+                          deliveryCharge: item.deliveryCharge ?? "",
+                          price: item.price ?? "",
+                          time: item.time ?? "",
+                          rating: item.rating ?? "",
+                          isLiked: favoriteState.favresturantsIdList.contains(
+                            item.id,
+                          ),
+                          onTapFavorite: () {
+                            favoriteStateNotifier.updateFavoriteResturants(
+                              itemId: item.id ?? "",
+                            );
+                          },
+                          onTap: () => context.pushRoute(
+                            RestaurantDetalisRoute(items: item),
+                          ),
+                        );
+                      }),
+                    ),
             ],
           ),
         ),

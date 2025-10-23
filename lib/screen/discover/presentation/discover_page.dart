@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
-import 'package:fastfood/core/style/app_assets.dart';
+import 'package:fastfood/core/constants/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/core/utils/toast.dart';
 import 'package:fastfood/screen/base/shared/provider.dart';
@@ -113,46 +113,43 @@ class _DiscoverPageState extends ConsumerState<DiscoverPage> {
                   stateNotifier.setCurrentIndex(index);
                 },
               ),
-              items:
-                  state.sliderList.map((imagePath) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: GestureDetector(
-                        onTap: () {
-                          final item = baseState.foodItemsList.firstWhere(
-                            (items) => items.id == imagePath.id,
-                          );
+              items: state.sliderList.map((imagePath) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: GestureDetector(
+                    onTap: () {
+                      final item = baseState.foodItemsList.firstWhere(
+                        (items) => items.id == imagePath.id,
+                      );
 
-                          context.pushRoute(FoodDetailsRoute(iems: item));
-                        },
-                        child: Image.asset(
-                          imagePath.image ?? "",
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
-                    );
-                  }).toList(),
+                      context.pushRoute(FoodDetailsRoute(iems: item));
+                    },
+                    child: Image.asset(
+                      imagePath.image ?? "",
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                  ),
+                );
+              }).toList(),
             ),
             10.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children:
-                  state.sliderList.asMap().entries.map((entry) {
-                    final index = entry.key;
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 4).r,
-                      height: 8,
-                      width: state.currentIndex == index ? 20 : 8,
-                      decoration: BoxDecoration(
-                        color:
-                            state.currentIndex == index
-                                ? Colors.black
-                                : Colors.black26,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                    );
-                  }).toList(),
+              children: state.sliderList.asMap().entries.map((entry) {
+                final index = entry.key;
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 4).r,
+                  height: 8,
+                  width: state.currentIndex == index ? 20 : 8,
+                  decoration: BoxDecoration(
+                    color: state.currentIndex == index
+                        ? Colors.black
+                        : Colors.black26,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                );
+              }).toList(),
             ),
             10.verticalSpace,
             Row(

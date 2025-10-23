@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/shared/providers.dart';
-import 'package:fastfood/core/style/app_assets.dart';
+import 'package:fastfood/core/constants/app_assets.dart';
 import 'package:fastfood/core/style/app_colors.dart';
 import 'package:fastfood/screen/splash/application/splash_notifier.dart';
 import 'package:flutter/material.dart';

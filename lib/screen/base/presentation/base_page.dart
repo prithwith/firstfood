@@ -12,7 +12,7 @@ import 'package:fastfood/screen/search/presentation/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fastfood/core/style/app_assets.dart';
+import 'package:fastfood/core/constants/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 
 @RoutePage()

@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/model/category_model.dart';
 import 'package:fastfood/core/model/resturant_model.dart';
-import 'package:fastfood/core/style/app_assets.dart';
+import 'package:fastfood/core/constants/app_assets.dart';
 import 'package:fastfood/screen/restaurants/application/restaurants_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -3,7 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fastfood/core/router/app_router.gr.dart';
 import 'package:fastfood/core/style/app_colors.dart';
-import 'package:fastfood/core/style/app_assets.dart';
+import 'package:fastfood/core/constants/app_assets.dart';
 import 'package:fastfood/core/style/app_textstyle.dart';
 import 'package:fastfood/screen/auth/shared/provider.dart';
 import 'package:fastfood/screen/welcome/presentation/widget/socalauth_buttons.dart';
@@ -110,10 +110,9 @@ class _WelcomePageState extends ConsumerState<WelcomePage> {
                 ),
                 10.verticalSpace,
                 SocalAuthButtons(
-                  onPressed:
-                      () => stateNotifier.signInWithGoogle(
-                        onTap: () => context.pushRoute(BaseRoute()),
-                      ),
+                  onPressed: () => stateNotifier.signInWithGoogle(
+                    onTap: () => context.pushRoute(BaseRoute()),
+                  ),
                   imageTextlabel: "google_logo.png",
                   textlabel: "Continue With Google",
                   loading: state.isGoogleLoading,

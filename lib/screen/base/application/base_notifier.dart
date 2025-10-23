@@ -5,7 +5,7 @@ import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/model/addonitems_model.dart';
 import 'package:fastfood/core/model/fooditems_model.dart';
 import 'package:fastfood/core/model/user_model.dart';
-import 'package:fastfood/core/style/app_assets.dart';
+import 'package:fastfood/core/constants/app_assets.dart';
 import 'package:fastfood/core/utils/toast.dart';
 import 'package:fastfood/screen/base/application/base_state.dart';
 import 'package:flutter/material.dart';
