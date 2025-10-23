@@ -2,11 +2,73 @@
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails(
+      'fcm_default_channel',
+      'General Notifications',
+      channelDescription: 'Used for general push notifications',
+      importance: Importance.max,
+      priority: Priority.high,
+      showWhen: false,
+    );
+
+const NotificationDetails platformChannelSpecifics = NotificationDetails(
+  android: androidPlatformChannelSpecifics,
+);
 
 class PushNotificationService {
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
+  Future<void> _initializeLocalNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/launcher_icon');
+
+    const DarwinInitializationSettings initializationSettingsDarwin =
+        DarwinInitializationSettings(
+          requestAlertPermission: true,
+          requestBadgePermission: true,
+          requestSoundPermission: true,
+        );
+
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
+          android: initializationSettingsAndroid,
+          iOS: initializationSettingsDarwin,
+          macOS: initializationSettingsDarwin,
+        );
+
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse:
+          (NotificationResponse notificationResponse) async {
+            print(
+              "Local Notification Tapped! Payload: ${notificationResponse.payload}",
+            );
+          },
+    );
+  }
+
+  Future<void> _showLocalNotification(RemoteMessage message) async {
+    final notification = message.notification;
+    if (notification != null) {
+      await flutterLocalNotificationsPlugin.show(
+        notification.hashCode,
+        notification.title,
+        notification.body,
+        platformChannelSpecifics,
+        payload: message.data['some_key'],
+      );
+    }
+  }
+
   Future<void> initNotifications() async {
+    await _initializeLocalNotifications();
+
     NotificationSettings settings = await _messaging.requestPermission(
       alert: true,
       badge: true,
@@ -20,13 +82,12 @@ class PushNotificationService {
     String? token = await _messaging.getToken();
     print("FCM Token: $token");
 
-    // Foreground messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print("Message received in foreground: ${message.notification?.title}");
-      // You can show a local notification here
+
+      _showLocalNotification(message);
     });
 
-    // When app opened from terminated state
     FirebaseMessaging.instance.getInitialMessage().then((message) {
       if (message != null) {
         print(
@@ -35,7 +96,6 @@ class PushNotificationService {
       }
     });
 
-    // When app opened from background
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print("App opened from background: ${message.notification?.title}");
     });
