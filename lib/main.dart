@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:fastfood/core/constants/app_texts.dart';
 import 'package:fastfood/core/constants/app_urls.dart';
 import 'package:fastfood/core/router/app_router.dart';
 import 'package:fastfood/core/shared/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
@@ -18,6 +20,7 @@ void main() async {
 
   /// Firebase intrigation for social authantication, push notification
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Gemini.init(apiKey: AppTexts.apiKey);
 
   /// hide the keyboadrd while restart the app
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
