@@ -141,11 +141,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 imageLabel: 'chat.png',
                 onTap: () => context.pushRoute(UsersRoute()),
               ),
-              SettingsTile(
-                label: 'Reminder',
-                imageLabel: 'wallet.png',
-                onTap: () => context.pushRoute(WalletRoute()),
-              ),
+              // SettingsTile(
+              //   label: 'Reminder',
+              //   imageLabel: 'wallet.png',
+              //   onTap: () => context.pushRoute(WalletRoute()),
+              // ),
               30.verticalSpace,
               Padding(
                 padding: EdgeInsets.only(left: 20).r,

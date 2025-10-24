@@ -39,7 +39,6 @@ class PushNotificationService {
         InitializationSettings(
           android: initializationSettingsAndroid,
           iOS: initializationSettingsDarwin,
-          macOS: initializationSettingsDarwin,
         );
 
     await flutterLocalNotificationsPlugin.initialize(
