@@ -7,16 +7,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MessageContentCard extends StatelessWidget {
   final String content;
   final bool isSent;
-  final String recordPath;
   final bool isPlaying;
-  final Function() onTapAudio;
+  final VoidCallback onTapAudio;
   final PlayerController playerController;
 
   const MessageContentCard({
     super.key,
     required this.content,
     required this.isSent,
-    required this.recordPath,
     required this.isPlaying,
     required this.onTapAudio,
     required this.playerController,
@@ -24,30 +22,30 @@ class MessageContentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isThisMessageActive = recordPath == content;
-    final isThisMessagePlaying = isThisMessageActive && isPlaying;
+    final isAudio = content.endsWith('.m4a') || content.endsWith('.aac');
+    final isImage =
+        content.endsWith('.jpg') ||
+        content.endsWith('.jpeg') ||
+        content.endsWith('.png');
 
-    if (content.endsWith(".m4a") || content.endsWith(".aac")) {
+    if (isAudio) {
       return GestureDetector(
         onTap: onTapAudio,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsets.only(right: 5.0.r),
+              padding: EdgeInsets.only(right: 5.r),
               child: Icon(
-                isThisMessagePlaying
-                    ? Icons.pause_circle_filled
-                    : Icons.play_circle_fill,
+                isPlaying ? Icons.pause_circle_filled : Icons.play_circle_fill,
                 color: isSent ? Colors.white : AppColors.colorPrimaryDeep,
-                size: 30.r,
+                size: 32.r,
               ),
             ),
             SizedBox(
               width: 150.r,
-              height: 30.0.r,
               child: AudioFileWaveforms(
-                size: Size(150.r, 30.0.r),
+                size: Size(double.infinity, 30.r),
                 playerController: playerController,
                 waveformType: WaveformType.fitWidth,
                 playerWaveStyle: PlayerWaveStyle(
@@ -64,20 +62,25 @@ class MessageContentCard extends StatelessWidget {
       );
     }
 
-    if ((content.endsWith(".jpg") ||
-        content.endsWith(".jpeg") ||
-        content.endsWith(".png"))) {
-      return Image.file(
-        File(content),
-        width: 180,
-        height: 180,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) {
-          return Text(
-            "Image was deleted from server",
-            style: TextStyle(color: AppColors.colorWhite, fontSize: 16.sp),
-          );
-        },
+    if (isImage) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(8.r),
+        child: Image.file(
+          File(content),
+          width: 180.r,
+          height: 180.r,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) => Container(
+            width: 180.r,
+            height: 180.r,
+            color: Colors.grey[700],
+            alignment: Alignment.center,
+            child: Text(
+              'Image not found',
+              style: TextStyle(color: AppColors.colorWhite, fontSize: 16.sp),
+            ),
+          ),
+        ),
       );
     }
 

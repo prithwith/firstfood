@@ -16,11 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GeminiState {
-// @Default([]) List<TextaiModel> textChat,
-  List<dynamic> get textChat => throw _privateConstructorUsedError;
-  bool get isTextloading =>
-      throw _privateConstructorUsedError; // @Default([]) List<TextimageaiModel> textAndImageChat,
-  List<dynamic> get textAndImageChat => throw _privateConstructorUsedError;
+  List<TextaiModel> get textChat =>
+      throw _privateConstructorUsedError; // @Default([]) List textChat,
+  bool get isTextloading => throw _privateConstructorUsedError;
+  List<TextimageaiModel> get textAndImageChat =>
+      throw _privateConstructorUsedError; // @Default([]) List textAndImageChat,
   bool get isTextWithImageloading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,9 +35,9 @@ abstract class $GeminiStateCopyWith<$Res> {
       _$GeminiStateCopyWithImpl<$Res, GeminiState>;
   @useResult
   $Res call(
-      {List<dynamic> textChat,
+      {List<TextaiModel> textChat,
       bool isTextloading,
-      List<dynamic> textAndImageChat,
+      List<TextimageaiModel> textAndImageChat,
       bool isTextWithImageloading});
 }
 
@@ -63,7 +63,7 @@ class _$GeminiStateCopyWithImpl<$Res, $Val extends GeminiState>
       textChat: null == textChat
           ? _value.textChat
           : textChat // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<TextaiModel>,
       isTextloading: null == isTextloading
           ? _value.isTextloading
           : isTextloading // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,7 @@ class _$GeminiStateCopyWithImpl<$Res, $Val extends GeminiState>
       textAndImageChat: null == textAndImageChat
           ? _value.textAndImageChat
           : textAndImageChat // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<TextimageaiModel>,
       isTextWithImageloading: null == isTextWithImageloading
           ? _value.isTextWithImageloading
           : isTextWithImageloading // ignore: cast_nullable_to_non_nullable
@@ -89,9 +89,9 @@ abstract class _$$GeminiStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<dynamic> textChat,
+      {List<TextaiModel> textChat,
       bool isTextloading,
-      List<dynamic> textAndImageChat,
+      List<TextimageaiModel> textAndImageChat,
       bool isTextWithImageloading});
 }
 
@@ -115,7 +115,7 @@ class __$$GeminiStateImplCopyWithImpl<$Res>
       textChat: null == textChat
           ? _value._textChat
           : textChat // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<TextaiModel>,
       isTextloading: null == isTextloading
           ? _value.isTextloading
           : isTextloading // ignore: cast_nullable_to_non_nullable
@@ -123,7 +123,7 @@ class __$$GeminiStateImplCopyWithImpl<$Res>
       textAndImageChat: null == textAndImageChat
           ? _value._textAndImageChat
           : textAndImageChat // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<TextimageaiModel>,
       isTextWithImageloading: null == isTextWithImageloading
           ? _value.isTextWithImageloading
           : isTextWithImageloading // ignore: cast_nullable_to_non_nullable
@@ -136,40 +136,38 @@ class __$$GeminiStateImplCopyWithImpl<$Res>
 
 class _$GeminiStateImpl extends _GeminiState {
   const _$GeminiStateImpl(
-      {final List<dynamic> textChat = const [],
+      {final List<TextaiModel> textChat = const [],
       this.isTextloading = false,
-      final List<dynamic> textAndImageChat = const [],
+      final List<TextimageaiModel> textAndImageChat = const [],
       this.isTextWithImageloading = false})
       : _textChat = textChat,
         _textAndImageChat = textAndImageChat,
         super._();
 
-// @Default([]) List<TextaiModel> textChat,
-  final List<dynamic> _textChat;
-// @Default([]) List<TextaiModel> textChat,
+  final List<TextaiModel> _textChat;
   @override
   @JsonKey()
-  List<dynamic> get textChat {
+  List<TextaiModel> get textChat {
     if (_textChat is EqualUnmodifiableListView) return _textChat;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_textChat);
   }
 
+// @Default([]) List textChat,
   @override
   @JsonKey()
   final bool isTextloading;
-// @Default([]) List<TextimageaiModel> textAndImageChat,
-  final List<dynamic> _textAndImageChat;
-// @Default([]) List<TextimageaiModel> textAndImageChat,
+  final List<TextimageaiModel> _textAndImageChat;
   @override
   @JsonKey()
-  List<dynamic> get textAndImageChat {
+  List<TextimageaiModel> get textAndImageChat {
     if (_textAndImageChat is EqualUnmodifiableListView)
       return _textAndImageChat;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_textAndImageChat);
   }
 
+// @Default([]) List textAndImageChat,
   @override
   @JsonKey()
   final bool isTextWithImageloading;
@@ -210,19 +208,19 @@ class _$GeminiStateImpl extends _GeminiState {
 
 abstract class _GeminiState extends GeminiState {
   const factory _GeminiState(
-      {final List<dynamic> textChat,
+      {final List<TextaiModel> textChat,
       final bool isTextloading,
-      final List<dynamic> textAndImageChat,
+      final List<TextimageaiModel> textAndImageChat,
       final bool isTextWithImageloading}) = _$GeminiStateImpl;
   const _GeminiState._() : super._();
 
-  @override // @Default([]) List<TextaiModel> textChat,
-  List<dynamic> get textChat;
   @override
+  List<TextaiModel> get textChat;
+  @override // @Default([]) List textChat,
   bool get isTextloading;
-  @override // @Default([]) List<TextimageaiModel> textAndImageChat,
-  List<dynamic> get textAndImageChat;
   @override
+  List<TextimageaiModel> get textAndImageChat;
+  @override // @Default([]) List textAndImageChat,
   bool get isTextWithImageloading;
   @override
   @JsonKey(ignore: true)

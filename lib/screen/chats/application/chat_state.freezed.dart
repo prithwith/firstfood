@@ -23,6 +23,7 @@ mixin _$ChatState {
   String get recordPath => throw _privateConstructorUsedError;
   bool get isRecording => throw _privateConstructorUsedError;
   bool get isPlaying => throw _privateConstructorUsedError;
+  int get currentlyPlayingIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChatStateCopyWith<ChatState> get copyWith =>
@@ -41,7 +42,8 @@ abstract class $ChatStateCopyWith<$Res> {
       List<ChatModel> userChatsList,
       String recordPath,
       bool isRecording,
-      bool isPlaying});
+      bool isPlaying,
+      int currentlyPlayingIndex});
 }
 
 /// @nodoc
@@ -64,6 +66,7 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
     Object? recordPath = null,
     Object? isRecording = null,
     Object? isPlaying = null,
+    Object? currentlyPlayingIndex = null,
   }) {
     return _then(_value.copyWith(
       isUserLoading: null == isUserLoading
@@ -94,6 +97,10 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentlyPlayingIndex: null == currentlyPlayingIndex
+          ? _value.currentlyPlayingIndex
+          : currentlyPlayingIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -113,7 +120,8 @@ abstract class _$$ChatStateImplCopyWith<$Res>
       List<ChatModel> userChatsList,
       String recordPath,
       bool isRecording,
-      bool isPlaying});
+      bool isPlaying,
+      int currentlyPlayingIndex});
 }
 
 /// @nodoc
@@ -134,6 +142,7 @@ class __$$ChatStateImplCopyWithImpl<$Res>
     Object? recordPath = null,
     Object? isRecording = null,
     Object? isPlaying = null,
+    Object? currentlyPlayingIndex = null,
   }) {
     return _then(_$ChatStateImpl(
       isUserLoading: null == isUserLoading
@@ -164,6 +173,10 @@ class __$$ChatStateImplCopyWithImpl<$Res>
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
               as bool,
+      currentlyPlayingIndex: null == currentlyPlayingIndex
+          ? _value.currentlyPlayingIndex
+          : currentlyPlayingIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -178,7 +191,8 @@ class _$ChatStateImpl extends _ChatState {
       final List<ChatModel> userChatsList = const [],
       this.recordPath = "",
       this.isRecording = false,
-      this.isPlaying = false})
+      this.isPlaying = false,
+      this.currentlyPlayingIndex = 0})
       : _usersList = usersList,
         _userChatsList = userChatsList,
         super._();
@@ -216,10 +230,13 @@ class _$ChatStateImpl extends _ChatState {
   @override
   @JsonKey()
   final bool isPlaying;
+  @override
+  @JsonKey()
+  final int currentlyPlayingIndex;
 
   @override
   String toString() {
-    return 'ChatState(isUserLoading: $isUserLoading, isChatLoading: $isChatLoading, usersList: $usersList, userChatsList: $userChatsList, recordPath: $recordPath, isRecording: $isRecording, isPlaying: $isPlaying)';
+    return 'ChatState(isUserLoading: $isUserLoading, isChatLoading: $isChatLoading, usersList: $usersList, userChatsList: $userChatsList, recordPath: $recordPath, isRecording: $isRecording, isPlaying: $isPlaying, currentlyPlayingIndex: $currentlyPlayingIndex)';
   }
 
   @override
@@ -240,7 +257,9 @@ class _$ChatStateImpl extends _ChatState {
             (identical(other.isRecording, isRecording) ||
                 other.isRecording == isRecording) &&
             (identical(other.isPlaying, isPlaying) ||
-                other.isPlaying == isPlaying));
+                other.isPlaying == isPlaying) &&
+            (identical(other.currentlyPlayingIndex, currentlyPlayingIndex) ||
+                other.currentlyPlayingIndex == currentlyPlayingIndex));
   }
 
   @override
@@ -252,7 +271,8 @@ class _$ChatStateImpl extends _ChatState {
       const DeepCollectionEquality().hash(_userChatsList),
       recordPath,
       isRecording,
-      isPlaying);
+      isPlaying,
+      currentlyPlayingIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -269,7 +289,8 @@ abstract class _ChatState extends ChatState {
       final List<ChatModel> userChatsList,
       final String recordPath,
       final bool isRecording,
-      final bool isPlaying}) = _$ChatStateImpl;
+      final bool isPlaying,
+      final int currentlyPlayingIndex}) = _$ChatStateImpl;
   const _ChatState._() : super._();
 
   @override
@@ -286,6 +307,8 @@ abstract class _ChatState extends ChatState {
   bool get isRecording;
   @override
   bool get isPlaying;
+  @override
+  int get currentlyPlayingIndex;
   @override
   @JsonKey(ignore: true)
   _$$ChatStateImplCopyWith<_$ChatStateImpl> get copyWith =>

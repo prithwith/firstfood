@@ -16,6 +16,7 @@ class ChatState with _$ChatState {
     @Default("") String recordPath,
     @Default(false) bool isRecording,
     @Default(false) bool isPlaying,
+    @Default(0) int currentlyPlayingIndex,
   }) = _ChatState;
   const ChatState._();
 }

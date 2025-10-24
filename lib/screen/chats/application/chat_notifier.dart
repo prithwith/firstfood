@@ -7,7 +7,6 @@ import 'package:dio/dio.dart';
 import 'package:fastfood/core/infrastructure/hive_database.dart';
 import 'package:fastfood/core/model/chat_model.dart';
 import 'package:fastfood/core/model/chat_users_model.dart';
-import 'package:fastfood/core/utils/toast.dart';
 import 'package:fastfood/screen/chats/application/chat_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -126,90 +125,49 @@ class ChatNotifier extends StateNotifier<ChatState> {
     });
   }
 
-  void updateRecordPath(String path) {
-    state = state.copyWith(recordPath: path);
-  }
-
-  Future<String> _getFilePath() async {
-    final dir = await getApplicationDocumentsDirectory();
-    return '${dir.path}/rec_${DateTime.now().millisecondsSinceEpoch}.m4a';
+  void clearRecordPath() {
+    state = state.copyWith(recordPath: "");
   }
 
   Future<void> startRecording() async {
-    try {
-      final finalPath = await _getFilePath();
-      await recorderController.record(path: finalPath);
-      state = state.copyWith(isRecording: true, recordPath: finalPath);
-    } catch (e) {
-      showToastMessage("Unable to Start Recording $e");
-    }
+    final dir = await getApplicationDocumentsDirectory();
+    final finalPath =
+        "${dir.path}/rec_${DateTime.now().millisecondsSinceEpoch}.m4a";
+
+    state = state.copyWith(isRecording: true, recordPath: finalPath);
+
+    await recorderController.record(path: finalPath);
   }
 
-  Future<String?> stopRecording() async {
-    try {
-      await recorderController.stop();
-      final recordedFilePath = state.recordPath;
-      state = state.copyWith(isRecording: false);
-
-      return recordedFilePath.isNotEmpty ? recordedFilePath : null;
-    } catch (e) {
-      state = state.copyWith(isRecording: false);
-      return null;
-    }
+  Future<void> stopRecording() async {
+    await recorderController.stop();
+    state = state.copyWith(isRecording: false);
   }
 
   Future<void> playRecording({required String path}) async {
-    if (state.recordPath == path) {
-      await playerController.stopPlayer();
-      await playerController.seekTo(Duration.microsecondsPerSecond);
-      await playerController.startPlayer(forceRefresh: true);
-      return;
-    }
     if (state.isPlaying) {
       await playerController.stopPlayer();
+      state = state.copyWith(isPlaying: false);
     }
-    updateRecordPath(path);
-    try {
-      await playerController.preparePlayer(
-        path: path,
-        shouldExtractWaveform: true,
-        volume: 1.0,
-      );
-    } catch (e) {
-      updateRecordPath('');
-      return;
-    }
-    await playerController.startPlayer(forceRefresh: true);
-  }
 
-  // Future<void> togglePlayback({required String path}) async {
-  //   if (state.isPlaying && state.recordPath == path) {
-  //     await playerController.pausePlayer();
-  //     updateRecordPath('');
-  //     return;
-  //   }
-  //   if (state.isPlaying) {
-  //     await playerController.stopPlayer();
-  //   }
-  //   updateRecordPath(path);
-  //   try {
-  //     await playerController.preparePlayer(
-  //       path: path,
-  //       shouldExtractWaveform: true,
-  //       volume: 1.0,
-  //     );
-  //   } catch (e) {
-  //     updateRecordPath('');
-  //     return;
-  //   }
-  //   await playerController.startPlayer(forceRefresh: true);
-  // }
+    state = state.copyWith(isPlaying: true);
+    await playerController.preparePlayer(
+      path: path,
+      shouldExtractWaveform: true,
+      volume: 1.0,
+    );
+    await playerController.seekTo(0);
+    await playerController.startPlayer(forceRefresh: true);
+    playerController.onCompletion.listen((_) async {
+      await playerController.stopPlayer();
+      state = state.copyWith(isPlaying: false);
+    });
+  }
 
   @override
   void dispose() {
     _usersSub?.cancel();
     messageController.dispose();
-
     _usersChats?.cancel();
 
     recorderController.dispose();

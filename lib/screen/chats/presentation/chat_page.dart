@@ -92,7 +92,6 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                             content: content ?? "",
                             isSent: isSent,
                             isPlaying: state.isPlaying,
-                            recordPath: state.recordPath,
                             playerController: stateNotifier.playerController,
                             onTapAudio: () async {
                               await stateNotifier.playRecording(
@@ -220,7 +219,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                               senderId: hive.box.get(AppPreferenceKeys.email),
                             );
 
-                            stateNotifier.updateRecordPath("");
+                            stateNotifier.clearRecordPath();
                           }
                         }
                       : () async {
