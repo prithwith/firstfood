@@ -39,36 +39,48 @@ class _GeminiPageState extends ConsumerState<GeminiPage> {
           child: Column(
             children: [
               Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.all(12),
-                  itemCount: state.textChatList.length,
-                  itemBuilder: (context, index) {
-                    final message = state.textChatList[index];
-                    final isUser = message.role == "user";
-
-                    return Align(
-                      alignment: isUser
-                          ? Alignment.centerRight
-                          : Alignment.centerLeft,
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(vertical: 6),
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: isUser
-                              ? Colors.blueAccent.withValues(alpha: 0.2)
-                              : Colors.grey.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                child: state.isTextloading
+                    ? Center(child: CircularProgressIndicator())
+                    : state.textChatList.isEmpty
+                    ? Center(
                         child: Text(
-                          message.text ?? '',
+                          "Let's Start with Gemini\n Ask Your Questions",
+                          textAlign: TextAlign.center,
                           style: AppTextStyle.rubikTextRegular.copyWith(
-                            fontSize: 15.sp,
+                            fontSize: 20.sp,
                           ),
                         ),
+                      )
+                    : ListView.builder(
+                        padding: const EdgeInsets.all(12),
+                        itemCount: state.textChatList.length,
+                        itemBuilder: (context, index) {
+                          final message = state.textChatList[index];
+                          final isUser = message.role == "user";
+
+                          return Align(
+                            alignment: isUser
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 6),
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: isUser
+                                    ? Colors.blueAccent.withValues(alpha: 0.2)
+                                    : Colors.grey.withValues(alpha: 0.2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Text(
+                                message.text ?? '',
+                                style: AppTextStyle.rubikTextRegular.copyWith(
+                                  fontSize: 15.sp,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
               ),
               Container(
                 margin: const EdgeInsets.all(12),

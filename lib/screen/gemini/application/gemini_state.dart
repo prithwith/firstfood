@@ -8,9 +8,6 @@ class GeminiState with _$GeminiState {
   const factory GeminiState({
     @Default([]) List<TextaiModel> textChatList,
     @Default(false) bool isTextloading,
-
-    @Default([]) List textAndImageChatList,
-    @Default(false) bool isTextWithImageloading,
   }) = _GeminiState;
   const GeminiState._();
 }
