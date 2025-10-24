@@ -149,7 +149,6 @@ class ChatNotifier extends StateNotifier<ChatState> {
       await playerController.stopPlayer();
       state = state.copyWith(isPlaying: false);
     }
-
     state = state.copyWith(isPlaying: true);
     await playerController.preparePlayer(
       path: path,
@@ -168,6 +167,7 @@ class ChatNotifier extends StateNotifier<ChatState> {
   void dispose() {
     _usersSub?.cancel();
     messageController.dispose();
+
     _usersChats?.cancel();
 
     recorderController.dispose();

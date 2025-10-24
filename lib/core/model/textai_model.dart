@@ -8,7 +8,6 @@ part 'textai_model.g.dart';
 @freezed
 abstract class TextaiModel with _$TextaiModel {
   const factory TextaiModel({
-    // @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'role') String? role,
     @JsonKey(name: 'text') String? text,
   }) = _TextaiModel;

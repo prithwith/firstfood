@@ -219,7 +219,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                               senderId: hive.box.get(AppPreferenceKeys.email),
                             );
 
-                            stateNotifier.clearRecordPath();
+                            // stateNotifier.clearRecordPath();
                           }
                         }
                       : () async {

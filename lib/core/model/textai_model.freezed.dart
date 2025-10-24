@@ -20,7 +20,6 @@ TextaiModel _$TextaiModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TextaiModel {
-// @JsonKey(name: 'id') String? id,
   @JsonKey(name: 'role')
   String? get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'text')
@@ -121,7 +120,6 @@ class _$TextaiModelImpl implements _TextaiModel {
   factory _$TextaiModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TextaiModelImplFromJson(json);
 
-// @JsonKey(name: 'id') String? id,
   @override
   @JsonKey(name: 'role')
   final String? role;
@@ -169,7 +167,7 @@ abstract class _TextaiModel implements TextaiModel {
   factory _TextaiModel.fromJson(Map<String, dynamic> json) =
       _$TextaiModelImpl.fromJson;
 
-  @override // @JsonKey(name: 'id') String? id,
+  @override
   @JsonKey(name: 'role')
   String? get role;
   @override
