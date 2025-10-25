@@ -54,6 +54,7 @@ class _GeminiPageState extends ConsumerState<GeminiPage> {
                     : ListView.builder(
                         padding: const EdgeInsets.all(12),
                         itemCount: state.textChatList.length,
+                        reverse: true,
                         itemBuilder: (context, index) {
                           final message = state.textChatList[index];
                           final isUser = message.role == "user";

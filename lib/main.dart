@@ -20,6 +20,8 @@ void main() async {
 
   /// Firebase intrigation for social authantication, push notification
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  /// Gemini Ai Api Key intigration
   Gemini.init(apiKey: AppTexts.apiKey);
 
   /// hide the keyboadrd while restart the app
