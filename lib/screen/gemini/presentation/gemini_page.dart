@@ -39,7 +39,7 @@ class _GeminiPageState extends ConsumerState<GeminiPage> {
           child: Column(
             children: [
               Expanded(
-                child: state.isTextloading
+                child: state.isTextloading && state.textChatList.isEmpty
                     ? Center(child: CircularProgressIndicator())
                     : state.textChatList.isEmpty
                     ? Center(
