@@ -119,17 +119,17 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                     ),
                     child: Row(
                       children: [
-                        IconButton(
-                          onPressed: () async {
-                            await stateNotifier.startRecording();
-                          },
-                          icon: Icon(
-                            state.isRecording ? Icons.mic : Icons.mic_off_sharp,
-                            color: state.isRecording
-                                ? AppColors.colorPrimary
-                                : AppColors.colorWhite,
-                          ),
-                        ),
+                        // IconButton(
+                        //   onPressed: () async {
+                        //     await stateNotifier.startRecording();
+                        //   },
+                        //   icon: Icon(
+                        //     state.isRecording ? Icons.mic : Icons.mic_off_sharp,
+                        //     color: state.isRecording
+                        //         ? AppColors.colorPrimary
+                        //         : AppColors.colorWhite,
+                        //   ),
+                        // ),
                         10.horizontalSpace,
                         Expanded(
                           child: state.isRecording
