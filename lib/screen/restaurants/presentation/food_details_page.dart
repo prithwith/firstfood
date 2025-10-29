@@ -68,13 +68,14 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
           0;
       return total + quantity * price;
     });
+
     final basePrice = int.tryParse(widget.iems.price ?? '0') ?? 0;
 
     final itemCount = orderState.cartItemList
         .where((e) => e == widget.iems.id)
         .length;
 
-    final totalAmount = (basePrice + addMorePrice) * itemCount;
+    final totalAmount = (basePrice * itemCount) + addMorePrice;
 
     return Scaffold(
       body: SingleChildScrollView(

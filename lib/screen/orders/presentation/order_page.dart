@@ -56,68 +56,68 @@ class _OrderPageState extends ConsumerState<OrderPage> {
         centerTitle: true,
       ),
       body: Container(
-        margin:
-            EdgeInsets.symmetric(
-              horizontal: 20,
-            ).copyWith(bottom: navHeight(context)).r,
+        margin: EdgeInsets.symmetric(
+          horizontal: 20,
+        ).copyWith(bottom: navHeight(context)).r,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               state.cartItemList.isEmpty
                   ? SizedBox(
-                    height: 100.h,
-                    child: const Center(child: Text("No item ordered yet")),
-                  )
+                      height: 100.h,
+                      child: const Center(child: Text("No item ordered yet")),
+                    )
                   : ListView.builder(
-                    itemCount: state.cartItemList.toSet().toList().length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-                      final itemId = state.cartItemList.toSet().toList()[index];
+                      itemCount: state.cartItemList.toSet().toList().length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        final itemId = state.cartItemList
+                            .toSet()
+                            .toList()[index];
 
-                      final product = baseState.foodItemsList.firstWhere(
-                        (element) => element.id == itemId,
-                      );
-
-                      try {
-                        final quantity =
-                            state.cartItemList
-                                .where((element) => element == product.id)
-                                .length;
-
-                        final unitPrice =
-                            int.tryParse(product.price.toString()) ?? 0;
-
-                        final totalPrice = quantity * unitPrice;
-
-                        return OrderItems(
-                          id: product.id ?? "",
-                          title: product.title ?? "UNKNOWN",
-                          price: totalPrice.toString(),
-                          image: product.image ?? "N/A",
-                          extras: "N/A",
-                          quantity: quantity.toString(),
-                          onRemove: () {
-                            stateNotifier.updateCartItem(
-                              id: product.id,
-                              isUpdate: false,
-                            );
-                          },
-                          onAdd: () {
-                            stateNotifier.updateCartItem(
-                              id: product.id,
-                              isUpdate: true,
-                            );
-                          },
+                        final product = baseState.foodItemsList.firstWhere(
+                          (element) => element.id == itemId,
                         );
-                      } catch (e) {
-                        return Text(
-                          "Product Id ${product.id} Doesn't Avaliable",
-                        );
-                      }
-                    },
-                  ),
+
+                        try {
+                          final quantity = state.cartItemList
+                              .where((element) => element == product.id)
+                              .length;
+
+                          // final unitPrice =
+                          //     int.tryParse(product.price.toString()) ?? 0;
+
+                          // final totalPrice = quantity * unitPrice;
+
+                          return OrderItems(
+                            id: product.id ?? "",
+                            title: product.title ?? "UNKNOWN",
+                            price: product.price.toString(),
+                            image: product.image ?? "N/A",
+                            extras: "No descriptions..",
+                            quantity: quantity.toString(),
+                            onRemove: () {
+                              stateNotifier.updateCartItem(
+                                id: product.id,
+                                isUpdate: false,
+                              );
+                            },
+                            onAdd: () {
+                              stateNotifier.updateCartItem(
+                                id: product.id,
+                                isUpdate: true,
+                              );
+                            },
+                          );
+                        } catch (e) {
+                          return Text(
+                            "Product Id ${product.id} Doesn't Avaliable",
+                          );
+                        }
+                      },
+                    ),
               5.verticalSpace,
               resturantsState.addonItemsIdList.isEmpty
                   ? Text("")
@@ -126,27 +126,27 @@ class _OrderPageState extends ConsumerState<OrderPage> {
               resturantsState.addonItemsIdList.isEmpty
                   ? Text("")
                   : ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: resturantsState.addonItemsIdList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final itemId = resturantsState.addonItemsIdList[index];
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: resturantsState.addonItemsIdList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final itemId = resturantsState.addonItemsIdList[index];
 
-                      final item = baseState.addonItemsList.firstWhere(
-                        (value) => value.id == itemId,
-                      );
+                        final item = baseState.addonItemsList.firstWhere(
+                          (value) => value.id == itemId,
+                        );
 
-                      return AddonItemsTile(
-                        title: item.title ?? "",
-                        price: item.price ?? "",
-                        iconPath: item.image ?? "",
-                        isUpdate: resturantsState.addonItemsIdList.contains(
-                          item.id,
-                        ),
-                        isSelection: true,
-                      );
-                    },
-                  ),
+                        return AddonItemsTile(
+                          title: item.title ?? "",
+                          price: item.price ?? "",
+                          iconPath: item.image ?? "",
+                          isUpdate: resturantsState.addonItemsIdList.contains(
+                            item.id,
+                          ),
+                          isSelection: true,
+                        );
+                      },
+                    ),
               5.verticalSpace,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,28 +209,28 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                   baseState.foodItemsList.isEmpty
                       ? const Center(child: CircularProgressIndicator())
                       : SizedBox(
-                        height: 150.h,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: baseState.foodItemsList.length,
-                          itemBuilder: (context, index) {
-                            final item = baseState.foodItemsList[index];
+                          height: 150.h,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: baseState.foodItemsList.length,
+                            itemBuilder: (context, index) {
+                              final item = baseState.foodItemsList[index];
 
-                            return RecommendationItems(
-                              onCart: () {
-                                stateNotifier.updateCartItem(
-                                  id: item.id.toString(),
-                                  isUpdate: true,
-                                );
-                              },
-                              id: item.id ?? "",
-                              title: item.title ?? "Unknown",
-                              price: item.price ?? "N/A",
-                              image: item.image ?? "N/A",
-                            );
-                          },
+                              return RecommendationItems(
+                                onCart: () {
+                                  stateNotifier.updateCartItem(
+                                    id: item.id.toString(),
+                                    isUpdate: true,
+                                  );
+                                },
+                                id: item.id ?? "",
+                                title: item.title ?? "Unknown",
+                                price: item.price ?? "N/A",
+                                image: item.image ?? "N/A",
+                              );
+                            },
+                          ),
                         ),
-                      ),
                   200.verticalSpace,
                 ],
               ),
