@@ -130,8 +130,10 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                       stateNotifier.sighupPasswordController.text,
                     );
 
-                    if ((stateNotifier.sighupNameController.text =
-                            stateNotifier.sighupNameController.text.trim())
+                    if ((stateNotifier.sighupNameController.text = stateNotifier
+                            .sighupNameController
+                            .text
+                            .trim())
                         .isEmpty) {
                       showToastMessage("Name field is required");
                     } else if (errorEmailMessage != null) {
@@ -204,26 +206,33 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                   ],
                 ),
                 30.verticalSpace,
-                Column(
-                  children: [
-                    SocalAuthButton(
-                      onPressed: () {},
-                      imageTextlabel: "facebook_logo.png",
-                      textlabel: "Continue With Facebook",
-                      loading: state.isFacebookLoading,
-                    ),
-                    10.verticalSpace,
-                    SocalAuthButton(
-                      onPressed:
-                          () => stateNotifier.signInWithGoogle(
-                            onTap: () => context.pushRoute(BaseRoute()),
-                          ),
-                      imageTextlabel: "google_logo.png",
-                      textlabel: "Continue With Google",
-                      loading: state.isGoogleLoading,
-                    ),
-                  ],
+                SocalAuthButton(
+                  onPressed: () => stateNotifier.signInWithGoogle(
+                    onTap: () => context.pushRoute(BaseRoute()),
+                  ),
+                  imageTextlabel: "google_logo.png",
+                  textlabel: "Continue With Google",
+                  loading: state.isGoogleLoading,
                 ),
+                // Column(
+                //   children: [
+                //     SocalAuthButton(
+                //       onPressed: () {},
+                //       imageTextlabel: "facebook_logo.png",
+                //       textlabel: "Continue With Facebook",
+                //       loading: state.isFacebookLoading,
+                //     ),
+                //     10.verticalSpace,
+                //     SocalAuthButton(
+                //       onPressed: () => stateNotifier.signInWithGoogle(
+                //         onTap: () => context.pushRoute(BaseRoute()),
+                //       ),
+                //       imageTextlabel: "google_logo.png",
+                //       textlabel: "Continue With Google",
+                //       loading: state.isGoogleLoading,
+                //     ),
+                //   ],
+                // ),
                 30.verticalSpace,
               ],
             ),

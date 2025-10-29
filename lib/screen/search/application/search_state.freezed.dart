@@ -16,10 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchState {
-// UserModel? user,
-  List<dynamic> get allFooddetailsList => throw _privateConstructorUsedError;
-  List<dynamic> get searchdataList => throw _privateConstructorUsedError;
-  List<dynamic> get searchHistoryList => throw _privateConstructorUsedError;
+  List<FooditemsModel> get searchdataList => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith =>
@@ -32,10 +30,7 @@ abstract class $SearchStateCopyWith<$Res> {
           SearchState value, $Res Function(SearchState) then) =
       _$SearchStateCopyWithImpl<$Res, SearchState>;
   @useResult
-  $Res call(
-      {List<dynamic> allFooddetailsList,
-      List<dynamic> searchdataList,
-      List<dynamic> searchHistoryList});
+  $Res call({List<FooditemsModel> searchdataList, bool isLoading});
 }
 
 /// @nodoc
@@ -51,23 +46,18 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? allFooddetailsList = null,
     Object? searchdataList = null,
-    Object? searchHistoryList = null,
+    Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
-      allFooddetailsList: null == allFooddetailsList
-          ? _value.allFooddetailsList
-          : allFooddetailsList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
       searchdataList: null == searchdataList
           ? _value.searchdataList
           : searchdataList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      searchHistoryList: null == searchHistoryList
-          ? _value.searchHistoryList
-          : searchHistoryList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<FooditemsModel>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -80,10 +70,7 @@ abstract class _$$SearchStateImplCopyWith<$Res>
       __$$SearchStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<dynamic> allFooddetailsList,
-      List<dynamic> searchdataList,
-      List<dynamic> searchHistoryList});
+  $Res call({List<FooditemsModel> searchdataList, bool isLoading});
 }
 
 /// @nodoc
@@ -97,23 +84,18 @@ class __$$SearchStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? allFooddetailsList = null,
     Object? searchdataList = null,
-    Object? searchHistoryList = null,
+    Object? isLoading = null,
   }) {
     return _then(_$SearchStateImpl(
-      allFooddetailsList: null == allFooddetailsList
-          ? _value._allFooddetailsList
-          : allFooddetailsList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
       searchdataList: null == searchdataList
           ? _value._searchdataList
           : searchdataList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      searchHistoryList: null == searchHistoryList
-          ? _value._searchHistoryList
-          : searchHistoryList // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<FooditemsModel>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -122,48 +104,27 @@ class __$$SearchStateImplCopyWithImpl<$Res>
 
 class _$SearchStateImpl extends _SearchState {
   const _$SearchStateImpl(
-      {final List<dynamic> allFooddetailsList = const [],
-      final List<dynamic> searchdataList = const [],
-      final List<dynamic> searchHistoryList = const []})
-      : _allFooddetailsList = allFooddetailsList,
-        _searchdataList = searchdataList,
-        _searchHistoryList = searchHistoryList,
+      {final List<FooditemsModel> searchdataList = const [],
+      this.isLoading = false})
+      : _searchdataList = searchdataList,
         super._();
 
-// UserModel? user,
-  final List<dynamic> _allFooddetailsList;
-// UserModel? user,
+  final List<FooditemsModel> _searchdataList;
   @override
   @JsonKey()
-  List<dynamic> get allFooddetailsList {
-    if (_allFooddetailsList is EqualUnmodifiableListView)
-      return _allFooddetailsList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_allFooddetailsList);
-  }
-
-  final List<dynamic> _searchdataList;
-  @override
-  @JsonKey()
-  List<dynamic> get searchdataList {
+  List<FooditemsModel> get searchdataList {
     if (_searchdataList is EqualUnmodifiableListView) return _searchdataList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_searchdataList);
   }
 
-  final List<dynamic> _searchHistoryList;
   @override
   @JsonKey()
-  List<dynamic> get searchHistoryList {
-    if (_searchHistoryList is EqualUnmodifiableListView)
-      return _searchHistoryList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_searchHistoryList);
-  }
+  final bool isLoading;
 
   @override
   String toString() {
-    return 'SearchState(allFooddetailsList: $allFooddetailsList, searchdataList: $searchdataList, searchHistoryList: $searchHistoryList)';
+    return 'SearchState(searchdataList: $searchdataList, isLoading: $isLoading)';
   }
 
   @override
@@ -172,19 +133,14 @@ class _$SearchStateImpl extends _SearchState {
         (other.runtimeType == runtimeType &&
             other is _$SearchStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._allFooddetailsList, _allFooddetailsList) &&
-            const DeepCollectionEquality()
                 .equals(other._searchdataList, _searchdataList) &&
-            const DeepCollectionEquality()
-                .equals(other._searchHistoryList, _searchHistoryList));
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_allFooddetailsList),
-      const DeepCollectionEquality().hash(_searchdataList),
-      const DeepCollectionEquality().hash(_searchHistoryList));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_searchdataList), isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -195,17 +151,14 @@ class _$SearchStateImpl extends _SearchState {
 
 abstract class _SearchState extends SearchState {
   const factory _SearchState(
-      {final List<dynamic> allFooddetailsList,
-      final List<dynamic> searchdataList,
-      final List<dynamic> searchHistoryList}) = _$SearchStateImpl;
+      {final List<FooditemsModel> searchdataList,
+      final bool isLoading}) = _$SearchStateImpl;
   const _SearchState._() : super._();
 
-  @override // UserModel? user,
-  List<dynamic> get allFooddetailsList;
   @override
-  List<dynamic> get searchdataList;
+  List<FooditemsModel> get searchdataList;
   @override
-  List<dynamic> get searchHistoryList;
+  bool get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>

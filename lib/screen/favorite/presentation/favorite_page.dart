@@ -57,36 +57,32 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
       onTap: () => dismissKeyboard(context),
       child: Scaffold(
         body: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: 20)
-                  .copyWith(
-                    top: statusHeight(context),
-                    bottom: navHeight(context),
-                  )
-                  .r,
+          padding: EdgeInsets.symmetric(
+            horizontal: 20,
+          ).copyWith(top: statusHeight(context), bottom: navHeight(context)).r,
           child: DefaultTabController(
             length: 2,
             child: Column(
               children: [
-                SizedBox(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search...',
-                      prefixIcon: Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.r)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(),
-                        borderRadius: BorderRadius.all(Radius.circular(20.r)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(),
-                        borderRadius: BorderRadius.all(Radius.circular(20.r)),
-                      ),
-                    ),
-                  ),
-                ),
+                // SizedBox(
+                //   child: TextField(
+                //     decoration: InputDecoration(
+                //       hintText: 'Search...',
+                //       prefixIcon: Icon(Icons.search),
+                //       border: OutlineInputBorder(
+                //         borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                //       ),
+                //       enabledBorder: OutlineInputBorder(
+                //         borderSide: BorderSide(),
+                //         borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                //       ),
+                //       focusedBorder: OutlineInputBorder(
+                //         borderSide: BorderSide(),
+                //         borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 10.verticalSpace,
                 Container(
                   height: 60.h,
@@ -103,7 +99,10 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
                     ),
                     labelColor: Colors.white,
                     labelStyle: AppTextStyle.rubikTextMedium,
-                    tabs: [Tab(text: 'Food Items'), Tab(text: 'Restaurants')],
+                    tabs: [
+                      Tab(text: 'Food Items'),
+                      Tab(text: 'Restaurants'),
+                    ],
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicatorPadding: EdgeInsets.all(2).r,
                     dividerColor: Colors.transparent,
@@ -118,81 +117,81 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
                       state.favfoodItemsIdList.isEmpty
                           ? Center(child: Text("No Items Found"))
                           : ListView.builder(
-                            itemCount: state.favfoodItemsIdList.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final itemid = state.favfoodItemsIdList[index];
+                              itemCount: state.favfoodItemsIdList.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final itemid = state.favfoodItemsIdList[index];
 
-                              try {
-                                final item = baseState.foodItemsList.firstWhere(
-                                  (element) => element.id == itemid,
-                                );
+                                try {
+                                  final item = baseState.foodItemsList
+                                      .firstWhere(
+                                        (element) => element.id == itemid,
+                                      );
 
-                                return FoodItemsCard(
-                                  image: item.image ?? "",
-                                  title: item.title ?? "",
-                                  subtitle:
-                                      item.subtitle ?? "Always eat Good food",
-                                  restaurant: item.restaurant ?? "",
-                                  time: item.time ?? "",
-                                  rating: item.rating ?? "",
-                                  priceLevel: item.price ?? "",
-                                  isLiked: state.favfoodItemsIdList.contains(
-                                    item.id,
-                                  ),
-                                  onTapFavorite: () {
-                                    stateNotifier.updateFavoriteFoodItems(
-                                      itemId: item.id ?? "",
-                                    );
-                                  },
-                                );
-                              } catch (e) {
-                                return Center(
-                                  child: Text(
-                                    "No Items Found To $itemid Product Id",
-                                    style: AppTextStyle.rubikTextRegular
-                                        .copyWith(color: Colors.red),
-                                  ),
-                                );
-                              }
-                            },
-                          ),
+                                  return FoodItemsCard(
+                                    image: item.image ?? "",
+                                    title: item.title ?? "",
+                                    subtitle:
+                                        item.subtitle ?? "Always eat Good food",
+                                    restaurant: item.restaurant ?? "",
+                                    time: item.time ?? "",
+                                    rating: item.rating ?? "",
+                                    priceLevel: item.price ?? "",
+                                    isLiked: state.favfoodItemsIdList.contains(
+                                      item.id,
+                                    ),
+                                    onTapFavorite: () {
+                                      stateNotifier.updateFavoriteFoodItems(
+                                        itemId: item.id ?? "",
+                                      );
+                                    },
+                                  );
+                                } catch (e) {
+                                  return Center(
+                                    child: Text(
+                                      "No Items Found To $itemid Product Id",
+                                      style: AppTextStyle.rubikTextRegular
+                                          .copyWith(color: Colors.red),
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
 
                       /// Resturans Lists.................
                       state.favresturantsIdList.isEmpty
                           ? Center(child: Text("No Resturants Found"))
                           : ListView.builder(
-                            itemCount: state.favresturantsIdList.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final itemid = state.favresturantsIdList[index];
+                              itemCount: state.favresturantsIdList.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final itemid = state.favresturantsIdList[index];
 
-                              final item = resturantsState.resturantsList
-                                  .firstWhere(
-                                    (element) => element.id == itemid,
-                                  );
+                                final item = resturantsState.resturantsList
+                                    .firstWhere(
+                                      (element) => element.id == itemid,
+                                    );
 
-                              return RestaurantsPageRestaurantCard(
-                                image: item.image ?? "",
-                                title: item.name ?? "",
-                                subtitle: item.subtitle ?? "",
-                                deliveryCharge: item.deliveryCharge ?? "",
-                                price: item.price ?? "",
-                                time: item.time ?? "",
-                                rating: item.rating ?? "",
-                                isLiked: state.favresturantsIdList.contains(
-                                  item.id,
-                                ),
-                                onTapFavorite: () {
-                                  stateNotifier.updateFavoriteResturants(
-                                    itemId: item.id ?? "",
-                                  );
-                                },
-                                onTap:
-                                    () => context.pushRoute(
-                                      RestaurantDetalisRoute(items: item),
-                                    ),
-                              );
-                            },
-                          ),
+                                return RestaurantsPageRestaurantCard(
+                                  image: item.image ?? "",
+                                  title: item.name ?? "",
+                                  subtitle: item.subtitle ?? "",
+                                  deliveryCharge: item.deliveryCharge ?? "",
+                                  price: item.price ?? "",
+                                  time: item.time ?? "",
+                                  rating: item.rating ?? "",
+                                  isLiked: state.favresturantsIdList.contains(
+                                    item.id,
+                                  ),
+                                  onTapFavorite: () {
+                                    stateNotifier.updateFavoriteResturants(
+                                      itemId: item.id ?? "",
+                                    );
+                                  },
+                                  onTap: () => context.pushRoute(
+                                    RestaurantDetalisRoute(items: item),
+                                  ),
+                                );
+                              },
+                            ),
                     ],
                   ),
                 ),

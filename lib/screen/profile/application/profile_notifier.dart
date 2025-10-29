@@ -26,7 +26,9 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
   }
 
   Future<void> openWebsite() async {
-    final Uri url = Uri.parse('https://pub.dev');
+    final Uri url = Uri.parse(
+      'https://www.webskittersacademy.in/privacy-policy/',
+    );
 
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       throw 'Could not open website';

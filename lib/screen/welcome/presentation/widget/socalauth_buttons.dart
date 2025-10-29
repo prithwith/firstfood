@@ -33,10 +33,7 @@ class SocalAuthButtons extends StatelessWidget {
         ),
         onPressed: loading ? null : onPressed,
         icon: loading
-            ? LoadingAnimationWidget.progressiveDots(
-                color: effectiveLoaderColor,
-                size: 40.sp,
-              )
+            ? Text("")
             : Padding(
                 padding: EdgeInsets.all(8).r,
                 child: Image.asset(

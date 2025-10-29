@@ -132,7 +132,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 onTap: () => stateNotifier.openGmail("support@gmail.com"),
               ),
               SettingsTile(
-                label: 'Settings',
+                label: 'Privacy Policy',
                 imageLabel: 'settings.png',
                 onTap: () => stateNotifier.openWebsite(),
               ),
@@ -172,6 +172,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   ),
                 ),
               ),
+              200.verticalSpace,
             ],
           ),
         ),

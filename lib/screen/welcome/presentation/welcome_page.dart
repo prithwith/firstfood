@@ -100,25 +100,33 @@ class _WelcomePageState extends ConsumerState<WelcomePage> {
               ],
             ),
             30.verticalSpace,
-            Column(
-              children: [
-                SocalAuthButtons(
-                  onPressed: () {},
-                  imageTextlabel: "facebook_logo.png",
-                  textlabel: "Continue With Facebook",
-                  loading: state.isFacebookLoading,
-                ),
-                10.verticalSpace,
-                SocalAuthButtons(
-                  onPressed: () => stateNotifier.signInWithGoogle(
-                    onTap: () => context.pushRoute(BaseRoute()),
-                  ),
-                  imageTextlabel: "google_logo.png",
-                  textlabel: "Continue With Google",
-                  loading: state.isGoogleLoading,
-                ),
-              ],
+            SocalAuthButtons(
+              onPressed: () => stateNotifier.signInWithGoogle(
+                onTap: () => context.pushRoute(BaseRoute()),
+              ),
+              imageTextlabel: "google_logo.png",
+              textlabel: "Continue With Google",
+              loading: state.isGoogleLoading,
             ),
+            // Column(
+            //   children: [
+            //     SocalAuthButtons(
+            //       onPressed: () {},
+            //       imageTextlabel: "facebook_logo.png",
+            //       textlabel: "Continue With Facebook",
+            //       loading: state.isFacebookLoading,
+            //     ),
+            //     10.verticalSpace,
+            //     SocalAuthButtons(
+            //       onPressed: () => stateNotifier.signInWithGoogle(
+            //         onTap: () => context.pushRoute(BaseRoute()),
+            //       ),
+            //       imageTextlabel: "google_logo.png",
+            //       textlabel: "Continue With Google",
+            //       loading: state.isGoogleLoading,
+            //     ),
+            //   ],
+            // ),
             20.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

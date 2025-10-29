@@ -45,13 +45,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            padding:
-                EdgeInsets.symmetric(horizontal: 20)
-                    .copyWith(
-                      top: statusHeight(context),
-                      bottom: navHeight(context),
-                    )
-                    .r,
+            padding: EdgeInsets.symmetric(horizontal: 20)
+                .copyWith(
+                  top: statusHeight(context),
+                  bottom: navHeight(context),
+                )
+                .r,
             height: MediaQuery.sizeOf(context).height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -238,26 +237,33 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ],
                 ),
                 30.verticalSpace,
-                Column(
-                  children: [
-                    SocalAuthButton(
-                      onPressed: () {},
-                      imageTextlabel: "facebook_logo.png",
-                      textlabel: "Continue With Facebook",
-                      loading: state.isFacebookLoading,
-                    ),
-                    10.verticalSpace,
-                    SocalAuthButton(
-                      onPressed:
-                          () => stateNotifier.signInWithGoogle(
-                            onTap: () => context.pushRoute(BaseRoute()),
-                          ),
-                      imageTextlabel: "google_logo.png",
-                      textlabel: "Continue With Google",
-                      loading: state.isGoogleLoading,
-                    ),
-                  ],
+                SocalAuthButton(
+                  onPressed: () => stateNotifier.signInWithGoogle(
+                    onTap: () => context.pushRoute(BaseRoute()),
+                  ),
+                  imageTextlabel: "google_logo.png",
+                  textlabel: "Continue With Google",
+                  loading: state.isGoogleLoading,
                 ),
+                // Column(
+                //   children: [
+                //     SocalAuthButton(
+                //       onPressed: () {},
+                //       imageTextlabel: "facebook_logo.png",
+                //       textlabel: "Continue With Facebook",
+                //       loading: state.isFacebookLoading,
+                //     ),
+                //     10.verticalSpace,
+                //     SocalAuthButton(
+                //       onPressed: () => stateNotifier.signInWithGoogle(
+                //         onTap: () => context.pushRoute(BaseRoute()),
+                //       ),
+                //       imageTextlabel: "google_logo.png",
+                //       textlabel: "Continue With Google",
+                //       loading: state.isGoogleLoading,
+                //     ),
+                //   ],
+                // ),
                 30.verticalSpace,
               ],
             ),

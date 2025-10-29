@@ -58,8 +58,9 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
       final product = baseState.addonItemsList.firstWhere(
         (e) => e.id == itemId,
       );
-      final quantity =
-          state.addonItemsIdList.where((id) => id == product.id).length;
+      final quantity = state.addonItemsIdList
+          .where((id) => id == product.id)
+          .length;
       final price =
           double.tryParse(
             product.price.toString().replaceAll('₹', '').trim(),
@@ -69,8 +70,9 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
     });
     final basePrice = int.tryParse(widget.iems.price ?? '0') ?? 0;
 
-    final itemCount =
-        orderState.cartItemList.where((e) => e == widget.iems.id).length;
+    final itemCount = orderState.cartItemList
+        .where((e) => e == widget.iems.id)
+        .length;
 
     final totalAmount = (basePrice + addMorePrice) * itemCount;
 
@@ -129,10 +131,10 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                               : Icons.favorite_border,
                           color:
                               favoriteState.favfoodItemsIdList.contains(
-                                    widget.iems.id,
-                                  )
-                                  ? Colors.red
-                                  : AppColors.colorPrimary,
+                                widget.iems.id,
+                              )
+                              ? Colors.red
+                              : AppColors.colorPrimary,
                         ),
                       ),
                     ],
@@ -176,23 +178,25 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
                   baseState.addonItemsList.isEmpty
                       ? Center(child: Text("No Add On Items Found"))
                       : ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: baseState.addonItemsList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final item = baseState.addonItemsList[index];
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: baseState.addonItemsList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final item = baseState.addonItemsList[index];
 
-                          return AddonItemsTile(
-                            title: item.title ?? "",
-                            price: item.price ?? "",
-                            iconPath: item.image ?? "",
-                            isUpdate: state.addonItemsIdList.contains(item.id),
-                            onChanged: () {
-                              stateNotifier.addMoreValue(item.id);
-                            },
-                          );
-                        },
-                      ),
+                            return AddonItemsTile(
+                              title: item.title ?? "",
+                              price: item.price ?? "",
+                              iconPath: item.image ?? "",
+                              isUpdate: state.addonItemsIdList.contains(
+                                item.id,
+                              ),
+                              onChanged: () {
+                                stateNotifier.addMoreValue(item.id);
+                              },
+                            );
+                          },
+                        ),
                   150.verticalSpace,
                 ],
               ),
@@ -206,94 +210,97 @@ class _FoodDetailsPageState extends ConsumerState<FoodDetailsPage> {
         children: [
           itemCount == 0
               ? OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: AppColors.colorPrimaryDeep,
-                  side: BorderSide(width: 0, color: AppColors.colorPrimaryDeep),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 30.sp,
-                    vertical: 15.sp,
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: AppColors.colorPrimaryDeep,
+                    side: BorderSide(
+                      width: 0,
+                      color: AppColors.colorPrimaryDeep,
+                    ),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 30.sp,
+                      vertical: 15.sp,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  orderStateNotifier.updateCartItem(
-                    id: widget.iems.id,
-                    isUpdate: true,
-                  );
-                },
-                child: Text(
-                  "Add to cart",
-                  style: AppTextStyle.rubikTextMedium.copyWith(
-                    fontSize: 16.sp,
-                    color: Colors.white,
+                  onPressed: () {
+                    orderStateNotifier.updateCartItem(
+                      id: widget.iems.id,
+                      isUpdate: true,
+                    );
+                  },
+                  child: Text(
+                    "Add to cart",
+                    style: AppTextStyle.rubikTextMedium.copyWith(
+                      fontSize: 16.sp,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              )
+                )
               : Container(
-                decoration: BoxDecoration(
-                  color: AppColors.colorPrimaryLight,
-                  borderRadius: BorderRadius.circular(30),
+                  decoration: BoxDecoration(
+                    color: AppColors.colorPrimaryLight,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15).r,
+                  child: Row(
+                    children: [
+                      10.horizontalSpace,
+                      GestureDetector(
+                        onTap: () {
+                          // if (itemCount > 1) {
+                          orderStateNotifier.updateCartItem(
+                            id: widget.iems.id,
+                            isUpdate: false,
+                          );
+                          // } else {
+                          //   showToastMessage("Minimum quantity is 1");
+                          // }
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(1).r,
+                          decoration: BoxDecoration(
+                            color: AppColors.colorPrimaryDeep,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: const Icon(
+                            Icons.remove,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                      20.horizontalSpace,
+                      Text(
+                        itemCount.toString(),
+                        style: AppTextStyle.rubikTextLight.copyWith(
+                          fontSize: 16.sp,
+                          color: AppColors.colorPrimary,
+                        ),
+                      ),
+                      20.horizontalSpace,
+                      GestureDetector(
+                        onTap: () {
+                          orderStateNotifier.updateCartItem(
+                            id: widget.iems.id,
+                            isUpdate: true,
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(1).r,
+                          decoration: BoxDecoration(
+                            color: AppColors.colorPrimaryDeep,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                      10.horizontalSpace,
+                    ],
+                  ),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15).r,
-                child: Row(
-                  children: [
-                    10.horizontalSpace,
-                    GestureDetector(
-                      onTap: () {
-                        // if (itemCount > 1) {
-                        orderStateNotifier.updateCartItem(
-                          id: widget.iems.id,
-                          isUpdate: false,
-                        );
-                        // } else {
-                        //   showToastMessage("Minimum quantity is 1");
-                        // }
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(1).r,
-                        decoration: BoxDecoration(
-                          color: AppColors.colorPrimaryDeep,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: const Icon(
-                          Icons.remove,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                    20.horizontalSpace,
-                    Text(
-                      itemCount.toString(),
-                      style: AppTextStyle.rubikTextLight.copyWith(
-                        fontSize: 16.sp,
-                        color: AppColors.colorPrimary,
-                      ),
-                    ),
-                    20.horizontalSpace,
-                    GestureDetector(
-                      onTap: () {
-                        orderStateNotifier.updateCartItem(
-                          id: widget.iems.id,
-                          isUpdate: true,
-                        );
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(1).r,
-                        decoration: BoxDecoration(
-                          color: AppColors.colorPrimaryDeep,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                    10.horizontalSpace,
-                  ],
-                ),
-              ),
           OutlinedButton(
             style: OutlinedButton.styleFrom(
               backgroundColor: AppColors.colorPrimaryDeep,
